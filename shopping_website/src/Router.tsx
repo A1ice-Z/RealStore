@@ -1,11 +1,23 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import App from "./App";  //Endre til Home page når den er laget
+import Home from "./pages/Home";
+import ShoppingCart from "./pages/ShoppingCart";
+import Favorites from "./pages/Favorites";
+import Profile from "./pages/Profile";
+import Navbar from "./components/Navbar/Navbar";
+import NoPage from "./pages/NoPage";
 
 const Router = () => {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<App />} />
+                <Route path="/" element={<Home />} />
+                <Route path="*" element={<>
+                    <Navbar />
+                    <NoPage />
+                </>} />
+                <Route path="/ShoppingCart" element={<ShoppingCart />} />
+                <Route path="/Favorites" element={<Favorites />} />
+                <Route path="/Profile" element={<Profile />} />
             </Routes>
         </BrowserRouter>
     );
