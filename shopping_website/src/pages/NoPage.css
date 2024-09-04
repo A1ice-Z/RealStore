@@ -1,0 +1,10 @@
+body {
+    direction: flex;
+    justify-content: center;
+    background-color: white;
+}
+
+h1 {
+    font-size: 2em;
+    color: black;
+}
