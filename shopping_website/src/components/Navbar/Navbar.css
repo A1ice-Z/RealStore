@@ -1,24 +1,22 @@
 .navbar {
     background-color: #B4DCE9;
     width: 100%;
-    height: 10%;
+    height: 90px;
     position: fixed;
     top: 0;
     left: 0;
+    overflow: hidden;
 
     display: flex;
     flex-direction: row;
-    align-items: baseline;
+    align-items: flex-start;
 }
 
 .navlogo {
     margin-left: 1%;
     width: 20%;
     height: max-content;
-    height: 10%;
-    position: fixed;
-    top: 0;
-    left: 0;
+    height: 90px;
 }
 
 .navlogo h1 {
@@ -32,10 +30,7 @@
 .searchfield {
     width: 35%;
     height: max-content;
-    height: 10%;
-    position: fixed;
-    top: 0;
-    left: 25%;
+    height: 90px;
 }
 
 .navlinks {
@@ -43,10 +38,7 @@
     flex-direction: row-reverse;
     margin-right: 1%;
     width: 45%;
-    position: fixed;
-    top: 0;
-    left: 60%;
-    height: 10%;
+    height: 90px;
 }
 
 .navlinks a {
