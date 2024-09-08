@@ -2,7 +2,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import ShoppingCart from "./pages/ShoppingCart";
 import Favorites from "./pages/Favorites";
-import Profile from "./pages/Profile";
 import Navbar from "./components/Navbar/Navbar";
 import NoPage from "./pages/NoPage";
 
@@ -17,7 +16,6 @@ const Router = () => {
                 </>} />
                 <Route path="/ShoppingCart" element={<ShoppingCart />} />
                 <Route path="/Favorites" element={<Favorites />} />
-                <Route path="/Profile" element={<Profile />} />
             </Routes>
         </BrowserRouter>
     );
