@@ -2,10 +2,13 @@ import { CiSearch, CiHeart } from "react-icons/ci";
 import { HiOutlineShoppingBag } from "react-icons/hi2";
 import { Link } from "react-router-dom";
 import styles from "./Navbar.module.css";
+import { RxHamburgerMenu } from "react-icons/rx";
 
 const Navbar = () => {
     return (
         <nav className={styles.navbar}>
+            <RxHamburgerMenu className={styles.hamburgmenu} />
+
             <div className={styles.navpage}>
                 <Link to={"/"} className={styles.navlink}>
                     <p>HOME</p>
@@ -37,6 +40,9 @@ const Navbar = () => {
                     <CiSearch className={styles.blackicon} />
                 </Link>
             </div>
+            <Link to={"/ShoppingCart"} className={styles.shoppingButton}>
+                <HiOutlineShoppingBag className={styles.whiteicon} />
+            </Link>
         </nav>
     )
 }

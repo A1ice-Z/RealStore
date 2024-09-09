@@ -16,7 +16,7 @@
 .navpage {
     height: max-content;
     width: 40%;
-    padding-left: 50px;
+    padding-left: 20px;
 
     display: flex;
     flex-direction: row;
@@ -93,4 +93,66 @@
 .whiteicon {
     font-size: 1.6em;
     color: white;
+}
+
+.hamburgmenu {
+    display: none;
+}
+
+@media (max-width: 800px) {
+    .navpage {
+        display: none;
+    }
+
+    .hamburgmenu {
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        font-size: 1.6em;
+        color: #424242;
+        width: 65px;
+    }
+
+    .navlinks {
+        display: none;
+    }
+
+    .shoppingButton {
+        text-decoration: none;
+        color: white;
+        background-color: #424242;
+        height: 30px;
+
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        margin: 10px;
+        padding-left: 12px;
+        padding-right: 12px;
+        font-size: 14px;
+
+        border-radius: 30px;
+    }
+
+    .navbar {
+        background-color: white;
+        width: 100%;
+        height: 70px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        overflow: hidden;
+        gap: 20%;
+
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .logoimg {
+        width: 60px;
+        height: auto;
+    }
 }
