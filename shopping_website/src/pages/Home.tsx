@@ -1,23 +1,31 @@
 import Navbar from "../components/Navbar/Navbar"
-import {useQuery} from '@tanstack/react-query'
+import { useQuery } from '@tanstack/react-query'
 
-const { isPending, error, data } = useQuery({
-    queryKey: ['products'],
-    queryFn: () =>
-      fetch('https://fakestoreapi.com/products').then((res) =>
-        res.json(),
-      ),
-    })
+interface Product {
+    id: number;
+    title: string;
+    price: number;
+    description: string;
+    category: string;
+    image: string;
+}
 
 const Home = () => {
+
+    const { isLoading, error, data } = useQuery<Product[], Error>({
+        queryKey: ['products'],
+        queryFn: () =>
+            fetch('https://fakestoreapi.com/products').then((res) => res.json()),
+    })
+
     return (
         <>
             <Navbar />
             <div>
-            {isPending && <p>Loading...</p>}
-            {error && <p>{error.message}</p>}
+            {isLoading && <p>Loading...</p>}
+            {error && <p>{(error as Error).message}</p>}
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '20px' }}>
-            {data && data.map((item: any) => (
+            {data && data.map((item) => (
                     <div key={item.id} style={{ border: '1px solid #ccc', padding: '10px', borderRadius: '8px' }}>
                     <img src={item.image} alt={item.title} style={{ width: '100%', height: 'auto', borderRadius: '8px' }} />
                     <h2 style={{ fontSize: '18px', margin: '10px 0' }}>{item.title}</h2>
