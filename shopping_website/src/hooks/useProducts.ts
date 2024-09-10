@@ -1,19 +1,25 @@
 import { useQuery } from '@tanstack/react-query';
 import { Product } from '../models/Product';
 
-const fetchProducts = async (): Promise<Product[]> => {
-    const res = await fetch('https://fakestoreapi.com/products');
-    if (!res.ok) {
-      throw new Error('Failed to fetch products');
-    }
-    return res.json();
-  };
-  
-export const useProducts = () => {
-    return useQuery<Product[], Error>({
-        queryKey: ['products'],
-        queryFn: fetchProducts 
-        // add a staleTime option to the fetchProducts function to set the stale time
-        // add cacheTime option to the fetchProducts function to set the cache time
-    });
+const fetchProducts = async (category?: string, productId?: number): Promise<Product | Product[]> => {
+  let url = 'https://fakestoreapi.com/products';
+
+  if (productId) {
+    url = `${url}/${productId}`;
+  } else if (category) {
+    url = `${url}/category/${category}`;
+  }
+
+  const response = await fetch(url);
+  if (!response.ok) throw new Error('Error fetching products');
+  return response.json();
+};
+
+export const useProducts = (category?: string, productId?: number) => {
+  const queryKey = productId ? ['product', productId] : category ? ['products', category] : ['products'];
+
+  return useQuery({
+    queryKey,
+    queryFn: () => fetchProducts(category, productId)
+  });
 };
