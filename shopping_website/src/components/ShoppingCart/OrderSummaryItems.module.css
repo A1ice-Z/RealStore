@@ -1,0 +1,5 @@
+.itembox {
+    height: 100%;
+    width: 450px;
+    overflow-y: scroll;
+}
