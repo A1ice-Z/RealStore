@@ -1,0 +1,93 @@
+.box {
+    height: 330px;
+    width: 220px;
+    border-style: solid;
+    border-color: #D9D9D9;
+    border-width: 1px;
+    padding: 60px 50px 20px 50px;
+}
+
+.title {
+    padding-top: 20px;
+    font-size: 16px;
+    font-weight: semi-bold;
+    color: #424242;
+}
+
+.text {
+    font-size: 13px;
+    color: #424242;
+}
+
+.totaltext {
+    font-size: 15px;
+    font-weight: semi-bold;
+    color: #424242;
+}
+
+.taxtext {
+    font-size: 13px;
+    color: #5f5e5e;
+    padding-left: 5px;
+    padding-right: 42px;
+}
+
+.textbox {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    padding-top: 15px;
+}
+
+.totalbox {
+    padding-top: 120px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+
+.checkboxtext {
+    font-size: 12px;
+    color: #424242;
+}
+
+.checkbox {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    gap: 5px;
+    padding-top: 15px;
+}
+
+.button {
+    height: 40px;
+    width: 220px;
+    background-color: white;
+    color: #424242;
+    border-style: solid;
+    border-color: black;
+    border-width: 1px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: semi-bold;
+    margin-top: 20px;
+}
+
+.button:disabled {
+    height: 40px;
+    width: 220px;
+    background-color: #f3f3f397;
+    color: white;
+    border-style: solid;
+    border-color: black;
+    border-width: 0px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: semi-bold;
+    margin-top: 20px;
+    cursor: not-allowed;
+}
