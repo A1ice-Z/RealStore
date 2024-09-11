@@ -91,3 +91,19 @@
     margin-top: 20px;
     cursor: not-allowed;
 }
+
+@media (max-width: 850px) {
+    .box {
+        width: fit-content;
+        height: fit-content;
+        padding: 20px 20px 20px 20px;
+    }
+
+    .button {
+        width: 100%;
+    }
+
+    .totalbox {
+        padding-top: 20px;
+    }
+}
