@@ -1,0 +1,29 @@
+.clothesSections{
+    padding-top: 20%;
+    padding-bottom: 20%;
+}
+
+.rows{
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+    gap: 20px ;
+    margin-top: 5%;
+   
+}
+
+@media (max-width: 768px) {
+    .rows {
+        flex-direction: column;
+        justify-content: center; 
+        align-items: center; 
+        margin-top: 20px; 
+        padding-top: 40%;
+    }
+    
+    .rows > * {
+        width: 100%; 
+        margin-bottom: 10px; 
+    }
+}
+

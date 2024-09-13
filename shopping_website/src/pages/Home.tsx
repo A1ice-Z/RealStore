@@ -1,11 +1,13 @@
-import Navbar from "../components/Navbar/Navbar"
+import Navbar from '../components/Navbar/Navbar';
+import Scrolling from '../components/Scrolling/Scrolling';
 
 const Home = () => {
-    return (
-        <>
-            <Navbar />
-        </>
-    )
-}
+  return (
+    <>
+      <Navbar />
+      <Scrolling />
+    </>
+  );
+};
 
-export default Home
+export default Home;

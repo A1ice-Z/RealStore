@@ -2,7 +2,10 @@ import Router from './Router';
 
 function App() {
   return (
-    <Router />
+    <div>
+      <main className="main-Container"></main>
+      <Router />
+    </div>
   );
 }
 
