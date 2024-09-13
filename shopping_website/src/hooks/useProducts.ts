@@ -1,7 +1,13 @@
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, UseQueryResult } from '@tanstack/react-query';
 import { Product } from '../models/Product';
 
-const fetchProducts = async (category?: string, productId?: number): Promise<Product | Product[]> => {
+const fetchProducts = async (
+  category?: string,
+  productId?: number,
+  minPrice?: number,
+  maxPrice?: number,
+  minRating?: number
+): Promise<Product | Product[]> => {
   let url = 'https://fakestoreapi.com/products';
 
   if (productId) {
@@ -12,14 +18,41 @@ const fetchProducts = async (category?: string, productId?: number): Promise<Pro
 
   const response = await fetch(url);
   if (!response.ok) throw new Error('Error fetching products');
-  return response.json();
+  let products: Product[] = await response.json();
+
+  // Filter products based on price and rating
+  if (minPrice !== undefined) {
+    products = products.filter(product => product.price >= minPrice);
+  }
+  if (maxPrice !== undefined) {
+    products = products.filter(product => product.price <= maxPrice);
+  }
+  if (minRating !== undefined) {
+    products = products.filter(product => product.rating.rate >= minRating);
+  }
+
+  return products;
 };
 
-export const useProducts = (category?: string, productId?: number) => {
-  const queryKey = productId ? ['product', productId] : category ? ['products', category] : ['products'];
+// Custom hook to fetch products with optional filters
+export const useProducts = (
+  category?: string,
+  productId?: number,
+  minPrice?: number,
+  maxPrice?: number,
+  minRating?: number
+): UseQueryResult<Product | Product[]> => {
+    const queryKey = [
+    'products',
+      category,
+      productId,
+      minPrice,
+      maxPrice,
+      minRating
+    ];
 
-  return useQuery({
+  return useQuery<Product | Product[]>({
     queryKey,
-    queryFn: () => fetchProducts(category, productId)
+    queryFn: () => fetchProducts(category, productId, minPrice, maxPrice, minRating)
   });
 };
