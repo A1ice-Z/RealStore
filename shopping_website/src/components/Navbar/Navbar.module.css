@@ -87,6 +87,10 @@
     color: #424242;
 }
 
+.ulstyle {
+    list-style-type: none;
+}
+
 .whiteicon {
     font-size: 1.6em;
     color: white;

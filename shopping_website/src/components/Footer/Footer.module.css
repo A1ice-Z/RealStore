@@ -22,6 +22,10 @@
     filter: brightness(20%);
 }
 
+.ulstyle {
+    list-style-type: none;
+}
+
 .box {
     z-index: 20;
     background-color: white;

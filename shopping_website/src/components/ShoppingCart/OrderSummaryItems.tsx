@@ -3,7 +3,7 @@ import styles from "./OrderSummaryItems.module.css";
 const OrderSummaryItems = () => {
     return (
         <>
-            <div className={styles.itembox}>
+            <section className={styles.itembox}>
 
                 <p>hellu</p>
                 <p>hellu</p>
@@ -51,7 +51,7 @@ const OrderSummaryItems = () => {
                 <p>hellu</p>
                 <p>hellu</p>
 
-            </div>
+            </section>
         </>
     )
 }

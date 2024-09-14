@@ -4,41 +4,45 @@ import styles from './Footer.module.css';
 const Footer = () => {
     return (
         <footer className={styles.footer}>
-            <div className={styles.imageholder}>
+            <section className={styles.imageholder}>
                 <img src="/footer.svg" alt="footer" className={styles.image} />
-                <p className={styles.title}>EXPLORE  OUR  CATALOG</p>
+                <h2 className={styles.title}>EXPLORE OUR CATALOG</h2>
                 <div className={styles.box}>
-                    <div>
-                        <p className={styles.informationtitle}>GENERAL</p>
-                        <Link to={"/"} className={styles.informationlink}>
-                            <p>Home</p>
-                        </Link>
-                        <Link to={"/"} className={styles.informationlink}>
-                            <p>Shop</p>
-                        </Link>
-                        <Link to={"/"} className={styles.informationlink}>
-                            <p>About us</p>
-                        </Link>
-                        <Link to={"/"} className={styles.informationlink}>
-                            <p>Contact</p>
-                        </Link>
-                    </div>
-                    <div>
-                        <p className={styles.informationtitle}>PRODUCTS</p>
-                        <Link to={"/"} className={styles.informationlink}>
-                            <p>Electronics</p>
-                        </Link>
-                        <Link to={"/"} className={styles.informationlink}>
-                            <p>Womens Fashion</p>
-                        </Link>
-                        <Link to={"/"} className={styles.informationlink}>
-                            <p>Mens Fashion</p>
-                        </Link>
-                        <Link to={"/"} className={styles.informationlink}>
-                            <p>Jewery</p>
-                        </Link>
-                    </div>
-                    <view className={styles.divider} />
+                    <nav>
+                        <h3 className={styles.informationtitle}>GENERAL</h3>
+                        <ul className={styles.ulstyle}>
+                            <li>
+                                <Link to={"/"} className={styles.informationlink}>Home</Link>
+                            </li>
+                            <li>
+                                <Link to={"/"} className={styles.informationlink}>Shop</Link>
+                            </li>
+                            <li>
+                                <Link to={"/"} className={styles.informationlink}>About us</Link>
+                            </li>
+                            <li>
+                                <Link to={"/"} className={styles.informationlink}>Contact</Link>
+                            </li>
+                        </ul>
+                    </nav>
+                    <nav>
+                        <h3 className={styles.informationtitle}>PRODUCTS</h3>
+                        <ul className={styles.ulstyle}>
+                            <li>
+                                <Link to={"/"} className={styles.informationlink}>Electronics</Link>
+                            </li>
+                            <li>
+                                <Link to={"/"} className={styles.informationlink}>Womens Fashion</Link>
+                            </li>
+                            <li>
+                                <Link to={"/"} className={styles.informationlink}>Mens Fashion</Link>
+                            </li>
+                            <li>
+                                <Link to={"/"} className={styles.informationlink}>Jewelry</Link>
+                            </li>
+                        </ul>
+                    </nav>
+                    <hr className={styles.divider} />
                     <div className={styles.logobox}>
                         <Link to={"/"}>
                             <img src="/Logo.svg" alt="logo" className={styles.logoimg} />
@@ -46,7 +50,7 @@ const Footer = () => {
                         <p className={styles.logoinformation}>@2024 RealStore.com</p>
                     </div>
                 </div>
-            </div>
+            </section>
         </footer >
     );
 }
