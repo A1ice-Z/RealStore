@@ -1,0 +1,22 @@
+.productType {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+  }
+  
+  .heartSpace {
+    cursor: pointer; 
+  }
+  
+  h5 {
+    margin: 0; 
+  }
+  
+  .heartSpace svg{
+    font-size: 24px; 
+  }
+
+  .heartSpace svg.favorited {
+    color: rgb(230, 33, 105);
+  }
+  
