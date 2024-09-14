@@ -2,7 +2,7 @@ import React from 'react';
 import './ClothingsCards.css';
 import { InterfaceProductCard } from './InterfaceProductCard';
 
-const ClothingsCards: React.FC<InterfaceProductCard> = ({ id, title, price, image }) => {
+const ClothingsCards: React.FC<InterfaceProductCard> = ({ id, title, price, category, image }) => {
   return (
     <article className="clothingSection">
       <figure className="imgSpace">
@@ -10,11 +10,11 @@ const ClothingsCards: React.FC<InterfaceProductCard> = ({ id, title, price, imag
       </figure>
       <section className="descriptionSpace">
         <header className="productType">
-          <h5>{title}</h5>
+          <h5>{category}</h5>
         </header>
         <footer className="nameAndPrice">
           <span className="productname">
-            <h4>Zheng Originals</h4>
+            <h4>{title}</h4>
           </span>
           <span className="price">
             <h4>$ {price}</h4>

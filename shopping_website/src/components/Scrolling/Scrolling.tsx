@@ -6,24 +6,96 @@ const Scrolling = () => {
   return (
     <section className="clothesSections">
       <article className="rows">
-        <ClothingsCards id={123} title={'crewneck'} price={199} image={clothingImageDefault} />
-        <ClothingsCards id={123} title={'crewneck'} price={199} image={clothingImageDefault} />
-        <ClothingsCards id={123} title={'crewneck'} price={199} image={clothingImageDefault} />
+        <ClothingsCards
+          id={123}
+          title={'zhengs Originals'}
+          price={199}
+          category={'crewneck'}
+          image={clothingImageDefault}
+        />
+        <ClothingsCards
+          id={123}
+          title={'zhengs Originals'}
+          price={199}
+          category={'crewneck'}
+          image={clothingImageDefault}
+        />
+        <ClothingsCards
+          id={123}
+          title={'zhengs Originals'}
+          price={199}
+          category={'crewneck'}
+          image={clothingImageDefault}
+        />
       </article>
       <article className="rows">
-        <ClothingsCards id={123} title={'crewneck'} price={199} image={clothingImageDefault} />
-        <ClothingsCards id={123} title={'crewneck'} price={199} image={clothingImageDefault} />
-        <ClothingsCards id={123} title={'crewneck'} price={199} image={clothingImageDefault} />
+        <ClothingsCards
+          id={123}
+          title={'zhengs Originals'}
+          price={199}
+          category={'crewneck'}
+          image={clothingImageDefault}
+        />
+        <ClothingsCards
+          id={123}
+          title={'zhengs Originals'}
+          price={199}
+          category={'crewneck'}
+          image={clothingImageDefault}
+        />
+        <ClothingsCards
+          id={123}
+          title={'zhengs Originals'}
+          price={199}
+          category={'crewneck'}
+          image={clothingImageDefault}
+        />
       </article>
       <article className="rows">
-        <ClothingsCards id={123} title={'crewneck'} price={199} image={clothingImageDefault} />
-        <ClothingsCards id={123} title={'crewneck'} price={199} image={clothingImageDefault} />
-        <ClothingsCards id={123} title={'crewneck'} price={199} image={clothingImageDefault} />
+        <ClothingsCards
+          id={123}
+          title={'zhengs Originals'}
+          price={199}
+          category={'crewneck'}
+          image={clothingImageDefault}
+        />
+        <ClothingsCards
+          id={123}
+          title={'zhengs Originals'}
+          price={199}
+          category={'crewneck'}
+          image={clothingImageDefault}
+        />
+        <ClothingsCards
+          id={123}
+          title={'zhengs Originals'}
+          price={199}
+          category={'crewneck'}
+          image={clothingImageDefault}
+        />
       </article>
       <article className="rows">
-        <ClothingsCards id={123} title={'crewneck'} price={199} image={clothingImageDefault} />
-        <ClothingsCards id={123} title={'crewneck'} price={199} image={clothingImageDefault} />
-        <ClothingsCards id={123} title={'crewneck'} price={199} image={clothingImageDefault} />
+        <ClothingsCards
+          id={123}
+          title={'zhengs Originals'}
+          price={199}
+          category={'crewneck'}
+          image={clothingImageDefault}
+        />
+        <ClothingsCards
+          id={123}
+          title={'zhengs Originals'}
+          price={199}
+          category={'crewneck'}
+          image={clothingImageDefault}
+        />
+        <ClothingsCards
+          id={123}
+          title={'zhengs Originals'}
+          price={199}
+          category={'crewneck'}
+          image={clothingImageDefault}
+        />
       </article>
     </section>
   );

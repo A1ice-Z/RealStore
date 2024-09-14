@@ -3,4 +3,5 @@ export interface InterfaceProductCard {
   title: string;
   price: number;
   image: string;
+  category: string;
 }

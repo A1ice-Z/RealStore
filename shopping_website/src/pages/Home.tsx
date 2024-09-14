@@ -1,4 +1,6 @@
 import Navbar from '../components/Navbar/Navbar';
+import Footer from '../components/Footer/Footer';
+import styles from '../styles/Home.module.css';
 import Scrolling from '../components/Scrolling/Scrolling';
 
 const Home = () => {
@@ -6,6 +8,8 @@ const Home = () => {
     <>
       <Navbar />
       <Scrolling />
+      <main className={styles.homepage}></main>
+      <Footer />
     </>
   );
 };
