@@ -11,31 +11,31 @@ const Footer = () => {
                     <div>
                         <p className={styles.informationtitle}>GENERAL</p>
                         <Link to={"/"} className={styles.informationlink}>
-                            <p>Home</p>
+                            <p className={styles.informationtext}>Home</p>
                         </Link>
                         <Link to={"/"} className={styles.informationlink}>
-                            <p>Shop</p>
+                            <p className={styles.informationtext}>Shop</p>
                         </Link>
                         <Link to={"/"} className={styles.informationlink}>
-                            <p>About us</p>
+                            <p className={styles.informationtext}>About us</p>
                         </Link>
                         <Link to={"/"} className={styles.informationlink}>
-                            <p>Contact</p>
+                            <p className={styles.informationtext}>Contact</p>
                         </Link>
                     </div>
                     <div>
                         <p className={styles.informationtitle}>PRODUCTS</p>
                         <Link to={"/"} className={styles.informationlink}>
-                            <p>Electronics</p>
+                            <p className={styles.informationtext}>Electronics</p>
                         </Link>
                         <Link to={"/"} className={styles.informationlink}>
-                            <p>Womens Fashion</p>
+                            <p className={styles.informationtext}>Womens Fashion</p>
                         </Link>
                         <Link to={"/"} className={styles.informationlink}>
-                            <p>Mens Fashion</p>
+                            <p className={styles.informationtext}>Mens Fashion</p>
                         </Link>
                         <Link to={"/"} className={styles.informationlink}>
-                            <p>Jewery</p>
+                            <p className={styles.informationtext}>Jewery</p>
                         </Link>
                     </div>
                     <view className={styles.divider} />

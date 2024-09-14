@@ -5,6 +5,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
+    font-family: 'Source Serif 4', serif;
 }
 
 .link {
@@ -23,8 +25,11 @@
 }
 
 .image {
-    height: 620px;
-    width: 500px;
+    height: 920px;
+    width: 800px;
+
+    position: relative;
+    bottom: 100px;
 }
 
 .informationbox {
@@ -78,20 +83,20 @@
         flex-direction: column;
         justify-content: start;
         align-items: start;
-        width: 375px;
-        overflow-x: hidden;
+        overflow: hidden;
         background-size: cover;
+        position: relative;
     }
 
     .image {
-        height: 650px;
-        width: 500px;
+        height: 750px;
+        width: 600px;
         z-index: 10;
         position: absolute;
-        right: 0;
-
+        right: -150px;
         filter: brightness(120%);
         filter: opacity(0.5);
+        bottom: -180px;
     }
 
     .informationbox {
