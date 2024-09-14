@@ -26,6 +26,8 @@ const Home = () => {
                         </Link>
                     </article>
                     <img src="/woman.svg" alt="woman" className={styles.image} />
+
+
                 </section>
             </main>
             <Footer />
