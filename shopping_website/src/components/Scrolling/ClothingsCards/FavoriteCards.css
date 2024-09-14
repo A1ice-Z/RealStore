@@ -4,7 +4,7 @@
     align-items: center;
   }
   
-  .heartSpace {
+  .logoSpace {
     cursor: pointer; 
   }
   
@@ -12,11 +12,11 @@
     margin: 0; 
   }
   
-  .heartSpace svg{
+  .logoSpace svg{
     font-size: 24px; 
   }
 
-  .heartSpace svg.favorited {
+  .logoSpace svg.favorited {
     color: rgb(230, 33, 105);
   }
   

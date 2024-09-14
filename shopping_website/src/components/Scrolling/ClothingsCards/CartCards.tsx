@@ -2,15 +2,14 @@ import React, { useState } from 'react';
 import './ClothingsCards.css';
 import './FavoriteCards.css';
 import { InterfaceProductCard } from './InterfaceProductCard';
-import { IoMdHeartEmpty, IoMdHeart } from 'react-icons/io';
+import { IoCart, IoCartOutline } from 'react-icons/io5';
 
-const FavoriteCards: React.FC<InterfaceProductCard> = ({ id, title, price, category, image }) => {
-  const [isFavorited, setIsFavorited] = useState(false);
+const CartCards: React.FC<InterfaceProductCard> = ({ id, title, price, category, image }) => {
+  const [isAddedToCart, setIsAddedToCart] = useState(false);
 
-  const toggleFavorite = () => {
-    setIsFavorited(!isFavorited);
+  const toggleCart = () => {
+    setIsAddedToCart(!isAddedToCart); // Invert the current state (toggle between true and false)
   };
-
   return (
     <article className="clothingSection">
       <figure className="imgSpace">
@@ -19,8 +18,8 @@ const FavoriteCards: React.FC<InterfaceProductCard> = ({ id, title, price, categ
       <section className="descriptionSpace">
         <header className="productType">
           <h5>{category}</h5>
-          <div className="logoSpace" onClick={toggleFavorite}>
-            {isFavorited ? <IoMdHeart className="favorited" /> : <IoMdHeartEmpty />}
+          <div className="logoSpace" onClick={toggleCart}>
+            {isAddedToCart ? <IoCart className="cart" /> : <IoCartOutline />}
           </div>
         </header>
         <footer className="nameAndPrice">
@@ -36,4 +35,4 @@ const FavoriteCards: React.FC<InterfaceProductCard> = ({ id, title, price, categ
   );
 };
 
-export default FavoriteCards;
+export default CartCards;
