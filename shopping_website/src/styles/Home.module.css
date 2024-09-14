@@ -69,11 +69,17 @@
 }
 
 @media (max-width: 820px) {
+    .homepage {
+        overflow-x: hidden;
+    }
+
     .homebox {
         flex-direction: column;
         justify-content: start;
         align-items: start;
         width: 375px;
+        overflow: hidden;
+        background-size: cover;
     }
 
     .image {
@@ -81,6 +87,7 @@
         width: 500px;
         z-index: 10;
         position: absolute;
+        right: 0;
 
         filter: brightness(120%);
         filter: opacity(0.5);
@@ -91,7 +98,7 @@
         width: 200px;
         z-index: 20;
         margin-left: 20px;
-        margin-top: 40px;
+        margin-top: 100px;
     }
 
     .descriptiontext {
