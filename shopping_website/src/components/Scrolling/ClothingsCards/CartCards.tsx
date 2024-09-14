@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './ClothingsCards.css';
-import './FavoriteCards.css';
+import './LogoSection.css';
 import { InterfaceProductCard } from './InterfaceProductCard';
 import { IoCart, IoCartOutline } from 'react-icons/io5';
 
@@ -8,7 +8,7 @@ const CartCards: React.FC<InterfaceProductCard> = ({ id, title, price, category,
   const [isAddedToCart, setIsAddedToCart] = useState(false);
 
   const toggleCart = () => {
-    setIsAddedToCart(!isAddedToCart); // Invert the current state (toggle between true and false)
+    setIsAddedToCart(!isAddedToCart);
   };
   return (
     <article className="clothingSection">

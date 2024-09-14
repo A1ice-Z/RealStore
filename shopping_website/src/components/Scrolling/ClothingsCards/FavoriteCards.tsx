@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './ClothingsCards.css';
-import './FavoriteCards.css';
+import './LogoSection.css';
 import { InterfaceProductCard } from './InterfaceProductCard';
 import { IoMdHeartEmpty, IoMdHeart } from 'react-icons/io';
 
