@@ -10,18 +10,21 @@ const ShoppingCart = () => {
         <>
             <Navbar />
             <main className={styles.shoppingcart}>
-                <div className={styles.cartbox}>
-                    <div className={styles.titles}>
-                        <p className={styles.path}><Link className={styles.pathlink} to={"/"}> Home </Link>/ Cart</p>
-                        <p className={styles.title}>MY CART</p>
-                    </div>
-                    <div className={styles.cart}>
+                <section className={styles.cartbox}>
+                    <header className={styles.titles}>
+                        <nav className={styles.path}>
+                            <Link className={styles.pathlink} to={"/"}>Home</Link> / Cart
+                        </nav>
+                        <h1 className={styles.title}>MY CART</h1>
+                    </header>
+                    <section className={styles.cart}>
                         <OrderSummaryItems />
                         <OrderSummaryList />
-                    </div>
-                </div>
+                    </section>
+                </section>
             </main>
             <Footer />
+
         </>
     );
 };
