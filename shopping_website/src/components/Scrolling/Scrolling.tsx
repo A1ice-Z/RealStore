@@ -4,31 +4,51 @@ import clothingImageDefault from './SweatshirtDefault.png';
 import { useProducts } from '../../hooks/useProducts.ts';
 import { Product } from '../../models/Product.ts';
 
-const Scrolling: React.FC = () => {
+interface interfaceScrolling {
+  favorite: boolean;
+  cart: boolean;
+}
+
+const Scrolling = ({ favorite, cart }: interfaceScrolling) => {
   const { data: products, isLoading, isError } = useProducts();
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <section>Loading...</section>;
   }
   if (isError) {
-    return <div>Error fetching products.</div>;
+    return <section>Error fetching products.</section>;
   }
 
   return (
     <section className="clothesSections">
       <article className="rows">
-        {products?.map((product: Product) => (
+        {Array.isArray(products) ? (
+          products.map((product: Product) => (
+            <ClothingsCards
+              key={product.id}
+              id={product.id}
+              title={product.title.substring(0, 20) + '...'}
+              price={product.price}
+              category={product.category}
+              image={product.image}
+              cart={cart}
+              favorite={favorite}
+            />
+          ))
+        ) : products ? (
           <ClothingsCards
-            key={product.id}
-            id={product.id}
-            title={product.title.substring(0, 20) + '...'}
-            price={product.price}
-            category={product.category}
-            image={product.image}
-            cart={true}
-            favorite={true}
+            key={products.id}
+            id={products.id}
+            title={products.title.substring(0, 20) + '...'}
+            price={products.price}
+            category={products.category}
+            image={products.image}
+            cart={cart}
+            favorite={favorite}
           />
-        ))}
+        ) : (
+          <div>No products available.</div>
+        )}
       </article>
     </section>
   );
