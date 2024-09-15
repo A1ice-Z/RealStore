@@ -1,50 +1,26 @@
-# React + TypeScript + Vite
+# IT2810: Project 1
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Table of content: 
+- About the project
+- Running the project
 
-Currently, two official plugins are available:
+## About the project 
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Welcome to RealStore! This is a shopping website where you can buy clothes, jewelry and electronics. This project is build based on Typescript and React, and uses HTML to create the website. Styling is done using CSS-modules. 
 
-## Expanding the ESLint configuration
+The user has the ability to add products to the cart if they want to buy a product. When navigating to the cart, the user will see a summary of all the products added to the cart, and the price sum. In addition to this, the user has the ability to mark a product as favourite, in order to save something that might look interesting. By navigating to the favourite-page, the user can see all of their favourited products marked so far. Moreover, the user can explore the website by browsing the products and filter on specific things like gender or pricerange. By clicking on a product, the user can read more detailed information about the product. 
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+The website is also made mobile friendly, as it will adapt to the smaller screen if viewed on one. 
 
-- Configure the top-level `parserOptions` property like this:
+## Running the project 
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-});
-```
+To run the project, you need to have Node 22 installed. When installed, you need to install some npm components. 
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+To do so, run the following commands in a terminal inside the root folder: 
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react';
+-
+-
+-
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-});
-```
+Now run `npm run main` in order to run the project 
+
