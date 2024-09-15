@@ -48,3 +48,11 @@ export const updateCartQuantity = (productId: number, quantity: number): void =>
     setSessionStorageItems('cart', cart); // Save updated cart to sessionStorage
 };
 
+// Filtered items-specific functions
+export const getFilteredItems = (): number[] => {
+    return getSessionStorageItems<number>('filteredItems');
+};
+
+export const setFilteredItems = (filteredItemIds: number[]): void => {
+    setSessionStorageItems('filteredItems', filteredItemIds);
+};
