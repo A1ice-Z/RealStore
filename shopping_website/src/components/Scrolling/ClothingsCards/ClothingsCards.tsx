@@ -1,11 +1,19 @@
 import React, { useState } from 'react';
 import './ClothingsCards.css';
-import './LogoSection.css';
-import { InterfaceProductCard } from './InterfaceProductCard';
 import { IoCart, IoCartOutline } from 'react-icons/io5';
 import { IoMdHeartEmpty, IoMdHeart } from 'react-icons/io';
 
-const ClothingsCards: React.FC<InterfaceProductCard> = ({ id, title, price, category, image }) => {
+interface InterfaceProductCard {
+  id: number;
+  title: string;
+  price: number;
+  image: string;
+  category: string;
+  cart: boolean;
+  favorite: boolean;
+}
+
+const ClothingsCards = ({ id, title, price, category, image, cart, favorite }: InterfaceProductCard) => {
   const [isAddedToCart, setIsAddedToCart] = useState(false);
 
   const toggleCart = () => {
@@ -26,10 +34,16 @@ const ClothingsCards: React.FC<InterfaceProductCard> = ({ id, title, price, cate
       <section className="descriptionSpace">
         <header className="productType">
           <h5>{category}</h5>
-          <div className="logoSpace">
-            <div onClick={toggleCart}>{isAddedToCart ? <IoCart className="cart" /> : <IoCartOutline />}</div>
-            <div onClick={toggleFavorite}>{isFavorited ? <IoMdHeart className="favorited" /> : <IoMdHeartEmpty />}</div>
-          </div>
+          <section className="IconSpace">
+            {cart && (
+              <span onClick={toggleCart}>{isAddedToCart ? <IoCart className="cart" /> : <IoCartOutline />}</span>
+            )}
+            {favorite && (
+              <span onClick={toggleFavorite}>
+                {isFavorited ? <IoMdHeart className="favorited" /> : <IoMdHeartEmpty />}
+              </span>
+            )}
+          </section>
         </header>
         <footer className="nameAndPrice">
           <span className="productname">

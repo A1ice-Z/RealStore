@@ -1,154 +1,34 @@
 import './Scrolling.css';
 import ClothingsCards from './ClothingsCards/ClothingsCards.tsx';
-import FavoriteCards from './ClothingsCards/FavoriteCards.tsx';
-import CartCards from './ClothingsCards/CartCards';
 import clothingImageDefault from './SweatshirtDefault.png';
+import { useProducts } from '../../hooks/useProducts.ts';
+import { Product } from '../../models/Product.ts';
 
-const Scrolling = () => {
+const Scrolling: React.FC = () => {
+  const { data: products, isLoading, isError } = useProducts();
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+  if (isError) {
+    return <div>Error fetching products.</div>;
+  }
+
   return (
     <section className="clothesSections">
       <article className="rows">
-        <ClothingsCards
-          id={123}
-          title={'zhengs Originals'}
-          price={199}
-          category={'crewneck'}
-          image={clothingImageDefault}
-        />
-        <ClothingsCards
-          id={123}
-          title={'zhengs Originals'}
-          price={199}
-          category={'crewneck'}
-          image={clothingImageDefault}
-        />
-        <ClothingsCards
-          id={123}
-          title={'zhengs Originals'}
-          price={199}
-          category={'crewneck'}
-          image={clothingImageDefault}
-        />
-      </article>
-      <article className="rows">
-        <ClothingsCards
-          id={123}
-          title={'zhengs Originals'}
-          price={199}
-          category={'crewneck'}
-          image={clothingImageDefault}
-        />
-        <ClothingsCards
-          id={123}
-          title={'zhengs Originals'}
-          price={199}
-          category={'crewneck'}
-          image={clothingImageDefault}
-        />
-        <ClothingsCards
-          id={123}
-          title={'zhengs Originals'}
-          price={199}
-          category={'crewneck'}
-          image={clothingImageDefault}
-        />
-      </article>
-      <article className="rows">
-        <ClothingsCards
-          id={123}
-          title={'zhengs Originals'}
-          price={199}
-          category={'crewneck'}
-          image={clothingImageDefault}
-        />
-        <ClothingsCards
-          id={123}
-          title={'zhengs Originals'}
-          price={199}
-          category={'crewneck'}
-          image={clothingImageDefault}
-        />
-        <ClothingsCards
-          id={123}
-          title={'zhengs Originals'}
-          price={199}
-          category={'crewneck'}
-          image={clothingImageDefault}
-        />
-      </article>
-      <article className="rows">
-        <ClothingsCards
-          id={123}
-          title={'zhengs Originals'}
-          price={199}
-          category={'crewneck'}
-          image={clothingImageDefault}
-        />
-        <ClothingsCards
-          id={123}
-          title={'zhengs Originals'}
-          price={199}
-          category={'crewneck'}
-          image={clothingImageDefault}
-        />
-        <ClothingsCards
-          id={123}
-          title={'zhengs Originals'}
-          price={199}
-          category={'crewneck'}
-          image={clothingImageDefault}
-        />
-      </article>
-      <article className="rows">
-        <FavoriteCards
-          id={123}
-          title={'zhengs Originals'}
-          price={199}
-          category={'crewneck'}
-          image={clothingImageDefault}
-        />
-        <FavoriteCards
-          id={123}
-          title={'zhengs Originals'}
-          price={199}
-          category={'crewneck'}
-          image={clothingImageDefault}
-        />
-        <FavoriteCards
-          id={123}
-          title={'zhengs Originals'}
-          price={199}
-          category={'crewneck'}
-          image={clothingImageDefault}
-        />
-      </article>
-      <article className="rows">
-        <FavoriteCards
-          id={123}
-          title={'zhengs Originals'}
-          price={199}
-          category={'crewneck'}
-          image={clothingImageDefault}
-        />
-        <FavoriteCards
-          id={123}
-          title={'zhengs Originals'}
-          price={199}
-          category={'crewneck'}
-          image={clothingImageDefault}
-        />
-        <FavoriteCards
-          id={123}
-          title={'zhengs Originals'}
-          price={199}
-          category={'crewneck'}
-          image={clothingImageDefault}
-        />
-      </article>
-      <article className="rows">
-        <CartCards id={123} title={'zhengs Originals'} price={199} category={'crewneck'} image={clothingImageDefault} />
-        <CartCards id={123} title={'zhengs Originals'} price={199} category={'crewneck'} image={clothingImageDefault} />
-        <CartCards id={123} title={'zhengs Originals'} price={199} category={'crewneck'} image={clothingImageDefault} />
+        {products?.map((product: Product) => (
+          <ClothingsCards
+            key={product.id}
+            id={product.id}
+            title={product.title.substring(0, 20) + '...'}
+            price={product.price}
+            category={product.category}
+            image={product.image}
+            cart={true}
+            favorite={true}
+          />
+        ))}
       </article>
     </section>
   );
