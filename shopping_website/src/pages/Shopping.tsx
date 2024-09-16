@@ -7,8 +7,9 @@ const Shopping = () => {
   return (
     <>
       <Navbar />
-      <main className={styling.shoppingpage}></main>
-      <Scrolling favorite={true} cart={true} />
+      <main className={styling.shoppingpage}>
+        <Scrolling favorite={true} cart={true} />
+      </main>
       <Footer />
     </>
   );

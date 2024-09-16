@@ -1,6 +1,5 @@
-import './Scrolling.css';
+import styles from './Scrolling.module.css'
 import ClothingsCards from './ClothingsCards/ClothingsCards.tsx';
-import clothingImageDefault from './SweatshirtDefault.png';
 import { useProducts } from '../../hooks/useProducts.ts';
 import { Product } from '../../models/Product.ts';
 
@@ -20,8 +19,8 @@ const Scrolling = ({ favorite, cart }: interfaceScrolling) => {
   }
 
   return (
-    <section className="clothesSections">
-      <article className="rows">
+    <section className={styles.clothesSections}>
+      <article className={styles.rows}>
         {Array.isArray(products) ? (
           products.map((product: Product) => (
             <ClothingsCards
