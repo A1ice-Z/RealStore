@@ -14,13 +14,14 @@ The website is also made mobile friendly, as it will adapt to the smaller screen
 
 ## Running the project 
 
-To run the project, you need to have Node 22 installed. When installed, you need to install some npm components. 
+To run the project, you need to have Node 22 installed. Then navigate to the folder `shopping_website`. 
 
-To do so, run the following commands in a terminal inside the root folder: 
+Now you need to install some npm components. 
+To do so, run the following commands in a terminal while inside the folder: 
 
 - `npm install`
 - `npm install react-icons`
 - `npm install @tanstack/react-query`
 
-Now run `npm run main` in order to run the project 
+Now run `npm run dev` in order to run the project 
 
