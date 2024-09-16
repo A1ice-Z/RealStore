@@ -14,10 +14,10 @@ The website is also made mobile friendly, as it will adapt to the smaller screen
 
 ## Running the project 
 
-To run the project, you need to have Node 22 installed. Then navigate to the folder `shopping_website`. 
+To run the project, you need to have Node 22 installed. Clone the repository from git. Then navigate to the folder `shopping_website` by writing `cd shopping_website` in the terminal. 
 
 Now you need to install some npm components. 
-To do so, run the following commands in a terminal while inside the folder: 
+To do so, run the following commands in a terminal while inside the mentioned folder: 
 
 - `npm install`
 - `npm install react-icons`
