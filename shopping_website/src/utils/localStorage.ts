@@ -1,19 +1,17 @@
-type FavoriteItem = number;
-
-// Helper function to store items in local storage
-const setLocalStorageItems = <T>(key: string, items: T[]): void => {
-    localStorage.setItem(key, JSON.stringify(items));
+// Function to store favorite items in local storage
+const setFavorites = (items: number[]): void => {
+    localStorage.setItem('favorites', JSON.stringify(items));
 };
 
-// Helper function to get items from local storage
-const getLocalStorageItems = <T>(key: string): T[] => {
-    const storedItems = localStorage.getItem(key);
-    return storedItems ? JSON.parse(storedItems) : [];
-};
-
-// Favorites-specific functions
-export const getFavorites = (): FavoriteItem[] => {
-    return getLocalStorageItems<FavoriteItem>('favorites');
+// Function to get favorite items from local storage
+export const getFavorites = (): number[] => {
+    try {
+        const storedItems = localStorage.getItem('favorites');
+        return storedItems ? JSON.parse(storedItems) : [];
+    } catch (error) {
+        console.error("Error parsing favorite items from localStorage", error);
+        return [];
+    }
 };
 
 export const toggleFavorite = (productId: number): void => {
@@ -24,10 +22,5 @@ export const toggleFavorite = (productId: number): void => {
         ? favorites.filter(id => id !== productId)
         : [...favorites, productId];
 
-    setLocalStorageItems('favorites', updatedFavorites);
+    setFavorites(updatedFavorites);
 };
-
-
-
-
-
