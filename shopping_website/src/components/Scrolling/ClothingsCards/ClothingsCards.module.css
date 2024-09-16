@@ -57,9 +57,7 @@
   align-items: center;
   flex: 1;
   display: flex;
-  padding-left: 5%;
-  padding-right: 5%;
-  padding-top: 10%;
+  margin-left: 10px;
 }
 
 
@@ -89,7 +87,8 @@
 .IconSpace {
   cursor: pointer;
   display: flex;
-
+  font-size: 20px;
+  gap: 5px;
 }
 
 

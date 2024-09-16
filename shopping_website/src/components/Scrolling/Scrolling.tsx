@@ -21,30 +21,19 @@ const Scrolling = ({ favorite, cart }: interfaceScrolling) => {
   return (
     <section className={styles.clothesSections}>
       <article className={styles.rows}>
-        {Array.isArray(products) ? (
+        {products ? (
           products.map((product: Product) => (
             <ClothingsCards
               key={product.id}
               id={product.id}
               title={product.title.substring(0, 20) + '...'}
               price={product.price}
-              category={product.category}
+              category={product.category.charAt(0).toUpperCase() + product.category.substring(1)}
               image={product.image}
               cart={cart}
               favorite={favorite}
             />
           ))
-        ) : products ? (
-          <ClothingsCards
-            key={products.id}
-            id={products.id}
-            title={products.title.substring(0, 20) + '...'}
-            price={products.price}
-            category={products.category}
-            image={products.image}
-            cart={cart}
-            favorite={favorite}
-          />
         ) : (
           <div>No products available.</div>
         )}
