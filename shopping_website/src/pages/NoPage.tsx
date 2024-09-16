@@ -1,10 +1,10 @@
-import "./NoPage.css"
+import styles from "../styles/NoPage.module.css";
 
 const NoPage = () => {
     return (
-        <div className="notfound">
+        <main className={styles.page}>
             <h1>404</h1>
-        </div>
+        </main>
     );
 }
 
