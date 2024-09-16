@@ -18,9 +18,9 @@ To run the project, you need to have Node 22 installed. When installed, you need
 
 To do so, run the following commands in a terminal inside the root folder: 
 
--
--
--
+- `npm install`
+- `npm install react-icons`
+- `npm install @tanstack/react-query`
 
 Now run `npm run main` in order to run the project 
 
