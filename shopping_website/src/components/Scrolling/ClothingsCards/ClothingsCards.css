@@ -66,7 +66,6 @@
     align-items: start;
     text-align: left;
     margin-right: 10px; 
-    flex: 1;
 }
 
 .price{
@@ -76,8 +75,6 @@
 }
  
 .productname h4, .price h4 {
-  margin: 0; 
-  padding: 0;
   font-family: 'Georgia', sans-serif;
 }
 
@@ -93,9 +90,6 @@
    
   }
   
-  h5 {
-    margin: 0; 
-  }
   
   .IconSpace svg{
     font-size: 24px; 
