@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./ClothingsCards.css";
 import { IoCart, IoCartOutline } from "react-icons/io5";
 import { IoMdHeartEmpty, IoMdHeart } from "react-icons/io";
+import styles from "./Scrolling.module.css"
 
 interface InterfaceProductCard {
   id: number;
@@ -27,30 +28,30 @@ const ClothingsCards = ({ id, title, price, category, image, cart, favorite }: I
   };
 
   return (
-    <article className="clothingSection">
-      <figure className="imgSpace">
-        <img src={image} className="clothingImage" alt="Sweatshirt"></img>
+    <article className={styles.clothingSection}>
+      <figure className={styles.imgContainer}>
+        <img src={image} className={styles.clothingImage} alt="ItemImages"></img>
       </figure>
-      <section className="descriptionSpace">
-        <header className="productType">
+      <section className={styles.descriptionSpace}>
+        <header className={styles.productType}>
           <h5>{category}</h5>
-          <section className="IconSpace">
+          <section className={styles.IconSpace}>
             {cart && (
-              <span onClick={toggleCart}>{isAddedToCart ? <IoCart className="cart" /> : <IoCartOutline />}</span>
+              <span onClick={toggleCart}>{isAddedToCart ? <IoCart /> : <IoCartOutline />}</span>
             )}
             {favorite && (
               <span onClick={toggleFavorite}>
-                {isFavorited ? <IoMdHeart className="favorited" /> : <IoMdHeartEmpty />}
+                {isFavorited ? <IoMdHeart className={styles.favorited} /> : <IoMdHeartEmpty />}
               </span>
             )}
           </section>
         </header>
-        <footer className="nameAndPrice">
-          <span className="productname">
-            <h4>{title}</h4>
+        <footer className={styles.nameAndPrice}>
+          <span className={styles.productname}>
+            <h4 className={styles.h4text}>{title}</h4>
           </span>
-          <span className="price">
-            <h4>$ {price}</h4>
+          <span className={styles.price}>
+            <h4 className={styles.h4text}>$ {price}</h4>
           </span>
         </footer>
       </section>
