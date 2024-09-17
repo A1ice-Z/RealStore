@@ -1,8 +1,8 @@
-import './Scrolling.css';
-import ClothingsCards from './ClothingsCards/ClothingsCards.tsx';
-import clothingImageDefault from './SweatshirtDefault.png';
-import { useProducts } from '../../hooks/useProducts.ts';
-import { Product } from '../../models/Product.ts';
+import "./Scrolling.css";
+import ClothingsCards from "./ClothingsCards/ClothingsCards.tsx";
+import clothingImageDefault from "./SweatshirtDefault.png";
+import { useProducts } from "../../hooks/useProducts.ts";
+import { Product } from "../../models/Product.ts";
 
 interface interfaceScrolling {
   favorite: boolean;
@@ -27,7 +27,7 @@ const Scrolling = ({ favorite, cart }: interfaceScrolling) => {
             <ClothingsCards
               key={product.id}
               id={product.id}
-              title={product.title.substring(0, 20) + '...'}
+              title={product.title.substring(0, 20) + "..."}
               price={product.price}
               category={product.category}
               image={product.image}
@@ -39,7 +39,7 @@ const Scrolling = ({ favorite, cart }: interfaceScrolling) => {
           <ClothingsCards
             key={products.id}
             id={products.id}
-            title={products.title.substring(0, 20) + '...'}
+            title={products.title.substring(0, 20) + "..."}
             price={products.price}
             category={products.category}
             image={products.image}

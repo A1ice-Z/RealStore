@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import './ClothingsCards.css';
-import { IoCart, IoCartOutline } from 'react-icons/io5';
-import { IoMdHeartEmpty, IoMdHeart } from 'react-icons/io';
+import React, { useState } from "react";
+import "./ClothingsCards.css";
+import { IoCart, IoCartOutline } from "react-icons/io5";
+import { IoMdHeartEmpty, IoMdHeart } from "react-icons/io";
 
 interface InterfaceProductCard {
   id: number;

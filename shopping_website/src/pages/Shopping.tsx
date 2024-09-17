@@ -1,7 +1,7 @@
-import Navbar from '../components/Navbar/Navbar';
-import Footer from '../components/Footer/Footer';
-import styling from '../styles/Shopping.module.css';
-import Scrolling from '../components/Scrolling/Scrolling';
+import Navbar from "../components/Navbar/Navbar";
+import Footer from "../components/Footer/Footer";
+import styling from "../styles/Shopping.module.css";
+import Scrolling from "../components/Scrolling/Scrolling";
 
 const Shopping = () => {
   return (

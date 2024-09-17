@@ -1,9 +1,8 @@
-import Navbar from '../components/Navbar/Navbar';
-import Footer from '../components/Footer/Footer';
-import styles from '../styles/Home.module.css';
-import { FaArrowRight } from 'react-icons/fa6';
-import { Link } from 'react-router-dom';
-import Scrolling from '../components/Scrolling/Scrolling';
+import Navbar from "../components/Navbar/Navbar";
+import Footer from "../components/Footer/Footer";
+import styles from "../styles/Home.module.css";
+import { FaArrowRight } from "react-icons/fa6";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
@@ -20,7 +19,7 @@ const Home = () => {
               timeless fashion and exceptional craftsmanship.
             </p>
             <Link className={styles.link} to="/Shopping">
-              <button className={styles.shoppingbutton} onClick={() => '/Shopping'}>
+              <button className={styles.shoppingbutton} onClick={() => "/Shopping"}>
                 Explore <FaArrowRight className={styles.arrow} />
               </button>
             </Link>
