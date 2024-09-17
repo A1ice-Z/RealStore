@@ -1,7 +1,7 @@
-import styles from './Scrolling.module.css'
-import ClothingsCards from './ClothingsCards/ClothingsCards.tsx';
-import { useProducts } from '../../hooks/useProducts.ts';
-import { Product } from '../../models/Product.ts';
+import styles from "./Scrolling.module.css"
+import ClothingsCards from "./ClothingsCards/ClothingsCards.tsx";
+import { useProducts } from "../../hooks/useProducts.ts";
+import { Product } from "../../models/Product.ts";
 
 interface interfaceScrolling {
   favorite: boolean;

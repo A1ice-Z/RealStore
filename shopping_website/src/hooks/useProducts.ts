@@ -7,7 +7,7 @@ const fetchProducts = async (
   minPrice?: number,
   maxPrice?: number,
   minRating?: number
-): Promise<Product | Product[]> => {
+): Promise<Product[]> => {
   let url = "https://fakestoreapi.com/products";
 
   if (productId) {
@@ -41,7 +41,7 @@ export const useProducts = (
   minPrice?: number,
   maxPrice?: number,
   minRating?: number
-): UseQueryResult<Product | Product[]> => {
+): UseQueryResult<Product[]> => {
   const queryKey = [
     "products",
     category,
@@ -51,7 +51,7 @@ export const useProducts = (
     minRating
   ];
 
-  return useQuery<Product | Product[]>({
+  return useQuery<Product[]>({
     queryKey,
     queryFn: () => fetchProducts(category, productId, minPrice, maxPrice, minRating)
   });

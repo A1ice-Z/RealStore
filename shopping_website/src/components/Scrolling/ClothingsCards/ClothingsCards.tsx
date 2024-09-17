@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import "./ClothingsCards.css";
+import styles from "./ClothingsCards.module.css";
 import { IoCart, IoCartOutline } from "react-icons/io5";
 import { IoMdHeartEmpty, IoMdHeart } from "react-icons/io";
-import styles from "./Scrolling.module.css"
 
 interface InterfaceProductCard {
   id: number;
