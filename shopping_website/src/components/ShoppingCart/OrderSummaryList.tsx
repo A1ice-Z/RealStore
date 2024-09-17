@@ -2,9 +2,11 @@
 import { useState } from "react";
 import styles from "./OrderSummaryList.module.css";
 
+/*
 interface OrderSummaryListProps {
     price: number;
 }
+    */
 
 const OrderSummaryList = () => {
     const [clicked, setClicked] = useState(false);
