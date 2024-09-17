@@ -56,3 +56,7 @@ export const getFilteredItems = (): number[] => {
 export const setFilteredItems = (filteredItemIds: number[]): void => {
     setSessionStorageItems('filteredItems', filteredItemIds);
 };
+
+export const clearFilteredItems = (): void => {
+    setSessionStorageItems('filteredItems', []);
+};
