@@ -44,10 +44,17 @@ const ActionBox = ({ productId, image, title, price, description }: ActionBoxPro
             </header>
             <article className={styles.description}>
                 {isFavorited ? (
-                    <FaHeart className={styles.likedHeartButton} onClick={() => addFavourite(productId)} />
+                    <FaHeart
+                        className={`${styles.heartButton} ${styles.likedHeartButton}`}
+                        onClick={() => addFavourite(productId)}
+                    />
                 ) : (
-                    <FaRegHeart className={styles.notLikedheartButton} onClick={() => addFavourite(productId)} />
+                    <FaRegHeart
+                        className={`${styles.heartButton} ${styles.notLikedheartButton}`}
+                        onClick={() => addFavourite(productId)}
+                    />
                 )}
+
                 <p className={styles.titleInDesc}>{title}</p>
                 <p className={styles.price}>{price}</p>
                 <p className={styles.taxes}>Taxes are included</p>
