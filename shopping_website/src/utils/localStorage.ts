@@ -1,17 +1,12 @@
 // Function to store favorite items in local storage
-const setFavorites = (items: number[]): void => {
+export const setFavorites = (items: number[]): void => {
     localStorage.setItem('favorites', JSON.stringify(items));
 };
 
 // Function to get favorite items from local storage
 export const getFavorites = (): number[] => {
-    try {
-        const storedItems = localStorage.getItem('favorites');
-        return storedItems ? JSON.parse(storedItems) : [];
-    } catch (error) {
-        console.error("Error parsing favorite items from localStorage", error);
-        return [];
-    }
+    const storedItems = localStorage.getItem('favorites');
+    return storedItems ? JSON.parse(storedItems) : [];
 };
 
 export const toggleFavorite = (productId: number): void => {

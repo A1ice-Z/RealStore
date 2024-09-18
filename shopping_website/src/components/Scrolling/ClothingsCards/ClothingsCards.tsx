@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./ClothingsCards.module.css";
 import { IoCart, IoCartOutline } from "react-icons/io5";
 import { IoMdHeartEmpty, IoMdHeart } from "react-icons/io";
+import { getFavorites, toggleFavorite} from "../../../utils/localStorage";
+import { useLocation, useNavigate } from "react-router-dom";
 
 interface InterfaceProductCard {
   id: number;
@@ -15,16 +17,29 @@ interface InterfaceProductCard {
 
 const ClothingsCards = ({ id, title, price, category, image, cart, favorite }: InterfaceProductCard) => {
   const [isAddedToCart, setIsAddedToCart] = useState(false);
+  const router = useLocation();
+  const navigate = useNavigate()
 
   const toggleCart = () => {
     setIsAddedToCart(!isAddedToCart);
   };
 
-  const [isFavorited, setIsFavorited] = useState(false);
+  const [isFavorited, setIsFavorited] = useState<boolean>(false);
 
-  const toggleFavorite = () => {
-    setIsFavorited(!isFavorited);
-  };
+  const handleFavorites = () => {
+      toggleFavorite(id);
+      setIsFavorited(!isFavorited)
+      if (router.pathname == "/Favorites") {
+        navigate(0)
+      }
+  }
+
+  useEffect(()  => {
+    const currentfavorites = getFavorites();
+    if (currentfavorites?.includes(id)) {
+      setIsFavorited(true)
+    } 
+  }, [id]);
 
   return (
     <article className={styles.clothingSection}>
@@ -39,7 +54,7 @@ const ClothingsCards = ({ id, title, price, category, image, cart, favorite }: I
               <span onClick={toggleCart}>{isAddedToCart ? <IoCart /> : <IoCartOutline />}</span>
             )}
             {favorite && (
-              <span onClick={toggleFavorite}>
+              <span onClick={handleFavorites}>
                 {isFavorited ? <IoMdHeart className={styles.favorited} /> : <IoMdHeartEmpty />}
               </span>
             )}
