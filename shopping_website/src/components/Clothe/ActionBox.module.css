@@ -1,0 +1,216 @@
+.shoppingPage {
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-self: center;
+    width: 100%;
+    height: fit-content;
+}
+
+.linkstyle {
+    font-family: "Source sans pro", sans-serif;
+    font-size: 16px;
+    text-decoration: none;
+    margin: 0;
+    height: fit-content;
+    color: black;
+}
+
+
+.link {
+    width: fit-content;
+    display: flex;
+    align-items: center;
+}
+
+.imageView {
+    width: 550px;
+    height: 550px;
+}
+
+.description {
+    font-family: "Source sans pro", sans-serif;
+    border: 2px solid #bbb;
+    border-radius: 4px;
+    padding: 20px;
+    margin: 140px 10px 50px 10px;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+}
+
+.title {
+    font-family: "Source sans pro", sans-serif;
+    font-size: 45px;
+    margin: 0;
+    margin-top: 20px;
+    font-weight: normal;
+}
+
+.heartButton {
+    margin-left: 330px;
+    height: 50px;
+    width: 50px;
+    cursor: pointer;
+    background-color: transparent;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s;
+}
+
+.heartButton:hover {
+    transform: scale(1.1);
+}
+
+.notLikedheartButton {}
+
+.notLikedheartButton:hover {
+    fill: rgb(230, 33, 105);
+}
+
+.likedHeartButton {
+    color: rgb(230, 33, 105);
+}
+
+.likedHeartButton:hover {
+    fill: rgb(230, 33, 105);
+}
+
+.titleInDesc {
+    font-size: 28px;
+    margin-top: -40px;
+}
+
+.price {
+    font-size: 22px;
+}
+
+.taxes {
+    font-size: 20px;
+    color: black;
+    opacity: 0.55;
+}
+
+.clotheDesc {
+    font-size: 16px;
+}
+
+.cartButton {
+    background-color: white;
+    text-align: center;
+    cursor: pointer;
+    border: 2px solid #bbb;
+    border-radius: 10px;
+    margin-top: 250px;
+    margin-left: 20px;
+    margin-right: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 80px;
+    padding-right: 80px;
+    transition: background-color 0.3s ease;
+
+}
+
+.cartButton:hover {
+    background-color: lightgray;
+    opacity: 40%;
+    transform: scale(1.1);
+}
+
+@media (max-width: 900px) {
+    .shoppingPage {
+        background-color: white;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .titleAndImage {
+        padding: 10px;
+    }
+
+    .imageView {
+        width: 350px;
+        height: 350px;
+    }
+
+    .description {
+        font-family: "Source sans pro", sans-serif;
+        border: 2px solid #bbb;
+        border-radius: 4px;
+        padding: 20px;
+        height: fit-content;
+        width: fit-content;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .titleInDesc {
+        font-size: 28px;
+        margin-top: -40px;
+        width: fit-content;
+    }
+
+    .price {
+        font-size: 22px;
+        width: fit-content;
+    }
+
+    .taxes {
+        font-size: 20px;
+        color: black;
+        opacity: 0.55;
+        width: fit-content;
+    }
+
+    .clotheDesc {
+        font-size: 16px;
+        width: fit-content;
+    }
+
+
+    .notLikedheartButton {
+        width: fit-content;
+        margin-left: 250px;
+        height: 50px;
+        width: 50px;
+        cursor: pointer;
+        background-color: transparent;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .likedHeartButton {
+        width: fit-content;
+        margin-left: 250px;
+        height: 50px;
+        width: 50px;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        color: rgb(230, 33, 105);
+    }
+
+    .cartButton {
+        background-color: white;
+        text-align: center;
+        cursor: pointer;
+        border: 2px solid #bbb;
+        border-radius: 10px;
+        margin-top: 100px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        height: fit-content;
+        width: fit-content;
+
+    }
+
+    .cartButton:hover {
+        background-color: lightgray;
+        opacity: 40%;
+    }
+}
