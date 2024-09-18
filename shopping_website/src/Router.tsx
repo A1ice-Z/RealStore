@@ -8,21 +8,26 @@ import NoPage from "./pages/NoPage";
 import Shopping from "./pages/Shopping";
 
 const Router = () => {
-    return (
-        <BrowserRouter>
-            <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="*" element={<>
-                    <Navbar />
-                    <NoPage />
-                    <Footer />
-                </>} />
-                <Route path="/ShoppingCart" element={<ShoppingCart />} />
-                <Route path="/Favorites" element={<Favorites />} />
-                <Route path="/Shopping" element={<Shopping />} />
-            </Routes>
-        </BrowserRouter>
-    );
-}
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route
+          path="*"
+          element={
+            <>
+              <Navbar />
+              <NoPage />
+              <Footer />
+            </>
+          }
+        />
+        <Route path="/ShoppingCart" element={<ShoppingCart />} />
+        <Route path="/Favorites" element={<Favorites />} />
+        <Route path="/Shopping" element={<Shopping />} />
+      </Routes>
+    </BrowserRouter>
+  );
+};
 
 export default Router;
