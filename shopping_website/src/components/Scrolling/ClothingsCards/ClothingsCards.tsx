@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./ClothingsCards.module.css";
 import { IoCart, IoCartOutline } from "react-icons/io5";
 import { IoMdHeartEmpty, IoMdHeart } from "react-icons/io";
+import { getFavorites, toggleFavorite} from "../../../utils/localStorage";
 import { useLocation, useNavigate } from "react-router-dom";
 import { addToCart, getCart , updateCartQuantity} from "../../../utils/sessionStorage";
 
@@ -35,17 +36,26 @@ const ClothingsCards = ({ id, title, price, category, image, cart, favorite }: I
     }
   };
 
-  const [isFavorited, setIsFavorited] = useState(false);
+  const [isFavorited, setIsFavorited] = useState<boolean>(false);
 
-  const toggleFavorite = () => {
-    setIsFavorited(!isFavorited);
-  };
+  const handleFavorites = () => {
+      toggleFavorite(id);
+      setIsFavorited(!isFavorited)
+      if (router.pathname == "/Favorites") {
+        navigate(0)
+      }
+  }
 
   useEffect(() => {
     const currentCart = getCart().map((cart) => cart.productId)
     if(currentCart?.includes(id)) {
       setIsAddedToCart(true)
     }
+
+    const currentfavorites = getFavorites();
+    if (currentfavorites?.includes(id)) {
+      setIsFavorited(true)
+    } 
   }, [id])
 
   return (
@@ -61,7 +71,7 @@ const ClothingsCards = ({ id, title, price, category, image, cart, favorite }: I
               <span onClick={handleCart}>{isAddedToCart ? <IoCart /> : <IoCartOutline />}</span>
             )}
             {favorite && (
-              <span onClick={toggleFavorite}>
+              <span onClick={handleFavorites}>
                 {isFavorited ? <IoMdHeart className={styles.favorited} /> : <IoMdHeartEmpty />}
               </span>
             )}
