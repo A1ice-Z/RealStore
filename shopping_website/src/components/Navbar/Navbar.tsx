@@ -46,7 +46,7 @@ const Navbar = () => {
                         <HiOutlineShoppingBag className={styles.whiteicon} />
                     </Link>
                     <Link to={"/Favorites"} className={styles.navlink}>
-                        <CiHeart className={styles.blackicon} />
+                        <CiHeart className={styles.heart} />
                     </Link>
                 </div>
                 <Link to={"/ShoppingCart"} className={styles.shoppingButton}>
