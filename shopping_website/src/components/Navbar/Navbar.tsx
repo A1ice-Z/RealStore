@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import styles from "./Navbar.module.css";
 import { RxHamburgerMenu, RxCross1 } from "react-icons/rx";
 import { useState } from "react";
+import logo from "/Logo.svg"
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -37,7 +38,7 @@ const Navbar = () => {
                 </div>
                 <div className={styles.navlogo}>
                     <Link to={"/"}>
-                        <img src="Shopping/shopping_website/dist/Logo.svg" alt="logo" className={styles.logoimg} />
+                        <img src={logo} alt="logo" className={styles.logoimg} />
                     </Link>
                 </div>
                 <div className={styles.navlinks}>
