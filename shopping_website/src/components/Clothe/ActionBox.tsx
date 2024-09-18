@@ -2,9 +2,8 @@ import { FaRegHeart, FaHeart } from "react-icons/fa";
 import styles from "./ActionBox.module.css"
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { toggleFavorite } from "../../utils/localStorage";
+import { toggleFavorite, getFavorites } from "../../utils/localStorage";
 import { addToCart } from "../../utils/sessionStorage";
-import { getFavorites } from "../../utils/localStorage";
 
 interface ActionBoxProps {
     productId: number;
