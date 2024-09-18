@@ -2,7 +2,7 @@
     height: 100%;
     width: 450px;
     overflow-y: scroll;
-    font-family: 'Source Sans 3', sans-serif;
+    font-family: 'Source Sans Pro', sans-serif;
 }
 
 @media (max-width: 850px) {

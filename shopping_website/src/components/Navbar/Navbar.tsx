@@ -19,14 +19,8 @@ const Navbar = () => {
                     <Link to={"/"} className={styles.navlink}>
                         <p>HOME</p>
                     </Link>
-                    <Link to={"/"} className={styles.navlink}>
+                    <Link to={"/Shopping"} className={styles.navlink}>
                         <p>SHOP</p>
-                    </Link>
-                    <Link to={"/"} className={styles.navlink}>
-                        <p>ABOUT</p>
-                    </Link>
-                    <Link to={"/"} className={styles.navlink}>
-                        <p>CONTACT</p>
                     </Link>
                     <Link to={"/Favorites"} className={styles.navlink}>
                         <p>FAVORITES</p>
@@ -37,14 +31,8 @@ const Navbar = () => {
                     <Link to={"/"} className={styles.navlink}>
                         <p>HOME</p>
                     </Link>
-                    <Link to={"/"} className={styles.navlink}>
+                    <Link to={"/Shopping"} className={styles.navlink}>
                         <p>SHOP</p>
-                    </Link>
-                    <Link to={"/"} className={styles.navlink}>
-                        <p>ABOUT</p>
-                    </Link>
-                    <Link to={"/"} className={styles.navlink}>
-                        <p>CONTACT</p>
                     </Link>
                 </div>
                 <div className={styles.navlogo}>
@@ -58,10 +46,7 @@ const Navbar = () => {
                         <HiOutlineShoppingBag className={styles.whiteicon} />
                     </Link>
                     <Link to={"/Favorites"} className={styles.navlink}>
-                        <CiHeart className={styles.blackicon} />
-                    </Link>
-                    <Link to={"/"} className={styles.navlink}>
-                        <CiSearch className={styles.blackicon} />
+                        <CiHeart className={styles.heart} />
                     </Link>
                 </div>
                 <Link to={"/ShoppingCart"} className={styles.shoppingButton}>

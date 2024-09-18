@@ -8,35 +8,31 @@ const Footer = () => {
                 <img src="/footer.svg" alt="footer" className={styles.image} />
                 <p className={styles.title}>EXPLORE  OUR  CATALOG</p>
                 <div className={styles.box}>
-                    <div>
-                        <p className={styles.informationtitle}>GENERAL</p>
-                        <Link to={"/"} className={styles.informationlink}>
-                            <p className={styles.informationtext}>Home</p>
-                        </Link>
-                        <Link to={"/"} className={styles.informationlink}>
-                            <p className={styles.informationtext}>Shop</p>
-                        </Link>
-                        <Link to={"/"} className={styles.informationlink}>
-                            <p className={styles.informationtext}>About us</p>
-                        </Link>
-                        <Link to={"/"} className={styles.informationlink}>
-                            <p className={styles.informationtext}>Contact</p>
-                        </Link>
-                    </div>
-                    <div>
-                        <p className={styles.informationtitle}>PRODUCTS</p>
-                        <Link to={"/"} className={styles.informationlink}>
-                            <p className={styles.informationtext}>Electronics</p>
-                        </Link>
-                        <Link to={"/"} className={styles.informationlink}>
-                            <p className={styles.informationtext}>Womens Fashion</p>
-                        </Link>
-                        <Link to={"/"} className={styles.informationlink}>
-                            <p className={styles.informationtext}>Mens Fashion</p>
-                        </Link>
-                        <Link to={"/"} className={styles.informationlink}>
-                            <p className={styles.informationtext}>Jewery</p>
-                        </Link>
+                    <div className={styles.informationbox}>
+                        <div>
+                            <p className={styles.informationtitle}>GENERAL</p>
+                            <Link to={"/"} className={styles.informationlink}>
+                                <p className={styles.informationtext}>Home</p>
+                            </Link>
+                            <Link to={"/Shopping"} className={styles.informationlink}>
+                                <p className={styles.informationtext}>Shop</p>
+                            </Link>
+                        </div>
+                        <div>
+                            <p className={styles.informationtitle}>PRODUCTS</p>
+                            <Link to={"/"} className={styles.informationlink}>
+                                <p className={styles.informationtext}>Electronics</p>
+                            </Link>
+                            <Link to={"/"} className={styles.informationlink}>
+                                <p className={styles.informationtext}>Womens Fashion</p>
+                            </Link>
+                            <Link to={"/"} className={styles.informationlink}>
+                                <p className={styles.informationtext}>Mens Fashion</p>
+                            </Link>
+                            <Link to={"/"} className={styles.informationlink}>
+                                <p className={styles.informationtext}>Jewery</p>
+                            </Link>
+                        </div>
                     </div>
                     <view className={styles.divider} />
                     <div className={styles.logobox}>
