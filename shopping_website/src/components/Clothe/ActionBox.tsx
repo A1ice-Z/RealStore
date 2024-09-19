@@ -1,34 +1,56 @@
 import { FaRegHeart, FaHeart } from "react-icons/fa";
 import styles from "./ActionBox.module.css"
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toggleFavorite, getFavorites } from "../../utils/localStorage";
-import { addToCart } from "../../utils/sessionStorage";
+import { addToCart, CartItem, getCart } from "../../utils/sessionStorage";
+import { useProducts } from "../../hooks/useProducts";
 
 interface ActionBoxProps {
     productId: number;
-    image: string;
-    title: string;
-    price: string;
-    description: string;
 }
 
-const ActionBox = ({ productId, image, title, price, description }: ActionBoxProps) => {
-
-    const [isFavorited, setIsFavorited] = useState(false);
+const ActionBox = ({ productId }: ActionBoxProps) => {
 
     const quantity: number = 1;
+    const [isFavorited, setIsFavorited] = useState(false);
+    const [isAddedToCart, setIsAddedToCart] = useState(false);
+    const { data: products, isLoading, isError } = useProducts();
+
+    if (isLoading) {
+        return <section>Loading...</section>;
+    }
+    if (isError) {
+        return <section>Error fetching products.</section>;
+    }
+
+    const product = products ? products.find((p) => p.id === productId) : null;
+
+    const favorites = getFavorites();
+    const isAlreadyFavorited = favorites.includes(productId);
+
+    const productsInCart = getCart();
+    const isAlreadyInCart = productsInCart.some((product: CartItem) => product.productId === productId);
+
+    if (!isAddedToCart && isAlreadyInCart) {
+        setIsAddedToCart(true);
+    }
 
     const addFavourite = (productId: number) => {
         if (!getFavorites().includes(productId)) {
             toggleFavorite(productId);
-            console.log("Added this item as favourite:", title);
+            console.log("Added this product as favourite:", product?.title);
         }
         else {
             toggleFavorite(productId);
-            console.log("Removed this item as favourite:", title);
+            console.log("Removed this product as favourite:", product?.title);
         }
         setIsFavorited(!isFavorited);
+    }
+
+    const addProductToCart = (productId: number, quantity: number) => {
+        addToCart(productId, quantity);
+        setIsAddedToCart(true);
     }
 
     return (
@@ -37,13 +59,13 @@ const ActionBox = ({ productId, image, title, price, description }: ActionBoxPro
                 <nav className={styles.link}>
                     <Link to={"/"} className={styles.linkstyle}>Home</Link>
                     <Link to={"/shopping"} className={styles.linkstyle}>/ Shop</Link>
-                    <p className={styles.linkstyle}>/ {title}</p>
+                    <p className={styles.linkstyle}>/ {product?.title}</p>
                 </nav>
-                <p className={styles.title}>SHOP - {title}</p>
-                <img src={image} alt={title} className={styles.imageView} />
+                <p className={styles.title}>SHOP - {product?.title}</p>
+                <img src={product?.image} alt={product?.title} className={styles.imageView} />
             </header>
             <article className={styles.description}>
-                {isFavorited ? (
+                {isAlreadyFavorited ? (
                     <FaHeart
                         className={`${styles.heartButton} ${styles.likedHeartButton}`}
                         onClick={() => addFavourite(productId)}
@@ -55,13 +77,18 @@ const ActionBox = ({ productId, image, title, price, description }: ActionBoxPro
                     />
                 )}
 
-                <p className={styles.titleInDesc}>{title}</p>
-                <p className={styles.price}>{price}</p>
+                <p className={styles.titleInDesc}>{product?.title}</p>
+                <p className={styles.price}>{product?.price} $</p>
                 <p className={styles.taxes}>Taxes are included</p>
-                <p className={styles.clotheDesc}>{description}</p>
-                <button className={styles.cartButton} onClick={() => addToCart(productId, quantity)}>ADD TO CART</button>
+                <p className={styles.clotheDesc}>{product?.description}</p>
+                {isAddedToCart ? (
+                    <div className={styles.alreadyInCart}>ALREADY IN CART</div>
+                ) : (
+                    <button className={styles.cartButton} onClick={() => addProductToCart(productId, quantity)}>ADD TO CART</button>
+                )
+                }
             </article>
-        </section>
+        </section >
     );
 };
 
