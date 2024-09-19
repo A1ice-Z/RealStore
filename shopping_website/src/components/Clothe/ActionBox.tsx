@@ -57,9 +57,9 @@ const ActionBox = ({ productId }: ActionBoxProps) => {
         <section className={styles.shoppingPage}>
             <header className={styles.titleAndImage}>
                 <nav className={styles.link}>
-                    <Link to={"/"} className={styles.linkstyle}>Home</Link>
-                    <Link to={"/shopping"} className={styles.linkstyle}>/ Shop</Link>
-                    <p className={styles.linkstyle}>/ {product?.title}</p>
+                    <Link to={"/"} className={styles.linkstyle}>Home</Link> /
+                    <Link to={"/shopping"} className={styles.linkstyle}> Shop</Link> /
+                    <p className={styles.linkstyle}> {product?.title}</p>
                 </nav>
                 <p className={styles.title}>SHOP - {product?.title}</p>
                 <img src={product?.image} alt={product?.title} className={styles.imageView} />
