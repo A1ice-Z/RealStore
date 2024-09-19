@@ -1,11 +1,13 @@
 import { Link } from "react-router-dom";
 import styles from "./Footer.module.css";
+import footer from "/footer.svg"
+import logo from "/Logo.svg"
 
 const Footer = () => {
     return (
         <footer className={styles.footer}>
             <section className={styles.imageholder}>
-                <img src="/footer.svg" alt="footer" className={styles.image} />
+                <img src={footer} alt="footer" className={styles.image} />
                 <p className={styles.title}>EXPLORE  OUR  CATALOG</p>
                 <div className={styles.box}>
                     <div className={styles.informationbox}>
@@ -37,7 +39,7 @@ const Footer = () => {
                     <view className={styles.divider} />
                     <div className={styles.logobox}>
                         <Link to={"/"}>
-                            <img src="/Logo.svg" alt="logo" className={styles.logoimg} />
+                            <img src={logo} alt="logo" className={styles.logoimg} />
                         </Link>
                         <p className={styles.logoinformation}>@2024 RealStore.com</p>
                     </div>

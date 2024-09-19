@@ -1,4 +1,4 @@
-import { CiSearch, CiHeart } from "react-icons/ci";
+import { CiHeart } from "react-icons/ci";
 import { HiOutlineShoppingBag } from "react-icons/hi2";
 import { Link } from "react-router-dom";
 import styles from "./Navbar.module.css";
