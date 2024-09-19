@@ -43,10 +43,8 @@
     flex-direction: row-reverse;
     justify-content: end;
     align-items: center;
-    margin-right: 1%;
     width: 40%;
     height: 90px;
-    padding-right: 50px;
 }
 
 .navlink,
@@ -83,9 +81,13 @@
     border-radius: 30px;
 }
 
-.blackicon {
-    font-size: 1.6em;
-    color: #424242;
+.heart {
+    font-size: 36px;
+    color: #424242;  
+}
+
+.heart:hover {
+    color:red
 }
 
 .ulstyle {

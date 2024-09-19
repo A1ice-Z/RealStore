@@ -9,7 +9,7 @@ import Shopping from "./pages/Shopping";
 
 const Router = () => {
     return (
-        <BrowserRouter>
+        <BrowserRouter basename="/project1">
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="*" element={<>
