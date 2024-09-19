@@ -6,9 +6,15 @@ import { Product } from "../../models/Product.ts";
 interface interfaceScrolling {
   favorite: boolean;
   cart: boolean;
+  selectedFilters: SelectedFilters;
 }
 
-const Scrolling = ({ favorite, cart }: interfaceScrolling) => {
+interface SelectedFilters {
+  categories: string | null;
+  priceRange: string | null;
+}
+
+const Scrolling = ({ favorite, cart, selectedFilters }: interfaceScrolling) => {
   const { data: products, isLoading, isError } = useProducts();
 
   if (isLoading) {
@@ -18,11 +24,26 @@ const Scrolling = ({ favorite, cart }: interfaceScrolling) => {
     return <section>Error fetching products.</section>;
   }
 
+  const filteredProducts = products?.filter((product: Product) => {
+    const matchesCategory = selectedFilters.categories
+      ? product.category.toLowerCase() === selectedFilters.categories.toLowerCase()
+      : true;
+
+      const matchesPrice = selectedFilters.priceRange
+      ? (() => {
+          const [min, max] = selectedFilters.priceRange.replace(" $", "").split('-').map(Number);
+          return product.price >= min && product.price <= max;
+        })()
+      : true;
+
+    return matchesCategory && matchesPrice;
+  });
+
   return (
     <section className={styles.clothesSections}>
       <article className={styles.rows}>
-        {products ? (
-          products.map((product: Product) => (
+      {(filteredProducts && filteredProducts.length > 0)? (
+          filteredProducts.map((product: Product) => (
             <ClothingsCards
               key={product.id}
               id={product.id}
@@ -35,7 +56,7 @@ const Scrolling = ({ favorite, cart }: interfaceScrolling) => {
             />
           ))
         ) : (
-          <div>No products available.</div>
+          <h3>No products available.</h3>
         )}
       </article>
     </section>
