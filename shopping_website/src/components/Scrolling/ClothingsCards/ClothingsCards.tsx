@@ -61,10 +61,15 @@ const ClothingsCards = ({ id, title, price, category, image, cart, favorite }: I
 
   return (
     <article className={styles.clothingSection} role="region" aria-label={`Product card for ${title}`}>
+<<<<<<< HEAD
       <figure className={styles.imgContainer} >
         <Link to={`/Clothe/${id}`}>
           <img src={image} className={styles.clothingImage} alt={`Image of ${title}`}></img>
         </Link>
+=======
+      <figure className={styles.imgContainer}>
+        <img src={image} className={styles.clothingImage} alt={`Image of ${title}`}></img>
+>>>>>>> a61a1c3 (refactor(#38): add aria-labels and roles where they are needed)
       </figure>
       <section className={styles.descriptionSpace}>
         <header className={styles.productType}>
