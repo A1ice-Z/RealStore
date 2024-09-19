@@ -2,7 +2,7 @@ import styles from "./Scrolling.module.css"
 import ClothingsCards from "./ClothingsCards/ClothingsCards.tsx";
 import { useProducts} from "../../hooks/useProducts.ts";
 import { Product } from "../../models/Product.ts";
-import { getFilteredItems, setFilteredItems } from "../../utils/sessionStorage.ts";
+import { getFilteredItems, setFilteredItems, clearFilteredItems } from "../../utils/sessionStorage.ts";
 import { useEffect, useState } from "react";
 
 interface interfaceScrolling {
@@ -28,17 +28,25 @@ const Scrolling = ({ favorite, cart, selectedFilters }: interfaceScrolling) => {
     if (!products) {
       return; 
     }
-    let currentFilteredProducts;
-    if (filteredItemIDs.length === 0) {
-      currentFilteredProducts = products;
-    } else {
-      currentFilteredProducts = products.filter((product) => filteredItemIDs.includes(product.id));
-    }
-    setFilteredProducts(currentFilteredProducts);
+    let currentFilteredProducts = products;
+    
+  if (selectedFilters.categories || selectedFilters.priceRange) {
+    const filteredByCategory = selectedFilters.categories
+      ? products.filter(product => product.category === selectedFilters.categories)
+      : products;
+
+    const [min, max] = selectedFilters.priceRange?.replace(" $", "").split("-").map(Number) ?? [0, Infinity];
+    currentFilteredProducts = filteredByCategory.filter(product => product.price >= min && product.price <= max);
+
     const filteredProductIDs = currentFilteredProducts.map(product => product.id);
     sessionStorage.setItem("filteredProductIDs", JSON.stringify(filteredProductIDs));
     setFilteredItems(filteredProductIDs);
-  }, [products, filteredItemIDs, setFilteredItems]);
+  } else {
+    clearFilteredItems();
+  }
+
+  setFilteredProducts(currentFilteredProducts);
+}, [products, selectedFilters]);
 
   if (isLoading) {
     return <section>Loading...</section>;
