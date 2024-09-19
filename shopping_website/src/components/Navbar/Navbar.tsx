@@ -11,12 +11,11 @@ const Navbar = () => {
 
     return (
         <main>
-            <nav className={styles.navbar}>
-                {isOpen && <div className={styles.mobilemenu}>
+            <nav className={styles.navbar} role="navigation" aria-label="Main Navigation">
+                {isOpen && <div className={styles.mobilemenu} role="dialog" aria-label="Mobile Navigation Menu">
                     <div className={styles.crosspos}>
-                        <RxCross1 className={styles.cross} onClick={() => setIsOpen(false)} />
+                        <RxCross1 className={styles.cross} onClick={() => setIsOpen(false)} aria-label="Close Menu"/>
                     </div>
-
                     <Link to={"/"} className={styles.navlink}>
                         <p>HOME</p>
                     </Link>
@@ -27,8 +26,8 @@ const Navbar = () => {
                         <p>FAVORITES</p>
                     </Link>
                 </div>}
-                <RxHamburgerMenu className={styles.hamburgmenu} onClick={() => setIsOpen(true)} />
-                <div className={styles.navpage}>
+                <RxHamburgerMenu className={styles.hamburgmenu} onClick={() => setIsOpen(true)} aria-label="Open Menu"/>
+                <div className={styles.navpage} role="navigation" aria-label="Desktop Navigation Links">
                     <Link to={"/"} className={styles.navlink}>
                         <p>HOME</p>
                     </Link>
@@ -38,19 +37,19 @@ const Navbar = () => {
                 </div>
                 <div className={styles.navlogo}>
                     <Link to={"/"}>
-                        <img src={logo} alt="logo" className={styles.logoimg} />
+                        <img src={logo} alt="RealStore logo" className={styles.logoimg} aria-label="RealStore Logo"/>
                     </Link>
                 </div>
-                <div className={styles.navlinks}>
+                <div className={styles.navlinks} role="navigation" aria-label="User Navigation">
                     <Link to={"/ShoppingCart"} className={styles.cardbutton}>
-                        <p>MY CART</p>
+                        <p aria-label="View My Cart">MY CART</p>
                         <HiOutlineShoppingBag className={styles.whiteicon} />
                     </Link>
                     <Link to={"/Favorites"} className={styles.navlink}>
-                        <CiHeart className={styles.heart} />
+                        <CiHeart className={styles.heart} aria-label="View My Favorites"/>
                     </Link>
                 </div>
-                <Link to={"/ShoppingCart"} className={styles.shoppingButton}>
+                <Link to={"/ShoppingCart"} className={styles.shoppingButton} aria-label="View My Cart">
                     <HiOutlineShoppingBag className={styles.whiteicon} />
                 </Link>
             </nav>

@@ -59,14 +59,14 @@ const ClothingsCards = ({ id, title, price, category, image, cart, favorite }: I
   }, [id])
 
   return (
-    <article className={styles.clothingSection}>
+    <article className={styles.clothingSection} role="region" aria-label={`Product card for ${title}`}>
       <figure className={styles.imgContainer}>
-        <img src={image} className={styles.clothingImage} alt="ItemImages"></img>
+        <img src={image} className={styles.clothingImage} alt={`Image of ${title}`}></img>
       </figure>
       <section className={styles.descriptionSpace}>
         <header className={styles.productType}>
           <h5>{category}</h5>
-          <section className={styles.IconSpace}>
+          <section className={styles.IconSpace} aria-label="Product Actions">
             {cart && (
               <span onClick={handleCart}>{isAddedToCart ? <IoCart /> : <IoCartOutline />}</span>
             )}
