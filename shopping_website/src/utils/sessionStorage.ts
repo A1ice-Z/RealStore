@@ -1,4 +1,4 @@
-type CartItem = { productId: number; quantity: number };
+export type CartItem = { productId: number; quantity: number };
 
 // Helper function to store items in session storage
 const setSessionStorageItems = <T>(key: string, items: T[]): void => {
@@ -28,6 +28,10 @@ export const addToCart = (productId: number, quantity: number = 1): void => {
 
     setSessionStorageItems('cart', cart);
 };
+
+export const clearCart= (): void => {
+    setSessionStorageItems('cart', []);
+}
 
 export const updateCartQuantity = (productId: number, quantity: number): void => {
     const cart = getCart();

@@ -4,6 +4,7 @@ import { IoCart, IoCartOutline } from "react-icons/io5";
 import { IoMdHeartEmpty, IoMdHeart } from "react-icons/io";
 import { getFavorites, toggleFavorite} from "../../../utils/localStorage";
 import { useLocation, useNavigate } from "react-router-dom";
+import { addToCart, getCart , updateCartQuantity} from "../../../utils/sessionStorage";
 
 interface InterfaceProductCard {
   id: number;
@@ -16,12 +17,23 @@ interface InterfaceProductCard {
 }
 
 const ClothingsCards = ({ id, title, price, category, image, cart, favorite }: InterfaceProductCard) => {
-  const [isAddedToCart, setIsAddedToCart] = useState(false);
+  const [isAddedToCart, setIsAddedToCart] = useState<boolean>(false);
   const router = useLocation();
   const navigate = useNavigate()
 
-  const toggleCart = () => {
-    setIsAddedToCart(!isAddedToCart);
+  const handleCart = () => {
+    if(isAddedToCart) {
+      updateCartQuantity(id, 0)
+      setIsAddedToCart(false)
+    }
+    else {
+      addToCart(id)
+      setIsAddedToCart(true)
+    }
+
+    if (router.pathname == "/ShoppingCart") {
+      navigate(0)
+    }
   };
 
   const [isFavorited, setIsFavorited] = useState<boolean>(false);
@@ -34,12 +46,17 @@ const ClothingsCards = ({ id, title, price, category, image, cart, favorite }: I
       }
   }
 
-  useEffect(()  => {
+  useEffect(() => {
+    const currentCart = getCart().map((cart) => cart.productId)
+    if(currentCart?.includes(id)) {
+      setIsAddedToCart(true)
+    }
+
     const currentfavorites = getFavorites();
     if (currentfavorites?.includes(id)) {
       setIsFavorited(true)
     } 
-  }, [id]);
+  }, [id])
 
   return (
     <article className={styles.clothingSection}>
@@ -51,7 +68,7 @@ const ClothingsCards = ({ id, title, price, category, image, cart, favorite }: I
           <h5>{category}</h5>
           <section className={styles.IconSpace}>
             {cart && (
-              <span onClick={toggleCart}>{isAddedToCart ? <IoCart /> : <IoCartOutline />}</span>
+              <span onClick={handleCart}>{isAddedToCart ? <IoCart /> : <IoCartOutline />}</span>
             )}
             {favorite && (
               <span onClick={handleFavorites}>

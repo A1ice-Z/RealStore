@@ -38,8 +38,7 @@ const Favorites = () => {
                     </nav>
                     <p className={styles.title}>FAVORITES</p>
                     <section className={styles.favoriteitems}>
-                    {favoriteProducts ? (
-                    favoriteProducts.map((product: Product) => (
+                    {favoriteProducts.map((product: Product) => (
                         <ClothingsCards
                         key={product.id}
                         id={product.id}
@@ -50,10 +49,7 @@ const Favorites = () => {
                         cart={true}
                         favorite={true}
                         />
-                    ))
-                    )  : (
-                        <p>No favorite items yet!</p>
-                        )}
+                    ))}
                     </section>
                 </div>
             </main>
