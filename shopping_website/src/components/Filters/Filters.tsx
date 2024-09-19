@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import "./Filters.css";
 import { IoIosArrowForward, IoIosArrowDown } from "react-icons/io";
-import { setFilteredItems} from "../../utils/sessionStorage.ts"
 
 interface SelectedFilters {
   categories: string | undefined;
@@ -13,13 +12,11 @@ interface FiltersProps {
   setSelectedFilters: React.Dispatch<React.SetStateAction<SelectedFilters>>;
 }
 
-
 const Filters = ({selectedFilters, setSelectedFilters} : FiltersProps) => {
   const [isCategoriesOpen, setIsCategoriesOpen] = useState(false);
   const [isPriceRangeOpen, setIsPriceRangeOpen] = useState(false);
   const [isFilterOpen, setIsFilterOpen] = useState(true);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 780);
-  const [selectedCategories, setSelectedCategories] = useState<number[]>([]);
 
   type FilterType = "categories" | "priceRange";
   type FilterValue = string | number | null;
