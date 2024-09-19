@@ -23,10 +23,10 @@ const OrderSummaryList = () => {
     }, [products])
 
     if (isLoading) {
-      return <section>Loading...</section>;
+        return <section role="status" aria-live="polite">Loading...</section>;
     }
     if (isError) {
-      return <section>Error fetching products.</section>;
+        return <section  role="alert" aria-live="assertive">Error fetching products.</section>;
     }
 
     function handleChange(e: any) {
@@ -43,26 +43,26 @@ const OrderSummaryList = () => {
 
     return (
         <>
-            <section className={styles.box}>
-                <h2 className={styles.title}>ORDER SUMMARY</h2>
-                <div className={styles.textbox}>
+            <section className={styles.box} role="region" aria-label="Order Summary Section">
+                <h2 className={styles.title} aria-label="Order Summary">ORDER SUMMARY</h2>
+                <div className={styles.textbox} aria-label="Subtotal Information">
                     <p className={styles.text}>Subtotal</p>
                     <p className={styles.text}>$ {price}</p>
                 </div>
-                <div className={styles.textbox}>
+                <div className={styles.textbox} aria-label="Shipping Information">
                     <p className={styles.text}>Shipping</p>
                     <p className={styles.text}>$ Free</p>
                 </div>
-                <div className={styles.totalbox}>
+                <div className={styles.totalbox} aria-label="Total Cost">
                     <p className={styles.totaltext}>TOTAL</p>
                     <p className={styles.taxtext}>(TAX INCL.)</p>
                     <p className={styles.totaltext}>$ {price}</p>
                 </div>
                 <label className={styles.checkbox}>
-                    <input type="checkbox" onChange={e => handleChange(e)} />
-                    <p className={styles.checkboxtext}>I agree to the Terms and Conditions</p>
+                    <input type="checkbox" onChange={e => handleChange(e)} aria-labelledby="termsCheckbox"/>
+                    <p id="termsCheckbox" className={styles.checkboxtext}>I agree to the Terms and Conditions</p>
                 </label>
-                <button type="button" disabled={!clicked} className={styles.button} onClick={() => handleClick()}>PAY</button>
+                <button type="button" disabled={!clicked} aria-disabled={!clicked} className={styles.button} onClick={() => handleClick()}>PAY</button>
             </section>
         </>
     );
