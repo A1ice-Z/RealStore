@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import "./Filters.css";
 import { IoIosArrowForward, IoIosArrowDown } from "react-icons/io";
+import { setFilteredItems} from "../../utils/sessionStorage.ts"
 
 interface SelectedFilters {
-  categories: string | null;
-  priceRange: string | null;
+  categories: string | undefined;
+  priceRange: string | undefined;
 }
 
 interface FiltersProps {
@@ -16,13 +17,14 @@ interface FiltersProps {
 const Filters = ({selectedFilters, setSelectedFilters} : FiltersProps) => {
   const [isCategoriesOpen, setIsCategoriesOpen] = useState(false);
   const [isPriceRangeOpen, setIsPriceRangeOpen] = useState(false);
-  const [isRatingOpen, setIsRatingOpen] = useState(false);
   const [isFilterOpen, setIsFilterOpen] = useState(true);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 780);
+  const [selectedCategories, setSelectedCategories] = useState<number[]>([]);
 
   type FilterType = "categories" | "priceRange";
   type FilterValue = string | number | null;
 
+  const toggleFiltersSection = () => setIsFilterOpen(!isFilterOpen);
 
   const toggleCategoriesSection = () => {
     setIsCategoriesOpen(!isCategoriesOpen);
@@ -32,18 +34,12 @@ const Filters = ({selectedFilters, setSelectedFilters} : FiltersProps) => {
     setIsPriceRangeOpen(!isPriceRangeOpen);
   };
 
-  const toggleRatingSection = () => {
-    setIsRatingOpen(!isRatingOpen);
-  };
-
-  const toggleFiltersSection = () => setIsFilterOpen(!isFilterOpen);
-
   const handleFilterChange = (filterType: FilterType, value: FilterValue) => {
     setSelectedFilters((prevState) => ({
       ...prevState,
       [filterType]: prevState[filterType] === value ? null : value,
     }));
-  };
+  }
 
   useEffect(() => {
     console.log("Updated filters:", selectedFilters);
@@ -59,7 +55,7 @@ const Filters = ({selectedFilters, setSelectedFilters} : FiltersProps) => {
   }, []);
 
   return (
-    <div className={`filterSection ${isFilterOpen ? "" : "closed"}`}>
+    <section className={`filterSection ${isFilterOpen ? "" : "closed"}`}>
       <header className="categoryAndArrow">
         <h2>Filters</h2>
         {isMobile && (
@@ -78,24 +74,24 @@ const Filters = ({selectedFilters, setSelectedFilters} : FiltersProps) => {
             </header>
             {isCategoriesOpen && (
               <ul>
-                <li className="selectionSection" onClick={() => handleFilterChange("categories", "Men's Clothing")}>
+                <li className="selectionSection" onClick={() => handleFilterChange("categories", "men's clothing")}>
                   <span
-                    className={`clickBox ${selectedFilters.categories === "Men's Clothing" ? "clicked" : ""}`}
+                    className={`clickBox ${selectedFilters.categories === "men's clothing" ? "clicked" : ""}`}
                   ></span>
                   <h5>Men's Clothings</h5>
                 </li>
-                <li className="selectionSection" onClick={() => handleFilterChange("categories", "Women's Clothing")}>
+                <li className="selectionSection" onClick={() => handleFilterChange("categories", "women's clothing")}>
                   <span
-                    className={`clickBox ${selectedFilters.categories === "Women's Clothing" ? "clicked" : ""}`}
+                    className={`clickBox ${selectedFilters.categories === "women's clothing" ? "clicked" : ""}`}
                   ></span>
                   <h5>Women's Clothings</h5>
                 </li>
-                <li className="selectionSection" onClick={() => handleFilterChange("categories", "Jewelery")}>
-                  <span className={`clickBox ${selectedFilters.categories === "Jewelery" ? "clicked" : ""}`}></span>
+                <li className="selectionSection" onClick={() => handleFilterChange("categories", "jewelery")}>
+                  <span className={`clickBox ${selectedFilters.categories === "jewelery" ? "clicked" : ""}`}></span>
                   <h5>Jewelry</h5>
                 </li>
-                <li className="selectionSection" onClick={() => handleFilterChange("categories", "Electronics")}>
-                  <span className={`clickBox ${selectedFilters.categories === "Electronics" ? "clicked" : ""}`}></span>
+                <li className="selectionSection" onClick={() => handleFilterChange("categories", "electronics")}>
+                  <span className={`clickBox ${selectedFilters.categories === "electronics" ? "clicked" : ""}`}></span>
                   <h5>Electronics</h5>
                 </li>
               </ul>
@@ -136,7 +132,7 @@ const Filters = ({selectedFilters, setSelectedFilters} : FiltersProps) => {
           </section>
         </>
       )}
-    </div>
+    </section>
   );
 };
 
