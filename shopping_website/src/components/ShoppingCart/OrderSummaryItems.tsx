@@ -1,7 +1,6 @@
 import styles from "./OrderSummaryItems.module.css";
 import { Product } from "../../models/Product";
 import { getCart } from "../../utils/sessionStorage";
-import { CartItem } from "../../utils/sessionStorage";
 import { useProducts } from "../../hooks/useProducts.ts";
 import { useEffect, useState } from "react";
 import ClothingsCards from "../Scrolling/ClothingsCards/ClothingsCards";
@@ -10,6 +9,7 @@ const OrderSummaryItems = () => {
     const cartItemData = getCart()
     const [cartItems, setCartItems] = useState<Product[]>([]);
     const { data: products, isLoading, isError } = useProducts();
+    const hasCartItems = useState<boolean>(cartItemData.length != 0)
 
     useEffect(() => {
         if (!products) {
@@ -30,8 +30,7 @@ const OrderSummaryItems = () => {
     return (
         <>
             <section className={styles.itembox}>
-            {cartItems ? (
-                    cartItems.map((product: Product) => (
+            {cartItems.map((product: Product) => (
                         <ClothingsCards
                         key={product.id}
                         id={product.id}
@@ -42,10 +41,10 @@ const OrderSummaryItems = () => {
                         cart={true}
                         favorite={false}
                         />
-                    ))
-                    ) : (
-                    <div>No products available.</div>
-                    )}
+                    ))}
+                {
+                    
+                }
             </section>
         </>
     )
