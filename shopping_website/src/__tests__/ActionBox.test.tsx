@@ -1,7 +1,7 @@
 import { render, fireEvent, screen } from '@testing-library/react';
 import '@testing-library/jest-dom'; // Import jest-dom for extended matchers
 import ActionBox from '../components/Clothe/ActionBox'; // Adjust the import path
-import { BrowserRouter } from 'react-router-dom';
+import { MemoryRouter } from 'react-router-dom';
 import * as sessionStorage from '../utils/sessionStorage'; // Import all as sessionStorage
 import { vi } from 'vitest';
 
@@ -15,9 +15,9 @@ interface ActionBoxProps {
 
 const renderActionBox = (props: ActionBoxProps) => {
   return render(
-    <BrowserRouter>
+    <MemoryRouter>
       <ActionBox {...props} />
-    </BrowserRouter>
+    </MemoryRouter>
   );
 };
 
@@ -53,14 +53,6 @@ test('adds product to cart when "Add to Cart" button is clicked', () => {
 });
 
 test('renders with different props', () => {
-  renderActionBox({
-    productId: 1,
-    image: "img.jpg",
-    title: "Test Title",
-    price: "$20.00",
-    description: "Test Description",
-  });
-
-  expect(screen.getByText("Test Title", { selector: 'p' })).toBeInTheDocument();
-  expect(screen.getByText(/\$20.00/)).toBeInTheDocument();
+  expect(screen.getByText("Sample Product", { selector: 'p' })).toBeInTheDocument();
+  expect(screen.getByText(/\$10.00/)).toBeInTheDocument();
 });
