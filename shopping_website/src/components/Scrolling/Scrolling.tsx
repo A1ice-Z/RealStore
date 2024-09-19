@@ -1,6 +1,6 @@
 import styles from "./Scrolling.module.css"
 import ClothingsCards from "./ClothingsCards/ClothingsCards.tsx";
-import { useProducts} from "../../hooks/useProducts.ts";
+import { useProducts } from "../../hooks/useProducts.ts";
 import { Product } from "../../models/Product.ts";
 import { Filter } from "../../pages/Shopping.tsx";
 
@@ -23,7 +23,7 @@ const Scrolling = ({ favorite, cart, selectedFilter }: scrollingProps) => {
   return (
     <section className={styles.clothesSections}>
       <article className={styles.rows}>
-      {(products && products.length > 0)? (
+        {(products && products.length > 0) ? (
           products.map((product: Product) => (
             <ClothingsCards
               key={product.id}
