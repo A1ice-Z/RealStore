@@ -5,6 +5,9 @@ import { IoMdHeartEmpty, IoMdHeart } from "react-icons/io";
 import { getFavorites, toggleFavorite } from "../../../utils/localStorage";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { addToCart, getCart, updateCartQuantity } from "../../../utils/sessionStorage";
+import { getFavorites, toggleFavorite } from "../../../utils/localStorage";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { addToCart, getCart, updateCartQuantity } from "../../../utils/sessionStorage";
 
 interface InterfaceProductCard {
   id: number;
@@ -21,51 +24,66 @@ const ClothingsCards = ({ id, title, price, category, image, cart, favorite }: I
   const router = useLocation();
   const navigate = useNavigate();
 
+  const navigate = useNavigate();
+
 
   const handleCart = () => {
     if (isAddedToCart) {
-      updateCartQuantity(id, 0)
-      setIsAddedToCart(false)
-    }
-    else {
-      addToCart(id)
-      setIsAddedToCart(true)
+      if (isAddedToCart) {
+        updateCartQuantity(id, 0)
+        setIsAddedToCart(false)
+      }
+      else {
+        addToCart(id)
+        setIsAddedToCart(true)
+      }
+
+      if (router.pathname == "/ShoppingCart") {
+        navigate(0)
+      }
+    };
+
+    const [isFavorited, setIsFavorited] = useState<boolean>(false);
+
+    const handleFavorites = () => {
+      toggleFavorite(id);
+      setIsFavorited(!isFavorited)
+      if (router.pathname == "/Favorites") {
+        navigate(0)
+      }
+      toggleFavorite(id);
+      setIsFavorited(!isFavorited)
+      if (router.pathname == "/Favorites") {
+        navigate(0)
+      }
     }
 
-    if (router.pathname == "/ShoppingCart") {
-      navigate(0)
-    }
-  };
+    useEffect(() => {
+      const currentCart = getCart().map((cart) => cart.productId)
+      if (currentCart?.includes(id)) {
+        if (currentCart?.includes(id)) {
+          setIsAddedToCart(true)
+        }
 
-  const [isFavorited, setIsFavorited] = useState<boolean>(false);
+        const currentfavorites = getFavorites();
+        if (currentfavorites?.includes(id)) {
+          setIsFavorited(true)
+        }
+      }
+    }, [id])
 
-  const handleFavorites = () => {
-    toggleFavorite(id);
-    setIsFavorited(!isFavorited)
-    if (router.pathname == "/Favorites") {
-      navigate(0)
-    }
-  }
-
-  useEffect(() => {
-    const currentCart = getCart().map((cart) => cart.productId)
-    if (currentCart?.includes(id)) {
-      setIsAddedToCart(true)
-    }
-
-    const currentfavorites = getFavorites();
-    if (currentfavorites?.includes(id)) {
-      setIsFavorited(true)
-    }
-  }, [id])
-
-  return (
-    <article className={styles.clothingSection} role="region" aria-label={`Product card for ${title}`}>
+    return (
+      <article className={styles.clothingSection}>
+        <figure className={styles.imgContainer} >
+          <Link to={`/Clothe/${id}`}>
+            <img src={image} className={styles.clothingImage} alt="ItemImages"></img>
+          </Link>
+          <article className={styles.clothingSection} role="region" aria-label={`Product card for ${title}`}>
 <<<<<<< HEAD
-      <figure className={styles.imgContainer} >
-        <Link to={`/Clothe/${id}`}>
-          <img src={image} className={styles.clothingImage} alt={`Image of ${title}`}></img>
-        </Link>
+    <figure className={styles.imgContainer} >
+      <Link to={`/Clothe/${id}`}>
+        <img src={image} className={styles.clothingImage} alt={`Image of ${title}`}></img>
+      </Link>
 =======
       <figure className={styles.imgContainer}>
         <img src={image} className={styles.clothingImage} alt={`Image of ${title}`}></img>
