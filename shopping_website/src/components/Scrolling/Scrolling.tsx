@@ -1,7 +1,9 @@
 import styles from "./Scrolling.module.css"
 import ClothingsCards from "./ClothingsCards/ClothingsCards.tsx";
-import { useProducts } from "../../hooks/useProducts.ts";
+import { useProducts} from "../../hooks/useProducts.ts";
 import { Product } from "../../models/Product.ts";
+import { getFilteredItems, setFilteredItems } from "../../utils/sessionStorage.ts";
+import { useEffect, useState } from "react";
 
 interface interfaceScrolling {
   favorite: boolean;
@@ -10,12 +12,33 @@ interface interfaceScrolling {
 }
 
 interface SelectedFilters {
-  categories: string | null;
-  priceRange: string | null;
+  categories: string | undefined;
+  priceRange: string | undefined;
 }
 
 const Scrolling = ({ favorite, cart, selectedFilters }: interfaceScrolling) => {
-  const { data: products, isLoading, isError } = useProducts();
+  const filteredItemIDs = getFilteredItems();
+  const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
+  const category = selectedFilters.categories;
+  const priceRange = selectedFilters?.priceRange?.replace(" $", "") ?? ""; 
+  const [min, max] = priceRange.split("-").map(Number);
+  const { data: products, isLoading, isError } = useProducts(category, undefined, min, max, undefined);
+
+  useEffect(() => {
+    if (!products) {
+      return; 
+    }
+    let currentFilteredProducts;
+    if (filteredItemIDs.length === 0) {
+      currentFilteredProducts = products;
+    } else {
+      currentFilteredProducts = products.filter((product) => filteredItemIDs.includes(product.id));
+    }
+    setFilteredProducts(currentFilteredProducts);
+    const filteredProductIDs = currentFilteredProducts.map(product => product.id);
+    sessionStorage.setItem("filteredProductIDs", JSON.stringify(filteredProductIDs));
+    setFilteredItems(filteredProductIDs);
+  }, [products, filteredItemIDs, setFilteredItems]);
 
   if (isLoading) {
     return <section>Loading...</section>;
@@ -23,21 +46,6 @@ const Scrolling = ({ favorite, cart, selectedFilters }: interfaceScrolling) => {
   if (isError) {
     return <section>Error fetching products.</section>;
   }
-
-  const filteredProducts = products?.filter((product: Product) => {
-    const matchesCategory = selectedFilters.categories
-      ? product.category.toLowerCase() === selectedFilters.categories.toLowerCase()
-      : true;
-
-      const matchesPrice = selectedFilters.priceRange
-      ? (() => {
-          const [min, max] = selectedFilters.priceRange.replace(" $", "").split('-').map(Number);
-          return product.price >= min && product.price <= max;
-        })()
-      : true;
-
-    return matchesCategory && matchesPrice;
-  });
 
   return (
     <section className={styles.clothesSections}>
