@@ -9,7 +9,6 @@ const OrderSummaryItems = () => {
     const cartItemData = getCart()
     const [cartItems, setCartItems] = useState<Product[]>([]);
     const { data: products, isLoading, isError } = useProducts();
-    const hasCartItems = useState<boolean>(cartItemData.length != 0)
 
     useEffect(() => {
         if (!products) {
@@ -42,9 +41,6 @@ const OrderSummaryItems = () => {
                         favorite={false}
                         />
                     ))}
-                {
-                    
-                }
             </section>
         </>
     )

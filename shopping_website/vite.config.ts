@@ -7,9 +7,13 @@ export default defineConfig(() => ({
   server: {
     open: true,
   },
+
+  base: '/project1',
+
   test: {
     globals: true,
     environment: "jsdom",
     setupFiles: "src/test/setup.ts",
   }
 }));
+

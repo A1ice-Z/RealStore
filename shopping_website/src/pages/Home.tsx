@@ -3,6 +3,7 @@ import Footer from "../components/Footer/Footer";
 import styles from "../styles/Home.module.css";
 import { FaArrowRight } from "react-icons/fa6";
 import { Link } from "react-router-dom";
+import woman from "/woman.svg"
 
 const Home = () => {
   return (
@@ -24,7 +25,7 @@ const Home = () => {
               </button>
             </Link>
           </article>
-          <img src="/woman.svg" alt="woman" className={styles.image} />
+          <img src={woman} alt="woman" className={styles.image} />
         </section>
       </main>
       <Footer />
