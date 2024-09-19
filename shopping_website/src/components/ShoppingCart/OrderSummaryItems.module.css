@@ -2,7 +2,7 @@
     height: 100%;
     width: 500px;
     overflow-y: scroll;
-    font-family: 'Source Sans 3', sans-serif;
+    font-family: 'Source Sans Pro', sans-serif;
     display: flex;
     flex-wrap: wrap;
     gap: 40px;
