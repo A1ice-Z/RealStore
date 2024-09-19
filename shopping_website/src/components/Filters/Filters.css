@@ -1,0 +1,158 @@
+
+.filterSection{
+    margin-top: 20px;
+    margin-right: 0;
+    padding: 50px;
+    border-radius: 10px;
+    width: 230px;
+   
+}
+
+.filterCategory{
+  width: 225px;
+}
+.filterSection h2,
+.filterSection h3,
+.filterSection h5 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500; 
+}
+
+.filterSection h2 {
+  font-size: 24px;  
+  font-weight: 700;
+}
+
+.filterSection h3 {
+  font-size: 18px;  
+}
+
+.filterSection h5 {
+  font-size: 16px; 
+}
+
+.categoryAndArrow {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center; 
+    cursor: pointer;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.arrow {
+    font-size: 20px; 
+}
+
+.sizeBox{
+    display: flex; 
+    justify-content: center;
+    align-items: center; 
+    width: 50px;
+    height: 35px;
+    border-radius: 10px;
+    margin-right: 2%;
+    border: 2px solid black;
+    
+}
+
+
+.selectionSection{
+    display: flex;
+    align-items: center;
+    height: 60px;
+    width: 225px;
+}
+
+.clickBox{
+    display: flex; 
+    align-items: center; 
+    width: 30px;
+    height: 30px;
+    border-radius: 10px;
+    margin-right: 10px;
+    border: 2px solid black;
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 0;
+    justify-content: center;
+    flex-shrink: 0;
+    
+}
+
+.clickBox.clicked {
+    background-color: #9da1a4; 
+  }
+  
+  .clickBox:hover {
+    background-color: #95a5a6; 
+  }
+
+  @media (max-width: 780px) {
+    .filterSection {
+      width: 225px;  
+      margin-top: 20px;
+      margin-left: 15%;
+      position: relative;
+    }
+  
+    .filterHeader {
+      width: 100%; 
+      padding: 10px;
+      margin-top: 0;
+      position: fixed; 
+      top: 0; 
+      left: 0; 
+      z-index: 999; 
+      background-color: white;
+      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); 
+    }
+  
+    
+    .filterSection.closed .filterHeader {
+      display: block;
+    }
+
+    .filterSection.closed {
+      display: block;
+      position: relative; 
+      padding: 10px;
+      width: 225px;  
+      margin-top: 20px;
+      margin-left: 15%;
+    }
+
+    .categoryAndArrow {
+      padding-right: 0; 
+    }
+  
+    .arrow {
+      margin-left: auto; 
+    }
+  
+   
+    .filterSection.closed > *:not(.filterHeader) {
+      padding-bottom: 0;
+      
+    }
+  
+    body {
+      padding-top: 70px; 
+    }
+
+    .sizeCheckBoxes {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap; 
+    }
+    
+    .selectionSection {
+      width: 100%; 
+      margin-bottom: 10px; 
+    }
+
+    
+  }
+
+
+
