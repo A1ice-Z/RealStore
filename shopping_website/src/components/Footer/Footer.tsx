@@ -24,13 +24,13 @@ const Footer = () => {
                                 <p className={styles.informationtext}>Electronics</p>
                             </Link>
                             <Link to={"/"} className={styles.informationlink}>
-                                <p className={styles.informationtext}>Womens Fashion</p>
+                                <p className={styles.informationtext}>Women's Fashion</p>
                             </Link>
                             <Link to={"/"} className={styles.informationlink}>
-                                <p className={styles.informationtext}>Mens Fashion</p>
+                                <p className={styles.informationtext}>Men's Fashion</p>
                             </Link>
                             <Link to={"/"} className={styles.informationlink}>
-                                <p className={styles.informationtext}>Jewery</p>
+                                <p className={styles.informationtext}>Jewelry</p>
                             </Link>
                         </div>
                     </div>

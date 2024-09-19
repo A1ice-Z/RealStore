@@ -12,7 +12,7 @@
 
 .cartbox {
     height: fit-content;
-    width: 800px;
+    width: fit-content;
 
     display: flex;
     flex-direction: column;
