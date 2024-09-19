@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import "./Filters.css";
 import { IoIosArrowForward, IoIosArrowDown } from "react-icons/io";
+import { clearFilteredItems } from "../../utils/sessionStorage.ts";
 
 interface SelectedFilters {
   categories: string | undefined;
@@ -19,7 +20,7 @@ const Filters = ({selectedFilters, setSelectedFilters} : FiltersProps) => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 780);
 
   type FilterType = "categories" | "priceRange";
-  type FilterValue = string | number | null;
+  type FilterValue = string | number | undefined;
 
   const toggleFiltersSection = () => setIsFilterOpen(!isFilterOpen);
 
@@ -37,7 +38,6 @@ const Filters = ({selectedFilters, setSelectedFilters} : FiltersProps) => {
       [filterType]: prevState[filterType] === value ? null : value,
     }));
   }
-
   useEffect(() => {
     console.log("Updated filters:", selectedFilters);
   }, [selectedFilters]);

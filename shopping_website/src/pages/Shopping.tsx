@@ -3,7 +3,13 @@ import Footer from "../components/Footer/Footer";
 import styling from "../styles/Shopping.module.css";
 import Scrolling from "../components/Scrolling/Scrolling";
 import Filters from "../components/Filters/Filters";
-import {useState} from "react";
+import {useState, useEffect} from "react";
+import { getFilteredItems, setFilteredItems } from "../utils/sessionStorage.ts";
+
+interface SelectedFilters {
+  categories: string | undefined;
+  priceRange: string | undefined;
+}
 
 const Shopping = () => {
 
