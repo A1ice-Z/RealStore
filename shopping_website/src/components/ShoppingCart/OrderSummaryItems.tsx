@@ -20,15 +20,15 @@ const OrderSummaryItems = () => {
     }, [products])
 
     if (isLoading) {
-      return <section>Loading...</section>;
+        return <section role="status" aria-live="polite">Loading...</section>;
     }
     if (isError) {
-      return <section>Error fetching products.</section>;
+        return <section  role="alert" aria-live="assertive">Error fetching products.</section>;
     }
 
     return (
         <>
-            <section className={styles.itembox}>
+            <section className={styles.itembox} role="region" aria-label="Order Summary Items">
             {cartItems.map((product: Product) => (
                         <ClothingsCards
                         key={product.id}
