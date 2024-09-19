@@ -8,11 +8,11 @@ import {useState} from "react";
 const Shopping = () => {
 
   const [selectedFilters, setSelectedFilters] = useState<{
-    categories: string | null;
-    priceRange: string | null;
+    categories: string | undefined;
+    priceRange: string | undefined;
   }>({
-    categories: null,
-    priceRange: null,
+    categories: undefined,
+    priceRange: undefined,
   });
 
   return (
