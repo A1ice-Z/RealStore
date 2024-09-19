@@ -1,7 +1,7 @@
 import { FaRegHeart, FaHeart } from "react-icons/fa";
 import styles from "./ActionBox.module.css"
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toggleFavorite, getFavorites } from "../../utils/localStorage";
 import { addToCart, CartItem, getCart } from "../../utils/sessionStorage";
 import { useProducts } from "../../hooks/useProducts";
@@ -76,7 +76,6 @@ const ActionBox = ({ productId }: ActionBoxProps) => {
                         onClick={() => addFavorite(productId)}
                     />
                 )}
-
 
                 <p className={styles.titleInDesc}>{product?.title}</p>
                 <p className={styles.price}>{product?.price} $</p>
