@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route, HashRouter } from "react-router-dom";
 import Home from "./pages/Home";
 import ShoppingCart from "./pages/ShoppingCart";
 import Favorites from "./pages/Favorites";
@@ -10,7 +10,7 @@ import Clothe from "./pages/Clothe";
 
 const Router = () => {
     return (
-        <BrowserRouter basename="/project1">
+        <HashRouter>
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="*" element={<>
@@ -23,7 +23,7 @@ const Router = () => {
                 <Route path="/Shopping" element={<Shopping />} />
                 <Route path="/Clothe/:id" element={<Clothe />} />
             </Routes>
-        </BrowserRouter>
+        </HashRouter>
     );
 }
 
