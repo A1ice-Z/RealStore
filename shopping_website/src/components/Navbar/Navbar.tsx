@@ -14,7 +14,7 @@ const Navbar = () => {
             <nav className={styles.navbar} role="navigation" aria-label="Main Navigation">
                 {isOpen && <div className={styles.mobilemenu} role="dialog" aria-label="Mobile Navigation Menu">
                     <div className={styles.crosspos}>
-                        <RxCross1 className={styles.cross} onClick={() => setIsOpen(false)} aria-label="Close Menu"/>
+                        <RxCross1 className={styles.cross} onClick={() => setIsOpen(false)} aria-label="Close Menu" />
                     </div>
                     <Link to={"/"} className={styles.navlink}>
                         <p>HOME</p>
@@ -26,7 +26,7 @@ const Navbar = () => {
                         <p>FAVORITES</p>
                     </Link>
                 </div>}
-                <RxHamburgerMenu className={styles.hamburgmenu} onClick={() => setIsOpen(true)} aria-label="Open Menu"/>
+                <RxHamburgerMenu className={styles.hamburgmenu} onClick={() => setIsOpen(true)} aria-label="Open Menu" />
                 <div className={styles.navpage} role="navigation" aria-label="Desktop Navigation Links">
                     <Link to={"/"} className={styles.navlink}>
                         <p>HOME</p>
@@ -37,7 +37,7 @@ const Navbar = () => {
                 </div>
                 <div className={styles.navlogo}>
                     <Link to={"/"}>
-                        <img src={logo} alt="RealStore logo" className={styles.logoimg} aria-label="RealStore Logo"/>
+                        <img src={logo} alt="RealStore logo" className={styles.logoimg} aria-label="RealStore Logo" />
                     </Link>
                 </div>
                 <div className={styles.navlinks} role="navigation" aria-label="User Navigation">
@@ -46,7 +46,7 @@ const Navbar = () => {
                         <HiOutlineShoppingBag className={styles.whiteicon} />
                     </Link>
                     <Link to={"/Favorites"} className={styles.navlink}>
-                        <CiHeart className={styles.heart} aria-label="View My Favorites"/>
+                        <CiHeart className={styles.heart} aria-label="View My Favorites" />
                     </Link>
                 </div>
                 <Link to={"/ShoppingCart"} className={styles.shoppingButton} aria-label="View My Cart">

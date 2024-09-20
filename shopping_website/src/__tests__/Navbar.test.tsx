@@ -24,6 +24,6 @@ test('renders all navigation links', () => {
   expect(screen.getByText(/HOME/i)).toBeInTheDocument();
   expect(screen.getByText(/SHOP/i)).toBeInTheDocument();
   expect(screen.getByText(/MY CART/i)).toBeInTheDocument();
-  expect(screen.getByAltText(/logo/i)).toBeInTheDocument();
+  expect(screen.getByAltText(/RealStore logo/i)).toBeInTheDocument();
 });
 

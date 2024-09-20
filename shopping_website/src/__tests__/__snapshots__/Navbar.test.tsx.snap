@@ -4,9 +4,12 @@ exports[`Navbar snapshot 1`] = `
 <DocumentFragment>
   <main>
     <nav
+      aria-label="Main Navigation"
       class="_navbar_278c00"
+      role="navigation"
     >
       <svg
+        aria-label="Open Menu"
         class="_hamburgmenu_278c00"
         fill="none"
         height="1em"
@@ -24,7 +27,9 @@ exports[`Navbar snapshot 1`] = `
         />
       </svg>
       <div
+        aria-label="Desktop Navigation Links"
         class="_navpage_278c00"
+        role="navigation"
       >
         <a
           class="_navlink_278c00"
@@ -50,20 +55,25 @@ exports[`Navbar snapshot 1`] = `
           href="/"
         >
           <img
-            alt="logo"
+            alt="RealStore logo"
+            aria-label="RealStore Logo"
             class="_logoimg_278c00"
             src="/project1/Logo.svg"
           />
         </a>
       </div>
       <div
+        aria-label="User Navigation"
         class="_navlinks_278c00"
+        role="navigation"
       >
         <a
           class="_cardbutton_278c00"
           href="/ShoppingCart"
         >
-          <p>
+          <p
+            aria-label="View My Cart"
+          >
             MY CART
           </p>
           <svg
@@ -89,6 +99,7 @@ exports[`Navbar snapshot 1`] = `
           href="/Favorites"
         >
           <svg
+            aria-label="View My Favorites"
             class="_heart_278c00"
             fill="currentColor"
             height="1em"
@@ -109,6 +120,7 @@ exports[`Navbar snapshot 1`] = `
         </a>
       </div>
       <a
+        aria-label="View My Cart"
         class="_shoppingButton_278c00"
         href="/ShoppingCart"
       >
