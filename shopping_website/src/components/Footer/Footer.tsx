@@ -36,7 +36,7 @@ const Footer = () => {
                             </Link>
                         </div>
                     </div>
-                    <view className={styles.divider} />
+                    <div className={styles.divider} />
                     <div className={styles.logobox}>
                         <Link to={"/"}>
                             <img src={logo} alt="logo" className={styles.logoimg} />

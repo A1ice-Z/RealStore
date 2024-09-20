@@ -24,7 +24,7 @@ beforeEach(() => {
 describe("Favorites component", () => {
   it("renders loading state initially", () => {
     // Mock useProducts to simulate the loading state
-    (useProducts as vi.Mock).mockReturnValue({
+    (useProducts as unknown as jest.Mock).mockReturnValue({
       data: null,
       isLoading: true,
       isError: false,
@@ -41,7 +41,7 @@ describe("Favorites component", () => {
 
   it("renders error state when data fetching fails", () => {
     // Mock useProducts to simulate an error
-    (useProducts as vi.Mock).mockReturnValue({
+    (useProducts as unknown as jest.Mock).mockReturnValue({
       data: null,
       isLoading: false,
       isError: true,
@@ -86,14 +86,14 @@ describe("Favorites component", () => {
     ];
 
     // Mock useProducts to return the product data
-    (useProducts as vi.Mock).mockReturnValue({
+    (useProducts as unknown as jest.Mock).mockReturnValue({
       data: fakeProducts,
       isLoading: false,
       isError: false,
     });
 
     // Mock getFavorites to return product IDs that exist in fakeProducts
-    (getFavorites as vi.Mock).mockReturnValue([1, 2]);
+    (getFavorites as unknown as jest.Mock).mockReturnValue([1, 2]);
 
     render(
       <MemoryRouter>
