@@ -1,26 +1,35 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import {Routes, Route, HashRouter} from "react-router-dom";
 import Home from "./pages/Home";
 import ShoppingCart from "./pages/ShoppingCart";
 import Favorites from "./pages/Favorites";
-import Profile from "./pages/Profile";
 import Navbar from "./components/Navbar/Navbar";
+import Footer from "./components/Footer/Footer";
 import NoPage from "./pages/NoPage";
+import Shopping from "./pages/Shopping";
+import Clothe from "./pages/Clothe";
 
 const Router = () => {
     return (
-        <BrowserRouter>
+        <HashRouter>
             <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="*" element={<>
-                    <Navbar />
-                    <NoPage />
-                </>} />
+                <Route
+                    path="*"
+                    element={
+                        <>
+                            <Navbar />
+                            <NoPage />
+                            <Footer />
+                        </>
+                    }
+                />
                 <Route path="/ShoppingCart" element={<ShoppingCart />} />
                 <Route path="/Favorites" element={<Favorites />} />
-                <Route path="/Profile" element={<Profile />} />
+                <Route path="/Shopping" element={<Shopping />} />
+                <Route path="/Clothe/:id" element={<Clothe />} />
             </Routes>
-        </BrowserRouter>
+        </HashRouter>
     );
-}
+};
 
 export default Router;

@@ -1,36 +1,70 @@
-import { CgProfile } from "react-icons/cg";
-import { FaRegHeart } from "react-icons/fa";
-import { RiShoppingBag3Line } from "react-icons/ri";
-import { Link } from "react-router-dom";
-import "./Navbar.css"
+import {CiHeart} from "react-icons/ci";
+import {HiOutlineShoppingBag} from "react-icons/hi2";
+import {Link} from "react-router-dom";
+import styles from "./Navbar.module.css";
+import {RxHamburgerMenu, RxCross1} from "react-icons/rx";
+import {useState} from "react";
+import logo from "/Logo.svg";
 
 const Navbar = () => {
+    const [isOpen, setIsOpen] = useState(false);
+
     return (
-        <div className="navbar">
-            <div className="navlogo">
-                <Link to={"/"}>
-                    <h1>RealShop</h1>
+        <main>
+            <nav className={styles.navbar} role="navigation" aria-label="Main Navigation">
+                {isOpen && (
+                    <div className={styles.mobilemenu} role="dialog" aria-label="Mobile Navigation Menu">
+                        <div className={styles.crosspos}>
+                            <RxCross1
+                                className={styles.cross}
+                                onClick={() => setIsOpen(false)}
+                                aria-label="Close Menu"
+                            />
+                        </div>
+                        <Link to={"/"} className={styles.navlink}>
+                            <p>HOME</p>
+                        </Link>
+                        <Link to={"/Shopping"} className={styles.navlink}>
+                            <p>SHOP</p>
+                        </Link>
+                        <Link to={"/Favorites"} className={styles.navlink}>
+                            <p>FAVORITES</p>
+                        </Link>
+                    </div>
+                )}
+                <RxHamburgerMenu
+                    className={styles.hamburgmenu}
+                    onClick={() => setIsOpen(true)}
+                    aria-label="Open Menu"
+                />
+                <div className={styles.navpage} role="navigation" aria-label="Desktop Navigation Links">
+                    <Link to={"/"} className={styles.navlink}>
+                        <p>HOME</p>
+                    </Link>
+                    <Link to={"/Shopping"} className={styles.navlink}>
+                        <p>SHOP</p>
+                    </Link>
+                </div>
+                <div className={styles.navlogo}>
+                    <Link to={"/"}>
+                        <img src={logo} alt="RealStore logo" className={styles.logoimg} aria-label="RealStore Logo" />
+                    </Link>
+                </div>
+                <div className={styles.navlinks} role="navigation" aria-label="User Navigation">
+                    <Link to={"/ShoppingCart"} className={styles.cardbutton}>
+                        <p aria-label="View My Cart">MY CART</p>
+                        <HiOutlineShoppingBag className={styles.whiteicon} />
+                    </Link>
+                    <Link to={"/Favorites"} className={styles.navlink}>
+                        <CiHeart className={styles.heart} aria-label="View My Favorites" />
+                    </Link>
+                </div>
+                <Link to={"/ShoppingCart"} className={styles.shoppingButton} aria-label="View My Cart">
+                    <HiOutlineShoppingBag className={styles.whiteicon} />
                 </Link>
-            </div>
-            <div className="searchfield">
+            </nav>
+        </main>
+    );
+};
 
-            </div>
-            <div className="navlinks">
-                <Link to={"/ShoppingCart"}>
-                    <RiShoppingBag3Line />
-                    <h3>Shopping Cart</h3>
-                </Link>
-                <Link to={"/Favorits"}>
-                    <FaRegHeart />
-                    <h3>Favorits</h3>
-                </Link>
-                <Link to={"/Profile"}>
-                    <CgProfile />
-                    <h3>Profile</h3>
-                </Link>
-            </div>
-        </div>
-    )
-}
-
-export default Navbar
+export default Navbar;
