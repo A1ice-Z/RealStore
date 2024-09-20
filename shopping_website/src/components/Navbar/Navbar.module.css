@@ -8,7 +8,7 @@
     align-items: center;
     justify-content: center;
     padding-top: 20px;
-    font-family: 'Source Sans 3', sans-serif;
+    font-family: "Source Sans 3", sans-serif;
 }
 
 .navpage {
@@ -83,11 +83,11 @@
 
 .heart {
     font-size: 36px;
-    color: #424242;  
+    color: #424242;
 }
 
 .heart:hover {
-    color:red
+    color: red;
 }
 
 .ulstyle {
@@ -135,7 +135,6 @@
         color: #424242;
         cursor: pointer;
     }
-
 
     .shoppingButton {
         text-decoration: none;

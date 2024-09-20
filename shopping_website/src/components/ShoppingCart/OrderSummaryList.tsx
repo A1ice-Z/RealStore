@@ -1,32 +1,44 @@
-
-import { useEffect, useState } from "react";
+import {useEffect, useState} from "react";
 import styles from "./OrderSummaryList.module.css";
-import { useProducts } from "../../hooks/useProducts";
-import { Product } from "../../models/Product";
-import {getCart , clearCart, CartItem} from "../../utils/sessionStorage";
-import { useNavigate } from "react-router-dom";
+import {useProducts} from "../../hooks/useProducts";
+import {Product} from "../../models/Product";
+import {getCart, clearCart, CartItem} from "../../utils/sessionStorage";
+import {useNavigate} from "react-router-dom";
 
 const OrderSummaryList = () => {
     const [clicked, setClicked] = useState(false);
-    const cartItemData = getCart()
+    const cartItemData = getCart();
     const [price, setPrice] = useState<number>();
-    const { data: products, isLoading, isError } = useProducts();
-    const navigate = useNavigate()
+    const {data: products, isLoading, isError} = useProducts();
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (!products) {
-            return; 
+            return;
         }
-        const cartItemIds = cartItemData.map((cartId: CartItem) => {return cartId.productId})
-        const currentPrice = products.filter((product: Product) => cartItemIds.includes(product.id)).map((product: Product) => product.price).reduce((x: number,y: number) => x = x + y, 0)
-        setPrice(currentPrice)
-    }, [products])
+        const cartItemIds = cartItemData.map((cartId: CartItem) => {
+            return cartId.productId;
+        });
+        const currentPrice = products
+            .filter((product: Product) => cartItemIds.includes(product.id))
+            .map((product: Product) => product.price)
+            .reduce((x: number, y: number) => (x = x + y), 0);
+        setPrice(currentPrice);
+    }, [products]);
 
     if (isLoading) {
-        return <section role="status" aria-live="polite">Loading...</section>;
+        return (
+            <section role="status" aria-live="polite">
+                Loading...
+            </section>
+        );
     }
     if (isError) {
-        return <section  role="alert" aria-live="assertive">Error fetching products.</section>;
+        return (
+            <section role="alert" aria-live="assertive">
+                Error fetching products.
+            </section>
+        );
     }
 
     function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
@@ -36,15 +48,17 @@ const OrderSummaryList = () => {
 
     function handleClick() {
         if (cartItemData) {
-            clearCart()
-            navigate(0)
+            clearCart();
+            navigate(0);
         }
     }
 
     return (
         <>
             <section className={styles.box} role="region" aria-label="Order Summary Section">
-                <h2 className={styles.title} aria-label="Order Summary">ORDER SUMMARY</h2>
+                <h2 className={styles.title} aria-label="Order Summary">
+                    ORDER SUMMARY
+                </h2>
                 <div className={styles.textbox} aria-label="Subtotal Information">
                     <p className={styles.text}>Subtotal</p>
                     <p className={styles.text}>$ {price}</p>
@@ -59,13 +73,22 @@ const OrderSummaryList = () => {
                     <p className={styles.totaltext}>$ {price}</p>
                 </div>
                 <label className={styles.checkbox}>
-                    <input type="checkbox" onChange={e => handleChange(e)} aria-labelledby="termsCheckbox"/>
-                    <p id="termsCheckbox" className={styles.checkboxtext}>I agree to the Terms and Conditions</p>
+                    <input type="checkbox" onChange={(e) => handleChange(e)} aria-labelledby="termsCheckbox" />
+                    <p id="termsCheckbox" className={styles.checkboxtext}>
+                        I agree to the Terms and Conditions
+                    </p>
                 </label>
-                <button type="button" disabled={!clicked} aria-disabled={!clicked} className={styles.button} onClick={() => handleClick()}>PAY</button>
+                <button
+                    type="button"
+                    disabled={!clicked}
+                    aria-disabled={!clicked}
+                    className={styles.button}
+                    onClick={() => handleClick()}>
+                    PAY
+                </button>
             </section>
         </>
     );
-}
+};
 
 export default OrderSummaryList;

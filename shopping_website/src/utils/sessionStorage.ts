@@ -1,6 +1,6 @@
-import { Filter } from "../pages/Shopping";
+import {Filter} from "../pages/Shopping";
 
-export type CartItem = { productId: number; quantity: number };
+export type CartItem = {productId: number; quantity: number};
 
 // Helper function to store items in session storage
 const setSessionStorageItems = <T>(key: string, items: T[]): void => {
@@ -15,29 +15,29 @@ const getSessionStorageItems = <T>(key: string): T[] => {
 
 // Cart-specific functions
 export const getCart = (): CartItem[] => {
-    return getSessionStorageItems<CartItem>('cart');
+    return getSessionStorageItems<CartItem>("cart");
 };
 
 export const addToCart = (productId: number, quantity: number = 1): void => {
     const cart = getCart();
-    const existingItem = cart.find(item => item.productId === productId);
+    const existingItem = cart.find((item) => item.productId === productId);
 
     if (existingItem) {
         existingItem.quantity += quantity; // Increment quantity
     } else {
-        cart.push({ productId, quantity });
+        cart.push({productId, quantity});
     }
 
-    setSessionStorageItems('cart', cart);
+    setSessionStorageItems("cart", cart);
 };
 
-export const clearCart= (): void => {
-    setSessionStorageItems('cart', []);
-}
+export const clearCart = (): void => {
+    setSessionStorageItems("cart", []);
+};
 
 export const updateCartQuantity = (productId: number, quantity: number): void => {
     const cart = getCart();
-    const index = cart.findIndex(item => item.productId === productId);
+    const index = cart.findIndex((item) => item.productId === productId);
 
     if (index !== -1) {
         // Product exists in the cart
@@ -48,22 +48,21 @@ export const updateCartQuantity = (productId: number, quantity: number): void =>
         }
     } else if (quantity > 0) {
         // Product doesn't exist in the cart, add it
-        cart.push({ productId, quantity });
+        cart.push({productId, quantity});
     }
 
-    setSessionStorageItems('cart', cart); // Save updated cart to sessionStorage
+    setSessionStorageItems("cart", cart); // Save updated cart to sessionStorage
 };
-
 
 // Filtered items-specific functions
 export const getFilter = (): Filter[] => {
-    return getSessionStorageItems<Filter>('filter');
+    return getSessionStorageItems<Filter>("filter");
 };
 
 export const setFilter = (filter: Filter[]): void => {
-    setSessionStorageItems('filter', filter);
+    setSessionStorageItems("filter", filter);
 };
 
 export const clearFilter = (): void => {
-    setSessionStorageItems('filter', []);
+    setSessionStorageItems("filter", []);
 };
