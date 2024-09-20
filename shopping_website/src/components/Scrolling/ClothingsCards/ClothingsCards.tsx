@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import styles from "./ClothingsCards.module.css";
 import { IoCart, IoCartOutline } from "react-icons/io5";
 import { IoMdHeartEmpty, IoMdHeart } from "react-icons/io";
-import { getFavorites, toggleFavorite} from "../../../utils/localStorage";
-import { useLocation, useNavigate } from "react-router-dom";
-import { addToCart, getCart , updateCartQuantity} from "../../../utils/sessionStorage";
+import { getFavorites, toggleFavorite } from "../../../utils/localStorage";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { addToCart, getCart, updateCartQuantity } from "../../../utils/sessionStorage";
 
 interface InterfaceProductCard {
   id: number;
@@ -19,10 +19,11 @@ interface InterfaceProductCard {
 const ClothingsCards = ({ id, title, price, category, image, cart, favorite }: InterfaceProductCard) => {
   const [isAddedToCart, setIsAddedToCart] = useState<boolean>(false);
   const router = useLocation();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+
 
   const handleCart = () => {
-    if(isAddedToCart) {
+    if (isAddedToCart) {
       updateCartQuantity(id, 0)
       setIsAddedToCart(false)
     }
@@ -39,29 +40,31 @@ const ClothingsCards = ({ id, title, price, category, image, cart, favorite }: I
   const [isFavorited, setIsFavorited] = useState<boolean>(false);
 
   const handleFavorites = () => {
-      toggleFavorite(id);
-      setIsFavorited(!isFavorited)
-      if (router.pathname == "/Favorites") {
-        navigate(0)
-      }
+    toggleFavorite(id);
+    setIsFavorited(!isFavorited)
+    if (router.pathname == "/Favorites") {
+      navigate(0)
+    }
   }
 
   useEffect(() => {
     const currentCart = getCart().map((cart) => cart.productId)
-    if(currentCart?.includes(id)) {
+    if (currentCart?.includes(id)) {
       setIsAddedToCart(true)
     }
 
     const currentfavorites = getFavorites();
     if (currentfavorites?.includes(id)) {
       setIsFavorited(true)
-    } 
+    }
   }, [id])
 
   return (
     <article className={styles.clothingSection} role="region" aria-label={`Product card for ${title}`}>
-      <figure className={styles.imgContainer}>
-        <img src={image} className={styles.clothingImage} alt={`Image of ${title}`}></img>
+      <figure className={styles.imgContainer} >
+        <Link to={`/Clothe/${id}`}>
+          <img src={image} className={styles.clothingImage} alt={`Image of ${title}`}></img>
+        </Link>
       </figure>
       <section className={styles.descriptionSpace}>
         <header className={styles.productType}>
