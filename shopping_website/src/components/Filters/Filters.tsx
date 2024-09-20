@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import "./Filters.css";
+import styles from "./Filters.module.css"
 import { IoIosArrowForward, IoIosArrowDown } from "react-icons/io";
 import { Filter } from "../../pages/Shopping.tsx";
 import { setFilter } from "../../utils/sessionStorage.ts";
@@ -57,10 +57,10 @@ const Filters = ({selectedFilter, setSelectedFilters} : FiltersProps) => {
 
   return (
     <section className={`filterSection ${filterTabs.filter ? "" : "closed"}`}>
-      <header className="categoryAndArrow">
-        <h2>Filters</h2>
+      <header className={styles.categoryAndArrow}>
+        <h2 className={styles.h2text}>Filters</h2>
         {isMobile && (
-          <span className="arrow" onClick={toggleFiltersSection}>
+          <span className={styles.arrow} onClick={toggleFiltersSection}>
             {filterTabs.filter ? <IoIosArrowDown /> : <IoIosArrowForward />}
           </span>
         )}
@@ -68,10 +68,10 @@ const Filters = ({selectedFilter, setSelectedFilters} : FiltersProps) => {
 
       {(!isMobile || filterTabs.filter) && (
         <>
-          <section className="filterCategory">
-            <header className="categoryAndArrow" onClick={toggleCategoriesSection}>
-              <h3>Categories</h3>
-              <span className="arrow">{filterTabs.category ? <IoIosArrowDown /> : <IoIosArrowForward />}</span>
+          <section className={styles.filterCategory}>
+            <header className={styles.categoryAndArrow} onClick={toggleCategoriesSection}>
+              <h3 className={styles.h3text}>Categories</h3>
+              <span className={styles.arrow}>{filterTabs.category ? <IoIosArrowDown /> : <IoIosArrowForward />}</span>
             </header>
             {filterTabs.category && (
               <ul>
@@ -81,20 +81,20 @@ const Filters = ({selectedFilter, setSelectedFilters} : FiltersProps) => {
                   if (selectedFilter.category !== title) {
                     value = title;
                   }  
-                  return <li key={title} className="selectionSection" onClick={() => handleFilterChange(value, selectedFilter.values.min, selectedFilter.values.max)}>
-                    <span className={`clickBox ${selectedFilter.category === title ? "clicked" : ""}`}/>
-                    <h5>{capitalize(title)}</h5>
+                  return <li key={title} className={styles.selectionSection} onClick={() => handleFilterChange(value, selectedFilter.values.min, selectedFilter.values.max)}>
+                    <button className={selectedFilter.category == title ? styles.clickedBox : styles.clickBox} />
+                    <h5 className={styles.h5text}>{capitalize(title)}</h5>
                   </li>
                   })
                 }
               </ul>
             )}
-            <h5>------------------------------------------</h5>
+            <h5 className={styles.h5text}>------------------------------------------</h5>
           </section>
-          <section className="filterCategory">
-            <header className="categoryAndArrow" onClick={togglePriceRangeSection}>
-              <h3>Price Range</h3>
-              <span className="arrow">{filterTabs.priceRange ? <IoIosArrowDown /> : <IoIosArrowForward />}</span>
+          <section className={styles.filterCategory}>
+            <header className={styles.categoryAndArrow} onClick={togglePriceRangeSection}>
+              <h3 className={styles.h3text}>Price Range</h3>
+              <span className={styles.arrow}>{filterTabs.priceRange ? <IoIosArrowDown /> : <IoIosArrowForward />}</span>
             </header>
             {filterTabs.priceRange && (
               <ul>
@@ -108,14 +108,15 @@ const Filters = ({selectedFilter, setSelectedFilters} : FiltersProps) => {
                     max = undefined;
                   }
                   console.log(selectedFilterValue)
-                  return <li key={value} className="selectionSection" onClick={() => handleFilterChange(selectedFilter.category, min, max)}>
-                    <span className={`clickBox ${selectedFilterValue == value ? "clicked" : ""}`}/>
-                    <h5>{value} $</h5>
+                  return <li key={value} className={styles.selectionSection} onClick={() => handleFilterChange(selectedFilter.category, min, max)}>
+                    <button className={selectedFilterValue == value ? styles.clickedBox : styles.clickBox} />
+                    <h5 className={styles.h5text}>{value} $</h5>
+                    
                   </li>
                 })}
               </ul>
             )}
-            <h5>------------------------------------------</h5>
+            <h5 className={styles.h5text}>------------------------------------------</h5>
           </section>
         </>
       )}

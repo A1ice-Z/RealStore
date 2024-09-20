@@ -10,23 +10,22 @@
   width: 225px;
 }
 
-.filterSection h2,
-.filterSection h3,
-.filterSection h5 {
+.h2text {
   font-family: 'Montserrat', sans-serif;
   font-weight: 500;
-}
-
-.filterSection h2 {
   font-size: 30px;
   font-weight: 700;
 }
 
-.filterSection h3 {
+.h3text {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
   font-size: 18px;
 }
 
-.filterSection h5 {
+.h5text {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
   font-size: 16px;
 }
 
@@ -58,25 +57,27 @@
 .selectionSection {
   display: flex;
   align-items: center;
+  flex-direction: row-reverse;
+  justify-content: space-between;
   height: 60px;
   width: 225px;
+  cursor: pointer;
 }
 
 .clickBox {
-  display: flex;
-  align-items: center;
-  width: 30px;
-  height: 30px;
+  height: 25px;
+  width: 25px;
+  border: solid 2px black;
   border-radius: 10px;
-  margin-right: 10px;
-  border: 2px solid black;
-
 }
 
-.clickBox.clicked {
-  background-color: #9da1a4;
+.clickedBox {
+  height: 25px;
+  width: 25px;
+  border: solid 2px black;
+  border-radius: 10px;
+  background-color: black;
 }
-
 
 @media (max-width: 780px) {
 
