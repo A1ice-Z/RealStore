@@ -1,7 +1,7 @@
 import { FaRegHeart, FaHeart } from "react-icons/fa";
 import styles from "./ActionBox.module.css"
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { toggleFavorite, getFavorites } from "../../utils/localStorage";
 import { addToCart, CartItem, getCart } from "../../utils/sessionStorage";
 import { useProducts } from "../../hooks/useProducts";
@@ -36,14 +36,14 @@ const ActionBox = ({ productId }: ActionBoxProps) => {
         setIsAddedToCart(true);
     }
 
-    const addFavourite = (productId: number) => {
-        if (!getFavorites().includes(productId)) {
+    const addFavorite = (productId: number) => {
+        if (!(isAlreadyFavorited)) {
             toggleFavorite(productId);
-            console.log("Added this product as favourite:", product?.title);
+            console.log("Added this product as favorite:", product?.title);
         }
         else {
             toggleFavorite(productId);
-            console.log("Removed this product as favourite:", product?.title);
+            console.log("Removed this product as favorite:", product?.title);
         }
         setIsFavorited(!isFavorited);
     }
@@ -68,12 +68,12 @@ const ActionBox = ({ productId }: ActionBoxProps) => {
                 {isAlreadyFavorited ? (
                     <FaHeart
                         className={`${styles.heartButton} ${styles.likedHeartButton}`}
-                        onClick={() => addFavourite(productId)}
+                        onClick={() => addFavorite(productId)}
                     />
                 ) : (
                     <FaRegHeart
                         className={`${styles.heartButton} ${styles.notLikedheartButton}`}
-                        onClick={() => addFavourite(productId)}
+                        onClick={() => addFavorite(productId)}
                     />
                 )}
 
