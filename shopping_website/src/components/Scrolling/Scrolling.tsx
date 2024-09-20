@@ -1,15 +1,17 @@
 import styles from "./Scrolling.module.css"
 import ClothingsCards from "./ClothingsCards/ClothingsCards.tsx";
-import { useProducts } from "../../hooks/useProducts.ts";
+import { useProducts} from "../../hooks/useProducts.ts";
 import { Product } from "../../models/Product.ts";
+import { Filter } from "../../pages/Shopping.tsx";
 
-interface interfaceScrolling {
+interface scrollingProps {
   favorite: boolean;
   cart: boolean;
+  selectedFilter: Filter;
 }
 
-const Scrolling = ({ favorite, cart }: interfaceScrolling) => {
-  const { data: products, isLoading, isError } = useProducts();
+const Scrolling = ({ favorite, cart, selectedFilter }: scrollingProps) => {
+  const { data: products, isLoading, isError } = useProducts(selectedFilter.category, undefined, selectedFilter.values.min, selectedFilter.values.max, undefined);
 
   if (isLoading) {
     return <section>Loading...</section>;
@@ -21,7 +23,7 @@ const Scrolling = ({ favorite, cart }: interfaceScrolling) => {
   return (
     <section className={styles.clothesSections}>
       <article className={styles.rows}>
-        {products ? (
+      {(products && products.length > 0)? (
           products.map((product: Product) => (
             <ClothingsCards
               key={product.id}
@@ -35,7 +37,7 @@ const Scrolling = ({ favorite, cart }: interfaceScrolling) => {
             />
           ))
         ) : (
-          <div>No products available.</div>
+          <section>No products available.</section>
         )}
       </article>
     </section>
