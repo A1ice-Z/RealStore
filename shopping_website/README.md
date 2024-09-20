@@ -1,5 +1,9 @@
 # IT2810: Project 1
 
+## Virtual Machine link
+
+it2810-10.idi.ntnu.no/project1
+
 ## Table of content: 
 - About the project
 - Running the project
@@ -25,3 +29,12 @@ To do so, run the following commands in a terminal while inside the mentioned fo
 
 Now run `npm run dev` in order to run the project 
 
+## Running tests
+In order to run the tests first navigate to the correct folder as described under "Running the project". Then run the following command in the terminal:
+
+`npm test`
+
+## Running eslint
+In order to run eslint to check for issues and problems with the code, run the following command after navigating to the `shopping_website` folder:
+
+`npm run lint`
