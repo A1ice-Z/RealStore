@@ -73,7 +73,9 @@ const Filters = ({selectedFilter, setSelectedFilters} : FiltersProps) => {
           </div>
         )}
       </header>
-
+      {(!isMobile) && (
+        <h2 className={styles.h2text}>Filters</h2>
+      )}
       {(!isMobile || filterTabs.filter) && (
         <>
           <section className={styles.filterCategory}>
