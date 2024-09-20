@@ -28,6 +28,7 @@ const Filters = ({selectedFilter, setSelectedFilters} : FiltersProps) => {
 
   const togglePriceRangeSection = () => {
     setFilterTabs({filter: filterTabs.filter, category: filterTabs.category, priceRange: !filterTabs.priceRange})
+
   };
 
   const handleFilterChange = (category: string, min?: number, max?: number) => {

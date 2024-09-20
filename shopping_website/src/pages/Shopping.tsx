@@ -3,6 +3,7 @@ import Footer from "../components/Footer/Footer";
 import styling from "../styles/Shopping.module.css";
 import Scrolling from "../components/Scrolling/Scrolling";
 import Filters from "../components/Filters/Filters";
+
 import {useEffect, useState } from "react";
 import { getFilter } from "../utils/sessionStorage";
 
