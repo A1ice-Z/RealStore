@@ -22,22 +22,22 @@ const Favorites = () => {
     }, [products])
    
     if (isLoading) {
-        return <section>Loading...</section>;
+        return <section role="status" aria-live="polite">Loading...</section>;
     }
     if (isError) {
-        return <section>Error fetching products.</section>;
+        return <section  role="alert" aria-live="assertive">Error fetching products.</section>;
     }
 
     return (
         <>
             <Navbar />
-            <main className={styles.favoritepage}>
+            <main className={styles.favoritepage} role="region" aria-label="Favorite Products List">
                 <div className={styles.favoritecontainer}>
-                    <nav className={styles.path}>
+                    <nav className={styles.path} aria-label="Breadcrumb">
                         <Link className={styles.pathlink} to={"/"}>Home</Link> / Favorites
                     </nav>
-                    <p className={styles.title}>FAVORITES</p>
-                    <section className={styles.favoriteitems}>
+                    <p className={styles.title} aria-label="Favorite Products Section Title">FAVORITES</p>
+                    <section className={styles.favoriteitems} role="list" aria-label="List of favorite products">
                     {favoriteProducts.map((product: Product) => (
                         <ClothingsCards
                         key={product.id}
