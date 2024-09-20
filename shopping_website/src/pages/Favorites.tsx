@@ -1,31 +1,44 @@
 import Navbar from "../components/Navbar/Navbar";
 import Footer from "../components/Footer/Footer";
-import styles from "../styles/Favorites.module.css"
-import { Link } from "react-router-dom";
+import styles from "../styles/Favorites.module.css";
+import {Link} from "react-router-dom";
 import ClothingsCards from "../components/Scrolling/ClothingsCards/ClothingsCards";
-import { Product } from "../models/Product";
-import { useProducts } from "../hooks/useProducts";
-import { getFavorites } from "../utils/localStorage";
-import { useEffect, useState } from "react";
+import {Product} from "../models/Product";
+import {useProducts} from "../hooks/useProducts";
+import {getFavorites} from "../utils/localStorage";
+import {useEffect, useState} from "react";
 
 const Favorites = () => {
     const favorites = getFavorites();
     const [favoriteProducts, setFavoriteProducts] = useState<Product[]>([]);
-    const { data: products, isLoading, isError } = useProducts();
+    const {data: products, isLoading, isError} = useProducts();
+    const [noFavorites, setNoFavorites] = useState<boolean>(favorites.length === 0);
 
     useEffect(() => {
         if (!products) {
-            return; 
-          }
-        const currentFavoriteProducts = products.filter((product) => favorites.includes(product.id)) 
+            return;
+        }
+        const currentFavoriteProducts = products.filter((product: Product) => favorites.includes(product.id));
         setFavoriteProducts(currentFavoriteProducts);
-    }, [products])
-   
+    }, [products]);
+
+    useEffect(() => {
+        setNoFavorites(favorites.length === 0);
+    }, []);
+
     if (isLoading) {
-        return <section role="status" aria-live="polite">Loading...</section>;
+        return (
+            <section role="status" aria-live="polite">
+                Loading...
+            </section>
+        );
     }
     if (isError) {
-        return <section  role="alert" aria-live="assertive">Error fetching products.</section>;
+        return (
+            <section role="alert" aria-live="assertive">
+                Error fetching products.
+            </section>
+        );
     }
 
     return (
@@ -34,28 +47,39 @@ const Favorites = () => {
             <main className={styles.favoritepage} role="region" aria-label="Favorite Products List">
                 <div className={styles.favoritecontainer}>
                     <nav className={styles.path} aria-label="Breadcrumb">
-                        <Link className={styles.pathlink} to={"/"}>Home</Link> / Favorites
+                        <Link className={styles.pathlink} to={"/"}>
+                            Home
+                        </Link>{" "}
+                        / Favorites
                     </nav>
-                    <p className={styles.title} aria-label="Favorite Products Section Title">FAVORITES</p>
+                    <p className={styles.title} aria-label="Favorite Products Section Title">
+                        FAVORITES
+                    </p>
                     <section className={styles.favoriteitems} role="list" aria-label="List of favorite products">
-                    {favoriteProducts.map((product: Product) => (
-                        <ClothingsCards
-                        key={product.id}
-                        id={product.id}
-                        title={product.title.substring(0, 20) + "..."}
-                        price={product.price}
-                        category={product.category.charAt(0).toUpperCase() + product.category.substring(1)}
-                        image={product.image}
-                        cart={true}
-                        favorite={true}
-                        />
-                    ))}
+                        {noFavorites ? (
+                            <section className={styles.message} role="status" aria-live="polite">
+                                No products available.
+                            </section>
+                        ) : (
+                            favoriteProducts.map((product: Product) => (
+                                <ClothingsCards
+                                    key={product.id}
+                                    id={product.id}
+                                    title={product.title.substring(0, 20) + "..."}
+                                    price={product.price}
+                                    category={product.category.charAt(0).toUpperCase() + product.category.substring(1)}
+                                    image={product.image}
+                                    cart={true}
+                                    favorite={true}
+                                />
+                            ))
+                        )}
                     </section>
                 </div>
             </main>
             <Footer />
         </>
     );
-}
+};
 
-export default Favorites;   
+export default Favorites;

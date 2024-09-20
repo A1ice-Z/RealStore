@@ -1,107 +1,107 @@
-import { render, screen } from "@testing-library/react";
-import { describe, it, expect, beforeEach, vi } from "vitest";
+import {render, screen} from "@testing-library/react";
+import {describe, it, expect, beforeEach, vi} from "vitest";
 import Favorites from "../pages/Favorites";
-import { useProducts } from "../hooks/useProducts";
-import { getFavorites } from "../utils/localStorage";
-import { MemoryRouter } from "react-router-dom";
+import {useProducts} from "../hooks/useProducts";
+import {getFavorites} from "../utils/localStorage";
+import {MemoryRouter} from "react-router-dom";
 
 // Mock useProducts and localStorage functions
 vi.mock("../hooks/useProducts", () => ({
-  useProducts: vi.fn(),
+    useProducts: vi.fn(),
 }));
 
 vi.mock("../utils/localStorage", () => ({
-  getFavorites: vi.fn(),
-  setFavorites: vi.fn(),
-  toggleFavorite: vi.fn(),
+    getFavorites: vi.fn(),
+    setFavorites: vi.fn(),
+    toggleFavorite: vi.fn(),
 }));
 
 // Reset mocks before each test
 beforeEach(() => {
-  vi.resetAllMocks();
+    vi.resetAllMocks();
 });
 
 describe("Favorites component", () => {
-  it("renders loading state initially", () => {
-    // Mock useProducts to simulate the loading state
-    (useProducts as unknown as jest.Mock).mockReturnValue({
-      data: null,
-      isLoading: true,
-      isError: false,
+    it("renders loading state initially", () => {
+        // Mock useProducts to simulate the loading state
+        (useProducts as unknown as jest.Mock).mockReturnValue({
+            data: null,
+            isLoading: true,
+            isError: false,
+        });
+
+        render(
+            <MemoryRouter>
+                <Favorites />
+            </MemoryRouter>,
+        );
+
+        expect(screen.getByText(/Loading.../i)).toBeInTheDocument();
     });
 
-    render(
-      <MemoryRouter>
-        <Favorites />
-      </MemoryRouter>
-    );
+    it("renders error state when data fetching fails", () => {
+        // Mock useProducts to simulate an error
+        (useProducts as unknown as jest.Mock).mockReturnValue({
+            data: null,
+            isLoading: false,
+            isError: true,
+        });
 
-    expect(screen.getByText(/Loading.../i)).toBeInTheDocument();
-  });
+        render(
+            <MemoryRouter>
+                <Favorites />
+            </MemoryRouter>,
+        );
 
-  it("renders error state when data fetching fails", () => {
-    // Mock useProducts to simulate an error
-    (useProducts as unknown as jest.Mock).mockReturnValue({
-      data: null,
-      isLoading: false,
-      isError: true,
+        expect(screen.getByText(/Error fetching products./i)).toBeInTheDocument();
     });
 
-    render(
-      <MemoryRouter>
-        <Favorites />
-      </MemoryRouter>
-    );
+    it("renders favorite products", async () => {
+        // Mock product data
+        const fakeProducts = [
+            {
+                id: 1,
+                title: "Product 1",
+                price: 10,
+                description: "Description 1",
+                category: "category1",
+                image: "image1.jpg",
+                rating: {
+                    rate: 4.5,
+                    count: 10,
+                },
+            },
+            {
+                id: 2,
+                title: "Product 2",
+                price: 20,
+                description: "Description 2",
+                category: "category2",
+                image: "image2.jpg",
+                rating: {
+                    rate: 4.0,
+                    count: 20,
+                },
+            },
+        ];
 
-    expect(screen.getByText(/Error fetching products./i)).toBeInTheDocument();
-  });
+        // Mock useProducts to return the product data
+        (useProducts as unknown as jest.Mock).mockReturnValue({
+            data: fakeProducts,
+            isLoading: false,
+            isError: false,
+        });
 
-  it("renders favorite products", async () => {
-    // Mock product data
-    const fakeProducts = [
-      {
-        id: 1,
-        title: 'Product 1',
-        price: 10,
-        description: 'Description 1',
-        category: 'category1',
-        image: 'image1.jpg',
-        rating: {
-          rate: 4.5,
-          count: 10,
-        },
-      },
-      {
-        id: 2,
-        title: 'Product 2',
-        price: 20,
-        description: 'Description 2',
-        category: 'category2',
-        image: 'image2.jpg',
-        rating: {
-          rate: 4.0,
-          count: 20,
-        },
-      },
-    ];
+        // Mock getFavorites to return product IDs that exist in fakeProducts
+        (getFavorites as unknown as jest.Mock).mockReturnValue([1, 2]);
 
-    // Mock useProducts to return the product data
-    (useProducts as unknown as jest.Mock).mockReturnValue({
-      data: fakeProducts,
-      isLoading: false,
-      isError: false,
+        render(
+            <MemoryRouter>
+                <Favorites />
+            </MemoryRouter>,
+        );
+
+        expect(screen.getByText(/Product 1/i)).toBeInTheDocument();
+        expect(screen.getByText(/Product 2/i)).toBeInTheDocument();
     });
-
-    // Mock getFavorites to return product IDs that exist in fakeProducts
-    (getFavorites as unknown as jest.Mock).mockReturnValue([1, 2]);
-
-    render(
-      <MemoryRouter>
-        <Favorites />
-      </MemoryRouter>
-    );
-
-    expect(screen.getByText(/Product 1/i)).toBeInTheDocument();
-    expect(screen.getByText(/Product 2/i)).toBeInTheDocument();
-  });
 });
