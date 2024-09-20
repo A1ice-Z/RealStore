@@ -1,5 +1,9 @@
 {
-  "doubleQuote": true,
+  "singleQuote": false,
   "bracketSpacing": true,
-  "printWidth": 120
+  "printWidth": 120,
+  "tabWodth": 4,
+  "semi": true,
+  "breacketSpacing": false,
+  "bracketSameLine": true
 }
