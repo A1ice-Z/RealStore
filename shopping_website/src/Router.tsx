@@ -6,6 +6,7 @@ import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
 import NoPage from "./pages/NoPage";
 import Shopping from "./pages/Shopping";
+import Clothe from "./pages/Clothe";
 
 const Router = () => {
     return (
@@ -20,6 +21,7 @@ const Router = () => {
                 <Route path="/ShoppingCart" element={<ShoppingCart />} />
                 <Route path="/Favorites" element={<Favorites />} />
                 <Route path="/Shopping" element={<Shopping />} />
+                <Route path="/Clothe/:id" element={<Clothe />} />
             </Routes>
         </BrowserRouter>
     );
