@@ -56,11 +56,17 @@ const Filters = ({selectedFilter, setSelectedFilters} : FiltersProps) => {
   }, []);
 
   return (
-    <section className={`filterSection ${filterTabs.filter ? "" : "closed"}`}>
+    <section className={filterTabs.filter ? styles.filterSection : styles.closed} aria-label="Filter Options">
       <header className={styles.categoryAndArrow}>
         <h2 className={styles.h2text}>Filters</h2>
         {isMobile && (
-          <span className={styles.arrow} onClick={toggleFiltersSection}>
+          <span className={styles.arrow} onClick={toggleFiltersSection} 
+            role="button" 
+            aria-expanded={filterTabs.filter}
+            tabIndex={0}
+            aria-controls="filter-options"
+            onKeyDown={(e) => e.key === 'Enter' && toggleFiltersSection()}
+            aria-label="Toggle Filters Section">
             {filterTabs.filter ? <IoIosArrowDown /> : <IoIosArrowForward />}
           </span>
         )}
@@ -69,20 +75,34 @@ const Filters = ({selectedFilter, setSelectedFilters} : FiltersProps) => {
       {(!isMobile || filterTabs.filter) && (
         <>
           <section className={styles.filterCategory}>
-            <header className={styles.categoryAndArrow} onClick={toggleCategoriesSection}>
+            <header className={styles.categoryAndArrow} 
+              onClick={toggleCategoriesSection}
+              role="button"
+              aria-expanded={filterTabs.category}
+              aria-controls="category-options"
+              tabIndex={0}
+              onKeyDown={(e) => e.key === 'Enter' && toggleCategoriesSection()}
+              aria-label="Toggle Categories Section">
               <h3 className={styles.h3text}>Categories</h3>
               <span className={styles.arrow}>{filterTabs.category ? <IoIosArrowDown /> : <IoIosArrowForward />}</span>
             </header>
             {filterTabs.category && (
-              <ul>
+              <ul id="category-options" aria-label="Filter by Category">
                 {
                   categories.map((title) =>  { 
                   let value = ""
                   if (selectedFilter.category !== title) {
                     value = title;
                   }  
-                  return <li key={title} className={styles.selectionSection} onClick={() => handleFilterChange(value, selectedFilter.values.min, selectedFilter.values.max)}>
-                    <button className={selectedFilter.category == title ? styles.clickedBox : styles.clickBox} />
+                  return <li key={title} className={styles.selectionSection} 
+                  role="button"
+                  tabIndex={0}
+                  onClick={() => handleFilterChange(value, selectedFilter.values.min, selectedFilter.values.max)}
+                  onKeyDown={(e) => e.key === 'Enter' && handleFilterChange(value, selectedFilter.values.min, selectedFilter.values.max)}
+                  aria-label={`Filter by ${capitalize(title)}`}>
+                    <button className={selectedFilter.category == title ? styles.clickedBox : styles.clickBox} 
+                    aria-pressed={selectedFilter.category === title}
+                    aria-label={selectedFilter.category === title ? `Selected ${capitalize(title)}` : `Select ${capitalize(title)}`}/>
                     <h5 className={styles.h5text}>{capitalize(title)}</h5>
                   </li>
                   })
@@ -92,12 +112,19 @@ const Filters = ({selectedFilter, setSelectedFilters} : FiltersProps) => {
             <h5 className={styles.h5text}>------------------------------------------</h5>
           </section>
           <section className={styles.filterCategory}>
-            <header className={styles.categoryAndArrow} onClick={togglePriceRangeSection}>
+            <header className={styles.categoryAndArrow} onClick={togglePriceRangeSection}
+            role="button"
+            aria-expanded={filterTabs.priceRange}
+            aria-controls="price-range-options"
+            tabIndex={0}
+            onKeyDown={(e) => e.key === 'Enter' && togglePriceRangeSection()}
+            aria-label="Toggle Price Range Section"
+            >
               <h3 className={styles.h3text}>Price Range</h3>
               <span className={styles.arrow}>{filterTabs.priceRange ? <IoIosArrowDown /> : <IoIosArrowForward />}</span>
             </header>
             {filterTabs.priceRange && (
-              <ul>
+              <ul id="price-range-options" aria-label="Filter by Price Range">
                 {values.map((value: string) => {
                   const values = value.split("-")
                   let min: number | undefined = parseInt(values[0]);
@@ -108,8 +135,11 @@ const Filters = ({selectedFilter, setSelectedFilters} : FiltersProps) => {
                     max = undefined;
                   }
                   console.log(selectedFilterValue)
-                  return <li key={value} className={styles.selectionSection} onClick={() => handleFilterChange(selectedFilter.category, min, max)}>
-                    <button className={selectedFilterValue == value ? styles.clickedBox : styles.clickBox} />
+                  return <li key={value} className={styles.selectionSection} role="button" tabIndex={0} onClick={() => handleFilterChange(selectedFilter.category, min, max)} onKeyDown={(e) => e.key === 'Enter' && handleFilterChange(selectedFilter.category, min, max)}
+                  aria-label={`Filter by price range ${value} dollars`}>
+                    <button className={selectedFilterValue == value ? styles.clickedBox : styles.clickBox} 
+                    aria-pressed={selectedFilterValue === value}
+                    aria-label={selectedFilterValue === value ? `Selected price range ${value}` : `Select price range ${value}`}/>
                     <h5 className={styles.h5text}>{value} $</h5>
                     
                   </li>

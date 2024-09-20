@@ -14,15 +14,15 @@ const Scrolling = ({ favorite, cart, selectedFilter }: scrollingProps) => {
   const { data: products, isLoading, isError } = useProducts(selectedFilter.category, undefined, selectedFilter.values.min, selectedFilter.values.max, undefined);
 
   if (isLoading) {
-    return <section>Loading...</section>;
-  }
-  if (isError) {
-    return <section>Error fetching products.</section>;
-  }
+    return <section role="status" aria-live="polite">Loading...</section>;
+}
+if (isError) {
+    return <section  role="alert" aria-live="assertive">Error fetching products.</section>;
+}
 
   return (
-    <section className={styles.clothesSections}>
-      <article className={styles.rows}>
+    <section className={styles.clothesSections} role="region" aria-labelledby="clothes-section">
+      <article className={styles.rows} role="list" aria-label="Product list">
       {(products && products.length > 0)? (
           products.map((product: Product) => (
             <ClothingsCards
@@ -37,7 +37,7 @@ const Scrolling = ({ favorite, cart, selectedFilter }: scrollingProps) => {
             />
           ))
         ) : (
-          <section className={styles.message}>No products available.</section>
+          <section className={styles.message} role="status" aria-live="polite">No products available.</section>
         )}
       </article>
     </section>
