@@ -58,17 +58,19 @@ const Filters = ({selectedFilter, setSelectedFilters} : FiltersProps) => {
   return (
     <section className={filterTabs.filter ? styles.filterSection : styles.closed} aria-label="Filter Options">
       <header className={styles.categoryAndArrow}>
-        <h2 className={styles.h2text}>Filters</h2>
         {isMobile && (
-          <span className={styles.arrow} onClick={toggleFiltersSection} 
-            role="button" 
-            aria-expanded={filterTabs.filter}
-            tabIndex={0}
-            aria-controls="filter-options"
-            onKeyDown={(e) => e.key === 'Enter' && toggleFiltersSection()}
-            aria-label="Toggle Filters Section">
+          <div className={styles.mobilefilter} onClick={toggleFiltersSection} 
+          role="button" 
+          aria-expanded={filterTabs.filter}
+          tabIndex={0}
+          aria-controls="filter-options"
+          onKeyDown={(e) => e.key === 'Enter' && toggleFiltersSection()}
+          aria-label="Toggle Filters Section">
+          <h2 className={styles.h2text}>Filters</h2>
+          <span className={styles.arrow}>
             {filterTabs.filter ? <IoIosArrowDown /> : <IoIosArrowForward />}
           </span>
+          </div>
         )}
       </header>
 

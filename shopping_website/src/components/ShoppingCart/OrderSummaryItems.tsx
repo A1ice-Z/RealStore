@@ -9,6 +9,7 @@ const OrderSummaryItems = () => {
     const cartItemData = getCart()
     const [cartItems, setCartItems] = useState<Product[]>([]);
     const { data: products, isLoading, isError } = useProducts();
+    const [emptyCart, setEmptyCart] = useState<boolean>(cartItemData.length === 0)
 
     useEffect(() => {
         if (!products) {
@@ -18,6 +19,10 @@ const OrderSummaryItems = () => {
         const cartItems = products.filter((product: Product) => cartItemIds.includes(product.id))
         setCartItems(cartItems)
     }, [products])
+
+    useEffect(() => {
+        setEmptyCart(cartItemData.length === 0)
+    }, [])
 
     if (isLoading) {
         return <section role="status" aria-live="polite">Loading...</section>;
@@ -29,7 +34,9 @@ const OrderSummaryItems = () => {
     return (
         <>
             <section className={styles.itembox} role="region" aria-label="Order Summary Items">
-            {cartItems.map((product: Product) => (
+            {emptyCart? 
+                (<section className={styles.message} role="status" aria-live="polite">No products available.</section>) 
+                : (cartItems.map((product: Product) => (
                         <ClothingsCards
                         key={product.id}
                         id={product.id}
@@ -40,7 +47,8 @@ const OrderSummaryItems = () => {
                         cart={true}
                         favorite={false}
                         />
-                    ))}
+                    )))
+                }
             </section>
         </>
     )

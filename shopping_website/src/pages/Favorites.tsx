@@ -12,6 +12,7 @@ const Favorites = () => {
     const favorites = getFavorites();
     const [favoriteProducts, setFavoriteProducts] = useState<Product[]>([]);
     const { data: products, isLoading, isError } = useProducts();
+    const [noFavorites, setNoFavorites] = useState<boolean>(favorites.length === 0)
 
     useEffect(() => {
         if (!products) {
@@ -20,6 +21,10 @@ const Favorites = () => {
         const currentFavoriteProducts = products.filter((product: Product) => favorites.includes(product.id)) 
         setFavoriteProducts(currentFavoriteProducts);
     }, [products])
+
+    useEffect(() => {
+        setNoFavorites(favorites.length === 0)
+    }, [])
    
     if (isLoading) {
         return <section role="status" aria-live="polite">Loading...</section>;
@@ -38,7 +43,8 @@ const Favorites = () => {
                     </nav>
                     <p className={styles.title} aria-label="Favorite Products Section Title">FAVORITES</p>
                     <section className={styles.favoriteitems} role="list" aria-label="List of favorite products">
-                    {favoriteProducts.map((product: Product) => (
+                    {noFavorites? (<section className={styles.message} role="status" aria-live="polite">No products available.</section>) 
+                    : (favoriteProducts.map((product: Product) => (
                         <ClothingsCards
                         key={product.id}
                         id={product.id}
@@ -49,7 +55,7 @@ const Favorites = () => {
                         cart={true}
                         favorite={true}
                         />
-                    ))}
+                    )))}
                     </section>
                 </div>
             </main>

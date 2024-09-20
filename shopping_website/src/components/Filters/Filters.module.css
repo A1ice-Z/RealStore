@@ -6,6 +6,13 @@
 
 }
 
+.mobilefilter {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  gap: 20px;
+}
+
 .filterCategory {
   width: 225px;
 }
