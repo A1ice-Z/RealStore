@@ -3,30 +3,30 @@ import Footer from "../components/Footer/Footer";
 import styling from "../styles/Shopping.module.css";
 import Scrolling from "../components/Scrolling/Scrolling";
 import Filters from "../components/Filters/Filters";
-import {useState, useEffect} from "react";
-import { getFilteredItems, setFilteredItems } from "../utils/sessionStorage.ts";
+import {useEffect, useState } from "react";
+import { getFilter } from "../utils/sessionStorage";
 
-interface SelectedFilters {
-  categories: string | undefined;
-  priceRange: string | undefined;
+export type Filter = {
+  category: string;
+  values: {
+    min?: number;
+    max?: number;
+  }
 }
 
 const Shopping = () => {
-
-  const [selectedFilters, setSelectedFilters] = useState<{
-    categories: string | undefined;
-    priceRange: string | undefined;
-  }>({
-    categories: undefined,
-    priceRange: undefined,
-  });
-
+  const [selectedFilters, setSelectedFilters] = useState<Filter>({category: "", values: {min: undefined, max: undefined}});
+  useEffect(() => {
+    if (getFilter().length > 0) {
+      setSelectedFilters(getFilter()[0]);
+    }
+  }, [])
   return (
     <>
       <Navbar />
-      <Filters selectedFilters={selectedFilters} setSelectedFilters={setSelectedFilters} />
+      <Filters selectedFilter={selectedFilters} setSelectedFilters={setSelectedFilters} />
       <main className={styling.shoppingpage}>
-        <Scrolling favorite={true} cart={true} selectedFilters={selectedFilters}/>
+        <Scrolling favorite={true} cart={true} selectedFilter={selectedFilters}/>
       </main>
       <Footer />
     </>
