@@ -1,50 +1,54 @@
 import { useState, useEffect } from "react";
 import "./Filters.css";
 import { IoIosArrowForward, IoIosArrowDown } from "react-icons/io";
-import { clearFilteredItems } from "../../utils/sessionStorage.ts";
+import { Filter } from "../../pages/Shopping.tsx";
+import { setFilter } from "../../utils/sessionStorage.ts";
 
-interface SelectedFilters {
-  categories: string | undefined;
-  priceRange: string | undefined;
+type filterTabs = {
+  filter: boolean;
+  category: boolean;
+  priceRange: boolean;
 }
 
 interface FiltersProps {
-  selectedFilters: SelectedFilters;
-  setSelectedFilters: React.Dispatch<React.SetStateAction<SelectedFilters>>;
+  selectedFilter: Filter;
+  setSelectedFilters: (filter: Filter) => void;
 }
-
-const Filters = ({selectedFilters, setSelectedFilters} : FiltersProps) => {
-  const [isCategoriesOpen, setIsCategoriesOpen] = useState(false);
-  const [isPriceRangeOpen, setIsPriceRangeOpen] = useState(false);
-  const [isFilterOpen, setIsFilterOpen] = useState(true);
+const Filters = ({selectedFilter, setSelectedFilters} : FiltersProps) => {
+  const [filterTabs, setFilterTabs] = useState<filterTabs>({filter: false, category: false, priceRange: false})
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 780);
+  const categories = ["men's clothing", "women's clothing", "jewelery", "electronics"];
+  const values = ["0-10", "10-50", "50-100", "100-500", "500-1000"];
 
-  type FilterType = "categories" | "priceRange";
-  type FilterValue = string | number | undefined;
-
-  const toggleFiltersSection = () => setIsFilterOpen(!isFilterOpen);
+  const toggleFiltersSection = () => setFilterTabs({filter: !filterTabs.filter, category: filterTabs.category, priceRange: filterTabs.priceRange});
 
   const toggleCategoriesSection = () => {
-    setIsCategoriesOpen(!isCategoriesOpen);
+    setFilterTabs({filter: filterTabs.filter, category: !filterTabs.category, priceRange: filterTabs.priceRange})
   };
 
   const togglePriceRangeSection = () => {
-    setIsPriceRangeOpen(!isPriceRangeOpen);
+    setFilterTabs({filter: filterTabs.filter, category: filterTabs.category, priceRange: !filterTabs.priceRange})
   };
 
-  const handleFilterChange = (filterType: FilterType, value: FilterValue) => {
-    setSelectedFilters((prevState) => ({
-      ...prevState,
-      [filterType]: prevState[filterType] === value ? null : value,
-    }));
+  const handleFilterChange = (category: string, min?: number, max?: number) => {
+    const filter: Filter = {
+      category: category,
+      values: {
+        min: min,
+        max: max
+      }
+    };
+    setFilter([filter]); // Session storage
+    setSelectedFilters(filter);
   }
-  useEffect(() => {
-    console.log("Updated filters:", selectedFilters);
-  }, [selectedFilters]);
 
   const handleResize = () => {
     setIsMobile(window.innerWidth <= 780);
   };
+
+  const capitalize = (text: string) => {
+    return text.charAt(0).toUpperCase() + text.substring(1);  
+  }
 
   useEffect(() => {
     window.addEventListener("resize", handleResize);
@@ -52,77 +56,63 @@ const Filters = ({selectedFilters, setSelectedFilters} : FiltersProps) => {
   }, []);
 
   return (
-    <section className={`filterSection ${isFilterOpen ? "" : "closed"}`}>
+    <section className={`filterSection ${filterTabs.filter ? "" : "closed"}`}>
       <header className="categoryAndArrow">
         <h2>Filters</h2>
         {isMobile && (
           <span className="arrow" onClick={toggleFiltersSection}>
-            {isFilterOpen ? <IoIosArrowDown /> : <IoIosArrowForward />}
+            {filterTabs.filter ? <IoIosArrowDown /> : <IoIosArrowForward />}
           </span>
         )}
       </header>
 
-      {(!isMobile || isFilterOpen) && (
+      {(!isMobile || filterTabs.filter) && (
         <>
           <section className="filterCategory">
             <header className="categoryAndArrow" onClick={toggleCategoriesSection}>
               <h3>Categories</h3>
-              <span className="arrow">{isCategoriesOpen ? <IoIosArrowDown /> : <IoIosArrowForward />}</span>
+              <span className="arrow">{filterTabs.category ? <IoIosArrowDown /> : <IoIosArrowForward />}</span>
             </header>
-            {isCategoriesOpen && (
+            {filterTabs.category && (
               <ul>
-                <li className="selectionSection" onClick={() => handleFilterChange("categories", "men's clothing")}>
-                  <span
-                    className={`clickBox ${selectedFilters.categories === "men's clothing" ? "clicked" : ""}`}
-                  ></span>
-                  <h5>Men's Clothings</h5>
-                </li>
-                <li className="selectionSection" onClick={() => handleFilterChange("categories", "women's clothing")}>
-                  <span
-                    className={`clickBox ${selectedFilters.categories === "women's clothing" ? "clicked" : ""}`}
-                  ></span>
-                  <h5>Women's Clothings</h5>
-                </li>
-                <li className="selectionSection" onClick={() => handleFilterChange("categories", "jewelery")}>
-                  <span className={`clickBox ${selectedFilters.categories === "jewelery" ? "clicked" : ""}`}></span>
-                  <h5>Jewelry</h5>
-                </li>
-                <li className="selectionSection" onClick={() => handleFilterChange("categories", "electronics")}>
-                  <span className={`clickBox ${selectedFilters.categories === "electronics" ? "clicked" : ""}`}></span>
-                  <h5>Electronics</h5>
-                </li>
+                {
+                  categories.map((title) =>  { 
+                  let value = ""
+                  if (selectedFilter.category !== title) {
+                    value = title;
+                  }  
+                  return <li key={title} className="selectionSection" onClick={() => handleFilterChange(value, selectedFilter.values.min, selectedFilter.values.max)}>
+                    <span className={`clickBox ${selectedFilter.category === title ? "clicked" : ""}`}/>
+                    <h5>{capitalize(title)}</h5>
+                  </li>
+                  })
+                }
               </ul>
             )}
             <h5>------------------------------------------</h5>
           </section>
-
           <section className="filterCategory">
             <header className="categoryAndArrow" onClick={togglePriceRangeSection}>
               <h3>Price Range</h3>
-              <span className="arrow">{isPriceRangeOpen ? <IoIosArrowDown /> : <IoIosArrowForward />}</span>
+              <span className="arrow">{filterTabs.priceRange ? <IoIosArrowDown /> : <IoIosArrowForward />}</span>
             </header>
-            {isPriceRangeOpen && (
+            {filterTabs.priceRange && (
               <ul>
-                <li className="selectionSection" onClick={() => handleFilterChange( "priceRange", "0-10 $")}>
-                  <span className={`clickBox ${selectedFilters.priceRange === "0-10 $" ? "clicked" : ""}`}></span>
-                  <h5>0-10 $</h5>
-                </li>
-                <li className="selectionSection" onClick={() => handleFilterChange( "priceRange", "10-50 $")}>
-                  <span className={`clickBox ${selectedFilters.priceRange === "10-50 $" ? "clicked" : ""}`}></span>
-                  <h5>10-50 $</h5>
-                </li>
-                <li className="selectionSection" onClick={() => handleFilterChange( "priceRange", "50-100 $")}>
-                  <span className={`clickBox ${selectedFilters.priceRange === "50-100 $" ? "clicked" : ""}`}></span>
-                  <h5>50-100 $</h5>
-                </li>
-                <li className="selectionSection" onClick={() => handleFilterChange( "priceRange", "100-500 $")}>
-                  <span className={`clickBox ${selectedFilters.priceRange === "100-500 $" ? "clicked" : ""}`}></span>
-                  <h5>100-500 $</h5>
-                </li>
-                <li className="selectionSection" onClick={() => handleFilterChange( "priceRange", "500-1000 $")}>
-                  <span className={`clickBox ${selectedFilters.priceRange === "500-1000 $" ? "clicked" : ""}`}></span>
-                  <h5>500-1000 $</h5>
-                </li>
+                {values.map((value: string) => {
+                  const values = value.split("-")
+                  let min: number | undefined = parseInt(values[0]);
+                  let max: number | undefined = parseInt(values[1]);
+                  const selectedFilterValue = `${selectedFilter.values.min}-${selectedFilter.values.max}`
+                  if (selectedFilterValue == value) {
+                    min = undefined;
+                    max = undefined;
+                  }
+                  console.log(selectedFilterValue)
+                  return <li key={value} className="selectionSection" onClick={() => handleFilterChange(selectedFilter.category, min, max)}>
+                    <span className={`clickBox ${selectedFilterValue == value ? "clicked" : ""}`}/>
+                    <h5>{value} $</h5>
+                  </li>
+                })}
               </ul>
             )}
             <h5>------------------------------------------</h5>
