@@ -21,6 +21,7 @@ const ClothingsCards = ({ id, title, price, category, image, cart, favorite }: I
   const router = useLocation();
   const navigate = useNavigate();
 
+
   const handleCart = () => {
     if (isAddedToCart) {
       if (isAddedToCart) {
