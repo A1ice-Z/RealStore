@@ -7,8 +7,8 @@ import {useNavigate} from "react-router-dom";
 
 const OrderSummaryList = () => {
     const [clicked, setClicked] = useState(false);
-    const cartItemData = getCart();
     const [price, setPrice] = useState<number>();
+    const [cartItemData, setCartItemData] = useState<CartItem[]>([]);
     const {data: products, isLoading, isError} = useProducts();
     const navigate = useNavigate();
 
@@ -16,6 +16,8 @@ const OrderSummaryList = () => {
         if (!products) {
             return;
         }
+        const cartItemData = getCart();
+        setCartItemData(cartItemData);
         const cartItemIds = cartItemData.map((cartId: CartItem) => {
             return cartId.productId;
         });

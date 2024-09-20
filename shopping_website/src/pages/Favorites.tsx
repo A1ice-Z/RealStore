@@ -9,22 +9,19 @@ import {getFavorites} from "../utils/localStorage";
 import {useEffect, useState} from "react";
 
 const Favorites = () => {
-    const favorites = getFavorites() || [];
+    const [favorites, setFavorites] = useState<number[]>([]);
     const [favoriteProducts, setFavoriteProducts] = useState<Product[]>([]);
     const {data: products, isLoading, isError} = useProducts();
-    const [noFavorites, setNoFavorites] = useState<boolean>(favorites.length === 0);
 
     useEffect(() => {
         if (!products) {
             return;
         }
+        const favorites = getFavorites();
+        setFavorites(favorites);
         const currentFavoriteProducts = products.filter((product: Product) => favorites.includes(product.id));
         setFavoriteProducts(currentFavoriteProducts);
     }, [products]);
-
-    useEffect(() => {
-        setNoFavorites(favorites.length === 0);
-    }, []);
 
     if (isLoading) {
         return (
@@ -56,7 +53,7 @@ const Favorites = () => {
                         FAVORITES
                     </p>
                     <section className={styles.favoriteitems} role="list" aria-label="List of favorite products">
-                        {noFavorites ? (
+                        {favorites.length === 0 ? (
                             <section className={styles.message} role="status" aria-live="polite">
                                 No products available.
                             </section>

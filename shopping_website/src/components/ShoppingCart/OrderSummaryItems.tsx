@@ -6,25 +6,22 @@ import {useEffect, useState} from "react";
 import ClothingsCards from "../Scrolling/ClothingsCards/ClothingsCards";
 
 const OrderSummaryItems = () => {
-    const cartItemData = getCart();
+    const [cartItemData, setCartItemData] = useState<CartItem[]>([]);
     const [cartItems, setCartItems] = useState<Product[]>([]);
     const {data: products, isLoading, isError} = useProducts();
-    const [emptyCart, setEmptyCart] = useState<boolean>(cartItemData.length === 0);
 
     useEffect(() => {
         if (!products) {
             return;
         }
+        const cartItemData = getCart();
+        setCartItemData(cartItemData);
         const cartItemIds = cartItemData.map((cartId: CartItem) => {
             return cartId.productId;
         });
         const cartItems = products.filter((product: Product) => cartItemIds.includes(product.id));
         setCartItems(cartItems);
     }, [products]);
-
-    useEffect(() => {
-        setEmptyCart(cartItemData.length === 0);
-    }, []);
 
     if (isLoading) {
         return (
@@ -44,7 +41,7 @@ const OrderSummaryItems = () => {
     return (
         <>
             <section className={styles.itembox} role="region" aria-label="Order Summary Items">
-                {emptyCart ? (
+                {cartItemData.length === 0 ? (
                     <section className={styles.message} role="status" aria-live="polite">
                         No products available.
                     </section>
