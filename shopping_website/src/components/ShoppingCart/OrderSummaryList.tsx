@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import styles from "./OrderSummaryList.module.css";
 import { useProducts } from "../../hooks/useProducts";
 import { Product } from "../../models/Product";
-import {getCart , clearCart} from "../../utils/sessionStorage";
+import {getCart , clearCart, CartItem} from "../../utils/sessionStorage";
 import { useNavigate } from "react-router-dom";
 
 const OrderSummaryList = () => {
@@ -17,8 +17,8 @@ const OrderSummaryList = () => {
         if (!products) {
             return; 
         }
-        const cartItemIds = cartItemData.map((cartId) => {return cartId.productId})
-        const currentPrice = products.filter((product: Product) => cartItemIds.includes(product.id)).map((product: Product) => product.price).reduce((x,y) => x = x + y, 0)
+        const cartItemIds = cartItemData.map((cartId: CartItem) => {return cartId.productId})
+        const currentPrice = products.filter((product: Product) => cartItemIds.includes(product.id)).map((product: Product) => product.price).reduce((x: number,y: number) => x = x + y, 0)
         setPrice(currentPrice)
     }, [products])
 

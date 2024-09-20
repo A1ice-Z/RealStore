@@ -5,6 +5,7 @@ import { IoMdHeartEmpty, IoMdHeart } from "react-icons/io";
 import { getFavorites, toggleFavorite} from "../../../utils/localStorage";
 import { useLocation, useNavigate } from "react-router-dom";
 import { addToCart, getCart , updateCartQuantity} from "../../../utils/sessionStorage";
+import { CartItem } from "../../../utils/sessionStorage";
 
 interface InterfaceProductCard {
   id: number;
@@ -47,7 +48,7 @@ const ClothingsCards = ({ id, title, price, category, image, cart, favorite }: I
   }
 
   useEffect(() => {
-    const currentCart = getCart().map((cart) => cart.productId)
+    const currentCart = getCart().map((cart: CartItem) => cart.productId)
     if(currentCart?.includes(id)) {
       setIsAddedToCart(true)
     }

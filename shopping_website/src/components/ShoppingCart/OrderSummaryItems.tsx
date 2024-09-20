@@ -1,6 +1,6 @@
 import styles from "./OrderSummaryItems.module.css";
 import { Product } from "../../models/Product";
-import { getCart } from "../../utils/sessionStorage";
+import { getCart, CartItem } from "../../utils/sessionStorage";
 import { useProducts } from "../../hooks/useProducts.ts";
 import { useEffect, useState } from "react";
 import ClothingsCards from "../Scrolling/ClothingsCards/ClothingsCards";
@@ -14,7 +14,7 @@ const OrderSummaryItems = () => {
         if (!products) {
             return; 
         }
-        const cartItemIds = cartItemData.map((cartId) => {return cartId.productId})
+        const cartItemIds = cartItemData.map((cartId: CartItem) => {return cartId.productId})
         const cartItems = products.filter((product: Product) => cartItemIds.includes(product.id))
         setCartItems(cartItems)
     }, [products])

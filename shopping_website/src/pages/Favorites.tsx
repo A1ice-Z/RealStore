@@ -17,7 +17,7 @@ const Favorites = () => {
         if (!products) {
             return; 
           }
-        const currentFavoriteProducts = products.filter((product) => favorites.includes(product.id)) 
+        const currentFavoriteProducts = products.filter((product: Product) => favorites.includes(product.id)) 
         setFavoriteProducts(currentFavoriteProducts);
     }, [products])
    
