@@ -1,9 +1,9 @@
-import {render, screen} from "@testing-library/react";
-import {describe, it, expect, beforeEach, vi} from "vitest";
+import { render, screen } from "@testing-library/react";
+import { describe, it, expect, beforeEach, vi } from "vitest";
 import Favorites from "../pages/Favorites";
-import {useProducts} from "../hooks/useProducts";
-import {getFavorites} from "../utils/localStorage";
-import {MemoryRouter} from "react-router-dom";
+import { useProducts } from "../hooks/useProducts";
+import { getFavorites } from "../utils/localStorage";
+import { MemoryRouter } from "react-router-dom";
 
 // Mock useProducts and localStorage functions
 vi.mock("../hooks/useProducts", () => ({
@@ -19,6 +19,7 @@ vi.mock("../utils/localStorage", () => ({
 // Reset mocks before each test
 beforeEach(() => {
     vi.resetAllMocks();
+    (getFavorites as unknown as jest.Mock).mockReturnValue([]);
 });
 
 describe("Favorites component", () => {

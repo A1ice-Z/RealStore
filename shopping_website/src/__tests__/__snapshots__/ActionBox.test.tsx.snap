@@ -1,9 +1,0 @@
-// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
-
-exports[`ActionBox snapshot 1`] = `
-<DocumentFragment>
-  <section>
-    Loading...
-  </section>
-</DocumentFragment>
-`;
