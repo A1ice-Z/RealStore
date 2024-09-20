@@ -37,7 +37,7 @@ const Scrolling = ({ favorite, cart, selectedFilter }: scrollingProps) => {
             />
           ))
         ) : (
-          <section>No products available.</section>
+          <section className={styles.message}>No products available.</section>
         )}
       </article>
     </section>
