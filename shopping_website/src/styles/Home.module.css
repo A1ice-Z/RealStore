@@ -6,7 +6,7 @@
     justify-content: center;
     align-items: center;
 
-    font-family: 'Source Sans Pro', sans-serif;
+    font-family: "Source Sans Pro", sans-serif;
 }
 
 .link {
@@ -77,7 +77,6 @@
     .homepage {
         overflow-x: hidden;
     }
-
 
     .homebox {
         flex-direction: column;

@@ -1,4 +1,4 @@
-import { Routes, Route, HashRouter } from "react-router-dom";
+import {Routes, Route, HashRouter} from "react-router-dom";
 import Home from "./pages/Home";
 import ShoppingCart from "./pages/ShoppingCart";
 import Favorites from "./pages/Favorites";
@@ -13,11 +13,16 @@ const Router = () => {
         <HashRouter>
             <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="*" element={<>
-                    <Navbar />
-                    <NoPage />
-                    <Footer />
-                </>} />
+                <Route
+                    path="*"
+                    element={
+                        <>
+                            <Navbar />
+                            <NoPage />
+                            <Footer />
+                        </>
+                    }
+                />
                 <Route path="/ShoppingCart" element={<ShoppingCart />} />
                 <Route path="/Favorites" element={<Favorites />} />
                 <Route path="/Shopping" element={<Shopping />} />
@@ -25,6 +30,6 @@ const Router = () => {
             </Routes>
         </HashRouter>
     );
-}
+};
 
 export default Router;

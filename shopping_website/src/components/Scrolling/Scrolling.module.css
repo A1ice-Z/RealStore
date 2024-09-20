@@ -18,7 +18,6 @@
     text-align: center;
 }
 
-
 @media (max-width: 800px) {
     .rows {
         flex-direction: column;

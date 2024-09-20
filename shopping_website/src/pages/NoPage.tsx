@@ -6,6 +6,6 @@ const NoPage = () => {
             <h1 aria-label="Error 404: Page not found">404</h1>
         </main>
     );
-}
+};
 
 export default NoPage;

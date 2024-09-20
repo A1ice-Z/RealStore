@@ -1,7 +1,7 @@
 .footer {
     width: 100%;
     height: fit-content;
-    font-family: 'Source Sans 3', sans-serif;
+    font-family: "Source Sans 3", sans-serif;
 }
 
 .imageholder {
@@ -15,8 +15,8 @@
 
 .informationbox {
     display: flex;
+    flex-direction: column;
     justify-content: start;
-    gap: 20px;
 }
 
 .image {
@@ -28,11 +28,10 @@
     filter: brightness(20%);
 }
 
-
 .box {
     z-index: 20;
     background-color: white;
-    width: 540px;
+    width: 450px;
     height: 60%;
     border-radius: 30px;
     gap: 40px;
@@ -163,5 +162,4 @@
         font-size: 8px;
         color: #424242;
     }
-
 }
