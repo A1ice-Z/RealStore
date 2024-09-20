@@ -29,8 +29,8 @@ const OrderSummaryList = () => {
         return <section  role="alert" aria-live="assertive">Error fetching products.</section>;
     }
 
-    function handleChange(e: any) {
-        let isChecked = e.target.checked;
+    function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
+        const isChecked = e.target.checked;
         setClicked(isChecked);
     }
 
