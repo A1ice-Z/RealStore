@@ -1,9 +1,9 @@
-import { render, screen } from "@testing-library/react";
-import { describe, it, expect, beforeEach, vi } from "vitest";
+import {render, screen} from "@testing-library/react";
+import {describe, it, expect, beforeEach, vi} from "vitest";
 import Favorites from "../pages/Favorites";
-import { useProducts } from "../hooks/useProducts";
-import { getFavorites } from "../utils/localStorage";
-import { MemoryRouter } from "react-router-dom";
+import {useProducts} from "../hooks/useProducts";
+import {getFavorites} from "../utils/localStorage";
+import {MemoryRouter} from "react-router-dom";
 
 // Mock useProducts and localStorage functions
 vi.mock("../hooks/useProducts", () => ({

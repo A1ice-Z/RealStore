@@ -1,17 +1,17 @@
 import Navbar from "../components/Navbar/Navbar";
 import Footer from "../components/Footer/Footer";
 import styles from "../styles/Favorites.module.css";
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 import ClothingsCards from "../components/Scrolling/ClothingsCards/ClothingsCards";
-import { Product } from "../models/Product";
-import { useProducts } from "../hooks/useProducts";
-import { getFavorites } from "../utils/localStorage";
-import { useEffect, useState } from "react";
+import {Product} from "../models/Product";
+import {useProducts} from "../hooks/useProducts";
+import {getFavorites} from "../utils/localStorage";
+import {useEffect, useState} from "react";
 
 const Favorites = () => {
     const favorites = getFavorites() || [];
     const [favoriteProducts, setFavoriteProducts] = useState<Product[]>([]);
-    const { data: products, isLoading, isError } = useProducts();
+    const {data: products, isLoading, isError} = useProducts();
     const [noFavorites, setNoFavorites] = useState<boolean>(favorites.length === 0);
 
     useEffect(() => {
