@@ -1,3 +1,5 @@
+import { Filter } from "../pages/Shopping";
+
 export type CartItem = { productId: number; quantity: number };
 
 // Helper function to store items in session storage
@@ -52,15 +54,16 @@ export const updateCartQuantity = (productId: number, quantity: number): void =>
     setSessionStorageItems('cart', cart); // Save updated cart to sessionStorage
 };
 
+
 // Filtered items-specific functions
-export const getFilteredItems = (): number[] => {
-    return getSessionStorageItems<number>('filteredItems');
+export const getFilter = (): Filter[] => {
+    return getSessionStorageItems<Filter>('filter');
 };
 
-export const setFilteredItems = (filteredItemIds: number[]): void => {
-    setSessionStorageItems('filteredItems', filteredItemIds);
+export const setFilter = (filter: Filter[]): void => {
+    setSessionStorageItems('filter', filter);
 };
 
-export const clearFilteredItems = (): void => {
-    setSessionStorageItems('filteredItems', []);
+export const clearFilter = (): void => {
+    setSessionStorageItems('filter', []);
 };
