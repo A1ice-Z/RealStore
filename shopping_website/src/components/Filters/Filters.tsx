@@ -14,20 +14,21 @@ interface FiltersProps {
   selectedFilter: Filter;
   setSelectedFilters: (filter: Filter) => void;
 }
-const Filters = ({ selectedFilter, setSelectedFilters }: FiltersProps) => {
-  const [filterTabs, setFilterTabs] = useState<filterTabs>({ filter: false, category: false, priceRange: false })
+const Filters = ({selectedFilter, setSelectedFilters} : FiltersProps) => {
+  const [filterTabs, setFilterTabs] = useState<filterTabs>({filter: false, category: false, priceRange: false})
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 780);
   const categories = ["men's clothing", "women's clothing", "jewelery", "electronics"];
   const values = ["0-10", "10-50", "50-100", "100-500", "500-1000"];
 
-  const toggleFiltersSection = () => setFilterTabs({ filter: !filterTabs.filter, category: filterTabs.category, priceRange: filterTabs.priceRange });
+  const toggleFiltersSection = () => setFilterTabs({filter: !filterTabs.filter, category: filterTabs.category, priceRange: filterTabs.priceRange});
 
   const toggleCategoriesSection = () => {
-    setFilterTabs({ filter: filterTabs.filter, category: !filterTabs.category, priceRange: filterTabs.priceRange })
+    setFilterTabs({filter: filterTabs.filter, category: !filterTabs.category, priceRange: filterTabs.priceRange})
   };
 
   const togglePriceRangeSection = () => {
-    setFilterTabs({ filter: filterTabs.filter, category: filterTabs.category, priceRange: !filterTabs.priceRange })
+    setFilterTabs({filter: filterTabs.filter, category: filterTabs.category, priceRange: !filterTabs.priceRange})
+
   };
 
   const handleFilterChange = (category: string, min?: number, max?: number) => {
@@ -47,7 +48,7 @@ const Filters = ({ selectedFilter, setSelectedFilters }: FiltersProps) => {
   };
 
   const capitalize = (text: string) => {
-    return text.charAt(0).toUpperCase() + text.substring(1);
+    return text.charAt(0).toUpperCase() + text.substring(1);  
   }
 
   useEffect(() => {
@@ -76,15 +77,15 @@ const Filters = ({ selectedFilter, setSelectedFilters }: FiltersProps) => {
             {filterTabs.category && (
               <ul>
                 {
-                  categories.map((title) => {
-                    let value = ""
-                    if (selectedFilter.category !== title) {
-                      value = title;
-                    }
-                    return <li key={title} className="selectionSection" onClick={() => handleFilterChange(value, selectedFilter.values.min, selectedFilter.values.max)}>
-                      <span className={`clickBox ${selectedFilter.category === title ? "clicked" : ""}`} />
-                      <h5>{capitalize(title)}</h5>
-                    </li>
+                  categories.map((title) =>  { 
+                  let value = ""
+                  if (selectedFilter.category !== title) {
+                    value = title;
+                  }  
+                  return <li key={title} className="selectionSection" onClick={() => handleFilterChange(value, selectedFilter.values.min, selectedFilter.values.max)}>
+                    <span className={`clickBox ${selectedFilter.category === title ? "clicked" : ""}`}/>
+                    <h5>{capitalize(title)}</h5>
+                  </li>
                   })
                 }
               </ul>
@@ -109,7 +110,7 @@ const Filters = ({ selectedFilter, setSelectedFilters }: FiltersProps) => {
                   }
                   console.log(selectedFilterValue)
                   return <li key={value} className="selectionSection" onClick={() => handleFilterChange(selectedFilter.category, min, max)}>
-                    <span className={`clickBox ${selectedFilterValue == value ? "clicked" : ""}`} />
+                    <span className={`clickBox ${selectedFilterValue == value ? "clicked" : ""}`}/>
                     <h5>{value} $</h5>
                   </li>
                 })}

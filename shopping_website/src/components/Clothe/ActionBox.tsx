@@ -29,7 +29,7 @@ const ActionBox = ({ productId }: ActionBoxProps) => {
     const favorites = getFavorites();
     const isAlreadyFavorited = favorites.includes(productId);
 
-    const productsInCart = getCart() || [];
+    const productsInCart = getCart();
     const isAlreadyInCart = productsInCart.some((product: CartItem) => product.productId === productId);
 
     if (!isAddedToCart && isAlreadyInCart) {

@@ -12,9 +12,9 @@ const Footer = () => {
                 <div className={styles.box} role="region" aria-label="Footer Navigation">
                     <div className={styles.informationbox}>
                         <div>
-                            <p className={styles.informationtitle} aria-label="General Section">GENERAL</p>
+                            <p className={styles.informationtitle}  aria-label="General Section">GENERAL</p>
                             <Link to={"/"} className={styles.informationlink}>
-                                <p className={styles.informationtext} aria-label="Home Link">Home</p>
+                                <p className={styles.informationtext}  aria-label="Home Link">Home</p>
                             </Link>
                             <Link to={"/Shopping"} className={styles.informationlink}>
                                 <p className={styles.informationtext} aria-label="Shop Link">Shop</p>
@@ -36,7 +36,7 @@ const Footer = () => {
                             </Link>
                         </div>
                     </div>
-                    <div className={styles.divider} role="separator" aria-hidden="true" />
+                    <div className={styles.divider} role="separator" aria-hidden="true"/>
                     <div className={styles.logobox} aria-label="Footer Logo and Information">
                         <Link to={"/"}>
                             <img src={logo} alt="RealStore logo" className={styles.logoimg} aria-label="RealStore Logo" />
