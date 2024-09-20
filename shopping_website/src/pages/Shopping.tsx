@@ -24,8 +24,8 @@ const Shopping = () => {
   return (
     <>
       <Navbar />
-      <Filters selectedFilter={selectedFilters} setSelectedFilters={setSelectedFilters} />
       <main className={styling.shoppingpage}>
+        <Filters selectedFilter={selectedFilters} setSelectedFilters={setSelectedFilters} />
         <Scrolling favorite={true} cart={true} selectedFilter={selectedFilters}/>
       </main>
       <Footer />

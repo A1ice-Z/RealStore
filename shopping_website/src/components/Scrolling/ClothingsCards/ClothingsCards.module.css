@@ -15,21 +15,20 @@
 .imgContainer {
   background-color: white;
   border-radius: 10px;
-  margin: 0;
-  height: 400px;
-  width: 100%;
+  height: 220px;
+  width: 80%;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   overflow: hidden;
-
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .clothingImage {
-  height: 220px;
-  width: 80%;
-  object-fit: scale-down;
+  max-height: 100%;
+  max-width: 80%;
+  padding-left: 20%;
+  display: block;
 }
 
 .descriptionSpace {
@@ -101,9 +100,10 @@
   color: red;
 }
 
-@media (max-width: 450px) {
+@media (max-width: 800px) {
   .clothingSection {
-    height: 300px;
-    width: 250px;
+    height: 330px;
+    width: 220px;
+
   }
 }
