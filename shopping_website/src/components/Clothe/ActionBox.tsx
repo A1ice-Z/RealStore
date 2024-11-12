@@ -12,8 +12,8 @@ interface ActionBoxProps {
 
 const ActionBox = ({productId}: ActionBoxProps) => {
     const quantity: number = 1;
-    const [isFavorited, setIsFavorited] = useState(false);
-    const [isAddedToCart, setIsAddedToCart] = useState(false);
+    const [isFavorited, setIsFavorited] = useState<boolean>(false);
+    const [isAddedToCart, setIsAddedToCart] = useState<boolean>(false);
     const {data: products, isLoading, isError} = useProducts(undefined, productId, undefined, undefined, undefined);
 
     if (isLoading) {
