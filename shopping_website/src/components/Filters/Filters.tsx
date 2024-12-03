@@ -160,7 +160,10 @@ const Filters = ({selectedFilter, setSelectedFilters}: FiltersProps) => {
                             </span>
                         </header>
                         {filterTabs.priceRange && (
-                            <ul id="price-range-options" aria-label="Filter by Price Range" className={styles.filterStyling}>
+                            <ul
+                                id="price-range-options"
+                                aria-label="Filter by Price Range"
+                                className={styles.filterStyling}>
                                 {values.map((value: string) => {
                                     const values = value.split("-");
                                     let min: number | undefined = parseInt(values[0]);

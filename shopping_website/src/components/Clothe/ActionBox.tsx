@@ -1,4 +1,4 @@
-import { PiHeartStraightThin, PiHeartStraightFill } from "react-icons/pi";
+import {PiHeartStraightThin, PiHeartStraightFill} from "react-icons/pi";
 import styles from "./ActionBox.module.css";
 import {Link} from "react-router-dom";
 import {useState} from "react";
@@ -62,23 +62,22 @@ const ActionBox = ({productId}: ActionBoxProps) => {
     return (
         <>
             <nav className={styles.link} aria-label="Breadcrumb">
-                    <Link to={"/"} className={styles.linkstyle}>
-                            Home
-                    </Link>{" "}
-                    /
-                    <Link to={"/shopping"} className={styles.linkstyle}>
-                        {" "}
-                        Shop
-                    </Link>{" "}
-                    /
-                    <p className={styles.linkstyle} id="product-title">
-                        {" "}
-                        {product?.title?.split(" ").slice(0, 3).join(" ")}
-                    </p>
+                <Link to={"/"} className={styles.linkstyle}>
+                    Home
+                </Link>{" "}
+                /
+                <Link to={"/shopping"} className={styles.linkstyle}>
+                    {" "}
+                    Shop
+                </Link>{" "}
+                /
+                <p className={styles.linkstyle} id="product-title">
+                    {" "}
+                    {product?.title?.split(" ").slice(0, 3).join(" ")}
+                </p>
             </nav>
             <h1 className={styles.title}>SHOP - {product?.title}</h1>
-            <section className={styles.content} role="region" aria-labelledby="product-title"> 
-                
+            <section className={styles.content} role="region" aria-labelledby="product-title">
                 <img
                     src={product?.image}
                     alt={product?.title}
@@ -89,7 +88,7 @@ const ActionBox = ({productId}: ActionBoxProps) => {
                     <section className={styles.productInfoAndHeart}>
                         <section className={styles.productInfo}>
                             <p className={styles.titleInDesc} id="product-description">
-                            {product?.title}
+                                {product?.title}
                             </p>
                             <p className={styles.price}>{product?.price} $</p>
                             <p className={styles.taxes}>Taxes are included</p>
