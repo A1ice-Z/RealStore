@@ -1,5 +1,6 @@
 .page {
     padding: 0px 20px 20px 20px;
+    height: 100%;
 }
 
 @media (max-width: 1000px) {
