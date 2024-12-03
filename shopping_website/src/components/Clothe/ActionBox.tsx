@@ -1,4 +1,4 @@
-import {FaRegHeart, FaHeart} from "react-icons/fa";
+import { PiHeartStraightThin, PiHeartStraightFill } from "react-icons/pi";
 import styles from "./ActionBox.module.css";
 import {Link} from "react-router-dom";
 import {useState} from "react";
@@ -60,11 +60,10 @@ const ActionBox = ({productId}: ActionBoxProps) => {
     };
 
     return (
-        <section className={styles.shoppingPage} role="region" aria-labelledby="product-title">
-            <header className={styles.titleAndImage} role="banner">
-                <nav className={styles.link} aria-label="Breadcrumb">
+        <>
+            <nav className={styles.link} aria-label="Breadcrumb">
                     <Link to={"/"} className={styles.linkstyle}>
-                        Home
+                            Home
                     </Link>{" "}
                     /
                     <Link to={"/shopping"} className={styles.linkstyle}>
@@ -74,53 +73,59 @@ const ActionBox = ({productId}: ActionBoxProps) => {
                     /
                     <p className={styles.linkstyle} id="product-title">
                         {" "}
-                        {product?.title}
+                        {product?.title?.split(" ").slice(0, 3).join(" ")}
                     </p>
-                </nav>
-                <p className={styles.title}>SHOP - {product?.title}</p>
+            </nav>
+            <h1 className={styles.title}>SHOP - {product?.title}</h1>
+            <section className={styles.content} role="region" aria-labelledby="product-title"> 
+                
                 <img
                     src={product?.image}
                     alt={product?.title}
                     className={styles.imageView}
                     aria-label={`Image of ${product?.title}`}
                 />
-            </header>
-            <article className={styles.description} role="region" aria-labelledby="product-description">
-                {isAlreadyFavorited ? (
-                    <FaHeart
-                        className={`${styles.heartButton} ${styles.likedHeartButton}`}
-                        onClick={() => addFavorite(productId)}
-                        aria-label="Remove from favorites"
-                        role="button"
-                    />
-                ) : (
-                    <FaRegHeart
-                        className={`${styles.heartButton} ${styles.notLikedheartButton}`}
-                        onClick={() => addFavorite(productId)}
-                        aria-label="Add to favorites"
-                        role="button"
-                    />
-                )}
-                <p className={styles.titleInDesc} id="product-description">
-                    {product?.title}
-                </p>
-                <p className={styles.price}>{product?.price} $</p>
-                <p className={styles.taxes}>Taxes are included</p>
-                <p className={styles.clotheDesc}>{product?.description}</p>
-                {isAddedToCart ? (
-                    <div className={styles.alreadyInCart} role="status" aria-live="polite">
-                        ALREADY IN CART
-                    </div>
-                ) : (
-                    <button
-                        className={styles.cartButton}
-                        onClick={() => addProductToCart(productId, quantity)}
-                        aria-label="Add to cart">
-                        ADD TO CART
-                    </button>
-                )}
-            </article>
-        </section>
+                <article className={styles.information} role="region" aria-labelledby="product-description">
+                    <section className={styles.productInfoAndHeart}>
+                        <section className={styles.productInfo}>
+                            <p className={styles.titleInDesc} id="product-description">
+                            {product?.title}
+                            </p>
+                            <p className={styles.price}>{product?.price} $</p>
+                            <p className={styles.taxes}>Taxes are included</p>
+                        </section>
+                        {isAlreadyFavorited ? (
+                            <PiHeartStraightFill
+                                className={`${styles.heartButton} ${styles.likedHeartButton}`}
+                                onClick={() => addFavorite(productId)}
+                                aria-label="Remove from favorites"
+                                role="button"
+                            />
+                        ) : (
+                            <PiHeartStraightThin
+                                className={`${styles.heartButton} ${styles.notLikedheartButton}`}
+                                onClick={() => addFavorite(productId)}
+                                aria-label="Add to favorites"
+                                role="button"
+                            />
+                        )}
+                    </section>
+                    <p className={styles.clotheDesc}>{product?.description}</p>
+                    {isAddedToCart ? (
+                        <div className={styles.alreadyInCart} role="status" aria-live="polite">
+                            ALREADY IN CART
+                        </div>
+                    ) : (
+                        <button
+                            className={styles.cartButton}
+                            onClick={() => addProductToCart(productId, quantity)}
+                            aria-label="Add to cart">
+                            ADD TO CART
+                        </button>
+                    )}
+                </article>
+            </section>
+        </>
     );
 };
 
