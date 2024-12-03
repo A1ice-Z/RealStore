@@ -75,11 +75,29 @@ const OrderSummaryList = () => {
                     <p className={styles.totaltext}>$ {price}</p>
                 </div>
                 <label className={styles.checkbox}>
-                    <input type="checkbox" onChange={(e) => handleChange(e)} aria-labelledby="termsCheckbox" />
+                    <input
+                        type="checkbox"
+                        className={styles.check}
+                        tabIndex={0}
+                        onChange={(e) => handleChange(e)}
+                        onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                                e.preventDefault(); // Prevent default scrolling or form submission behavior
+                                const target = e.target as HTMLInputElement;
+                                target.checked = !target.checked;
+                                handleChange({
+                                    ...e,
+                                    target,
+                                } as React.ChangeEvent<HTMLInputElement>);
+                            }
+                        }}
+                        aria-labelledby="termsCheckbox"
+                    />
                     <p id="termsCheckbox" className={styles.checkboxtext}>
                         I agree to the Terms and Conditions
                     </p>
                 </label>
+
                 <button
                     type="button"
                     disabled={!clicked}

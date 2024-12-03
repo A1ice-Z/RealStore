@@ -29,10 +29,13 @@
 }
 
 .pathlink,
-.pathlink:hover,
 .pathlink:focus {
     color: #424242;
     text-decoration: none;
+}
+
+.pathlink:hover {
+    text-decoration: underline;
 }
 
 .title {

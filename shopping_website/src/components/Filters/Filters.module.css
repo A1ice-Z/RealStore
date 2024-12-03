@@ -37,6 +37,10 @@
     color: #424242;
 }
 
+.h5text:hover {
+    font-weight: bold;
+}
+
 .categoryAndArrow {
     display: flex;
     justify-content: space-between;

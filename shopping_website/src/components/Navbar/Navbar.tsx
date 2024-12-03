@@ -51,7 +51,7 @@ const Navbar = () => {
                     </Link>
                 </div>
                 <div className={styles.navlinks} role="navigation" aria-label="User Navigation">
-                    <Link to={"/ShoppingCart"} className={styles.cardbutton}>
+                    <Link to={"/ShoppingCart"} className={styles.cartbutton}>
                         <p aria-label="View My Cart">MY CART</p>
                         <HiOutlineShoppingBag className={styles.whiteicon} />
                     </Link>
@@ -59,9 +59,6 @@ const Navbar = () => {
                         <CiHeart className={styles.heart} aria-label="View My Favorites" />
                     </Link>
                 </div>
-                <Link to={"/ShoppingCart"} className={styles.shoppingButton} aria-label="View My Cart">
-                    <HiOutlineShoppingBag className={styles.whiteicon} />
-                </Link>
             </nav>
         </main>
     );
