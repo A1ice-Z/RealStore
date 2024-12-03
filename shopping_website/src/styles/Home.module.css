@@ -73,6 +73,10 @@
     border-radius: 10px;
 }
 
+.shoppingbutton:hover {
+    background-color: #187171;
+}
+
 @media (max-width: 820px) {
     .homepage {
         overflow-x: hidden;

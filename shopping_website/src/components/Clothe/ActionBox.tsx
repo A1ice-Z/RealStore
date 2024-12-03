@@ -71,7 +71,7 @@ const ActionBox = ({productId}: ActionBoxProps) => {
                     Shop
                 </Link>{" "}
                 /
-                <p className={styles.linkstyle} id="product-title">
+                <p className={styles.pstyle} id="product-title">
                     {" "}
                     {product?.title?.split(" ").slice(0, 3).join(" ")}
                 </p>
@@ -97,6 +97,8 @@ const ActionBox = ({productId}: ActionBoxProps) => {
                             <PiHeartStraightFill
                                 className={`${styles.heartButton} ${styles.likedHeartButton}`}
                                 onClick={() => addFavorite(productId)}
+                                tabIndex={0}
+                                onKeyDown={(e) => e.key === "Enter" && addFavorite(productId)}
                                 aria-label="Remove from favorites"
                                 role="button"
                             />
@@ -104,6 +106,8 @@ const ActionBox = ({productId}: ActionBoxProps) => {
                             <PiHeartStraightThin
                                 className={`${styles.heartButton} ${styles.notLikedheartButton}`}
                                 onClick={() => addFavorite(productId)}
+                                tabIndex={0}
+                                onKeyDown={(e) => e.key === "Enter" && addFavorite(productId)}
                                 aria-label="Add to favorites"
                                 role="button"
                             />
@@ -112,7 +116,7 @@ const ActionBox = ({productId}: ActionBoxProps) => {
                     <p className={styles.clotheDesc}>{product?.description}</p>
                     {isAddedToCart ? (
                         <div className={styles.alreadyInCart} role="status" aria-live="polite">
-                            ALREADY IN CART
+                            ADDED TO CART
                         </div>
                     ) : (
                         <button
