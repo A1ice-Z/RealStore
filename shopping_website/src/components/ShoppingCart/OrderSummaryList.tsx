@@ -58,9 +58,7 @@ const OrderSummaryList = () => {
     return (
         <>
             <section className={styles.box} role="region" aria-label="Order Summary Section">
-                <h2 className={styles.title} aria-label="Order Summary">
-                    ORDER SUMMARY
-                </h2>
+                <h2 className={styles.title}>ORDER SUMMARY</h2>
                 <div className={styles.textbox} aria-label="Subtotal Information">
                     <p className={styles.text}>Subtotal</p>
                     <p className={styles.text}>$ {price}</p>

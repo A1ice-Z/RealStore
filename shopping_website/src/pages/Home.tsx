@@ -20,10 +20,7 @@ const Home = () => {
                             us for timeless fashion and exceptional craftsmanship.
                         </p>
                         <Link className={styles.link} to="/Shopping">
-                            <button
-                                className={styles.shoppingbutton}
-                                onClick={() => "/Shopping"}
-                                aria-label="Explore our products">
+                            <button className={styles.shoppingbutton} onClick={() => "/Shopping"}>
                                 Explore <FaArrowRight className={styles.arrow} />
                             </button>
                         </Link>

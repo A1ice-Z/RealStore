@@ -41,18 +41,16 @@ const Favorites = () => {
     return (
         <>
             <Navbar />
-            <main className={styles.favoritepage} role="region" aria-label="Favorite Products List">
+            <main className={styles.favoritepage} role="region" aria-label="Favorite Products">
                 <div className={styles.favoritecontainer}>
-                    <nav className={styles.path} aria-label="Breadcrumb">
+                    <nav className={styles.path} aria-label="Navigation">
                         <Link className={styles.pathlink} to={"/"}>
                             Home
                         </Link>{" "}
                         / Favorites
                     </nav>
-                    <p className={styles.title} aria-label="Favorite Products Section Title">
-                        FAVORITES
-                    </p>
-                    <section className={styles.favoriteitems} role="list" aria-label="List of favorite products">
+                    <p className={styles.title}>FAVORITES</p>
+                    <section className={styles.favoriteitems} role="list" aria-description="List of favorite products">
                         {favorites.length === 0 ? (
                             <section className={styles.message} role="status" aria-live="polite">
                                 No products available.
