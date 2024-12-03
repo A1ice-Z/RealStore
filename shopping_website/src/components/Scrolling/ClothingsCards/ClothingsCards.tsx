@@ -67,7 +67,7 @@ const ClothingsCards = ({id, title, price, category, image, cart, favorite}: Int
             </figure>
             <section className={styles.descriptionSpace}>
                 <header className={styles.productType}>
-                    <h5>{category}</h5>
+                    <h5 className={styles.category}>{category}</h5>
                     <section className={styles.IconSpace} aria-label="Product Actions">
                         {cart && <span onClick={handleCart}>{isAddedToCart ? <IoCart /> : <IoCartOutline />}</span>}
                         {favorite && (
