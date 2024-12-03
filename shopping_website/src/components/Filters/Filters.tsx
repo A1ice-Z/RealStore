@@ -95,7 +95,7 @@ const Filters = ({selectedFilter, setSelectedFilters}: FiltersProps) => {
                             </span>
                         </header>
                         {filterTabs.category && (
-                            <ul id="category-options" aria-label="Filter by Category">
+                            <ul id="category-options" aria-label="Filter by Category" className={styles.filterStyling}>
                                 {categories.map((title) => {
                                     let value = "";
                                     if (selectedFilter.category !== title) {
@@ -160,7 +160,7 @@ const Filters = ({selectedFilter, setSelectedFilters}: FiltersProps) => {
                             </span>
                         </header>
                         {filterTabs.priceRange && (
-                            <ul id="price-range-options" aria-label="Filter by Price Range">
+                            <ul id="price-range-options" aria-label="Filter by Price Range" className={styles.filterStyling}>
                                 {values.map((value: string) => {
                                     const values = value.split("-");
                                     let min: number | undefined = parseInt(values[0]);
@@ -170,7 +170,6 @@ const Filters = ({selectedFilter, setSelectedFilters}: FiltersProps) => {
                                         min = undefined;
                                         max = undefined;
                                     }
-                                    console.log(selectedFilterValue);
                                     return (
                                         <li
                                             key={value}
