@@ -12,9 +12,9 @@ interface ActionBoxProps {
 
 const ActionBox = ({productId}: ActionBoxProps) => {
     const quantity: number = 1;
-    const [isFavorited, setIsFavorited] = useState(false);
-    const [isAddedToCart, setIsAddedToCart] = useState(false);
-    const {data: products, isLoading, isError} = useProducts();
+    const [isFavorited, setIsFavorited] = useState<boolean>(false);
+    const [isAddedToCart, setIsAddedToCart] = useState<boolean>(false);
+    const {data: products, isLoading, isError} = useProducts(undefined, productId, undefined, undefined, undefined);
 
     if (isLoading) {
         return (
@@ -31,7 +31,7 @@ const ActionBox = ({productId}: ActionBoxProps) => {
         );
     }
 
-    const product = products ? products.find((p) => p.id === productId) : null;
+    const product = Array.isArray(products) ? products.find((p) => p.id === productId) : null;
 
     const favorites = getFavorites();
     const isAlreadyFavorited = favorites.includes(productId);

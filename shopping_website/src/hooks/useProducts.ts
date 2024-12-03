@@ -12,6 +12,10 @@ const fetchProducts = async (
 
     if (productId) {
         url = `${url}/${productId}`;
+        const response = await fetch(url);
+        if (!response.ok) throw new Error("Error fetching product");
+        const product: Product = await response.json();
+        return [product]; // Return a single product wrapped in an array
     } else if (category) {
         url = `${url}/category/${category}`;
     }
