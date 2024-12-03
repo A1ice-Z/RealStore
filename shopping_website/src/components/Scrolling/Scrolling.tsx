@@ -39,7 +39,7 @@ const Scrolling = ({favorite, cart, selectedFilter}: scrollingProps) => {
     }
 
     return (
-        <section className={styles.clothesSections} role="region" aria-labelledby="clothes-section">
+        <section className={styles.clothesSections} role="region">
             <article className={styles.rows} role="list" aria-label="Product list">
                 {products && products.length > 0 ? (
                     products.map((product: Product) => (

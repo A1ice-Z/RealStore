@@ -61,7 +61,7 @@ const ActionBox = ({productId}: ActionBoxProps) => {
 
     return (
         <>
-            <nav className={styles.link} aria-label="Breadcrumb">
+            <nav className={styles.link} aria-label="Navigation">
                 <Link to={"/"} className={styles.linkstyle}>
                     Home
                 </Link>{" "}
@@ -77,14 +77,9 @@ const ActionBox = ({productId}: ActionBoxProps) => {
                 </p>
             </nav>
             <h1 className={styles.title}>SHOP - {product?.title}</h1>
-            <section className={styles.content} role="region" aria-labelledby="product-title">
-                <img
-                    src={product?.image}
-                    alt={product?.title}
-                    className={styles.imageView}
-                    aria-label={`Image of ${product?.title}`}
-                />
-                <article className={styles.information} role="region" aria-labelledby="product-description">
+            <section className={styles.content} role="region" aria-label="product-information">
+                <img src={product?.image} alt={product?.title} className={styles.imageView} />
+                <article className={styles.information} role="region">
                     <section className={styles.productInfoAndHeart}>
                         <section className={styles.productInfo}>
                             <p className={styles.titleInDesc} id="product-description">

@@ -52,7 +52,7 @@ const Navbar = () => {
                 </div>
                 <div className={styles.navlinks} role="navigation" aria-label="User Navigation">
                     <Link to={"/ShoppingCart"} className={styles.cartbutton}>
-                        <p aria-label="View My Cart">MY CART</p>
+                        <p>MY CART</p>
                         <HiOutlineShoppingBag className={styles.whiteicon} />
                     </Link>
                     <Link to={"/Favorites"} className={styles.navlink}>
