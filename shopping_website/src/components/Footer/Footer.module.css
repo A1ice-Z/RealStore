@@ -51,11 +51,14 @@
 }
 
 .informationlink,
-.informationlink:hover,
 .informationlink:focus {
     text-decoration: none;
     color: #424242;
     font-size: 20px;
+}
+
+.informationlink:hover{
+    text-decoration: underline;
 }
 
 .informationtext {

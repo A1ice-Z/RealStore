@@ -108,6 +108,10 @@
     display: none;
 }
 
+.shoppingButton {
+    display: none;
+}
+
 @media (max-width: 800px) {
     .navpage {
         display: none;
