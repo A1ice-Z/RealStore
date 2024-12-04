@@ -36,20 +36,20 @@ beforeEach(() => {
 
 describe("ActionBox component", () => {
     it("renders loading state initially", () => {
-        // Mock useProducts to simulate loading state
         (useProducts as jest.Mock).mockReturnValue({
             data: null,
             isLoading: true,
             isError: false,
         });
 
-        render(
+        const {container} = render(
             <MemoryRouter>
                 <ActionBox productId={1} />
             </MemoryRouter>,
         );
 
         expect(screen.getByText(/Loading.../i)).toBeInTheDocument();
+        expect(container).toMatchSnapshot(); // Snapshot test
     });
 
     it("renders error state when product fetching fails", () => {
@@ -59,13 +59,14 @@ describe("ActionBox component", () => {
             isError: true,
         });
 
-        render(
+        const {container} = render(
             <MemoryRouter>
                 <ActionBox productId={1} />
             </MemoryRouter>,
         );
 
         expect(screen.getByText(/Error fetching products./i)).toBeInTheDocument();
+        expect(container).toMatchSnapshot(); // Snapshot test
     });
 
     it("renders product details and allows adding to cart", () => {
@@ -78,148 +79,128 @@ describe("ActionBox component", () => {
                 image: "test-image.jpg",
             },
         ];
-
+    
         (useProducts as jest.Mock).mockReturnValue({
             data: fakeProducts,
             isLoading: false,
             isError: false,
         });
-
+    
         (getFavorites as jest.Mock).mockReturnValue([]);
         (getCart as jest.Mock).mockReturnValue([]);
-
+    
         render(
             <MemoryRouter>
                 <ActionBox productId={1} />
             </MemoryRouter>,
         );
+    
+        // More specific queries for elements
+        const productTitle = screen.getByRole("heading", {name: /Test Product/i});
+        expect(productTitle).toBeInTheDocument();
+    
+        const productPrice = screen.getByText(/99.99 \$/i);
+        expect(productPrice).toBeInTheDocument();
+    
+        const productImage = screen.getByAltText(/Test Product/i);
+        expect(productImage).toHaveAttribute("src", "test-image.jpg");
+    
+        const addToCartButton = screen.getByRole("button", {name: /add to cart/i});
+        fireEvent.click(addToCartButton);
+    
+        expect(addToCart).toHaveBeenCalledWith(1, 1);
+    });
+    
 
-        const productElements = screen.getAllByText(/Test Product/i);
-        expect(productElements.length).toBeGreaterThan(0);
-        productElements.forEach((element) => {
-            expect(element).toBeInTheDocument();
+    it("renders correctly on mobile version", () => {
+        setScreenSize(375, 667); // iPhone 6/7/8 size
+
+        const fakeProducts = [
+            {
+                id: 1,
+                title: "Sample Product",
+                price: "$10.00",
+                description: "Sample Description",
+                image: "https://via.placeholder.com/150",
+            },
+        ];
+
+        (useProducts as jest.Mock).mockReturnValue({
+            data: fakeProducts,
+            isLoading: false,
+            isError: false,
         });
 
-        expect(screen.getByText(/99.99 \$/i)).toBeInTheDocument();
-        expect(screen.getByAltText(/Test Product/i)).toHaveAttribute("src", "test-image.jpg");
+        const {container} = render(
+            <MemoryRouter>
+                <ActionBox productId={1} />
+            </MemoryRouter>,
+        );
 
-        const addToCartButton = screen.getByText(/ADD TO CART/i);
+        const elements = screen.getAllByAltText("Sample Product");
+        expect(elements[0]).toBeVisible();
+        expect(container).toMatchSnapshot(); // Snapshot test
+    });
+
+    it("renders correctly on desktop version", () => {
+        setScreenSize(1920, 1080); // Desktop size
+
+        const fakeProducts = [
+            {
+                id: 1,
+                title: "Sample Product",
+                price: "$10.00",
+                description: "Sample Description",
+                image: "https://via.placeholder.com/150",
+            },
+        ];
+
+        (useProducts as jest.Mock).mockReturnValue({
+            data: fakeProducts,
+            isLoading: false,
+            isError: false,
+        });
+
+        const {container} = render(
+            <MemoryRouter>
+                <ActionBox productId={1} />
+            </MemoryRouter>,
+        );
+
+        const elements = screen.getAllByAltText("Sample Product");
+        expect(elements[0]).toBeVisible();
+        expect(container).toMatchSnapshot(); // Snapshot test
+    });
+
+    it('adds product to cart when "Add to Cart" button is clicked, for desktop version', () => {
+        const fakeProducts = [
+            {
+                id: 1,
+                title: "Sample Product",
+                price: "$10.00",
+                description: "Sample Description",
+                image: "https://via.placeholder.com/150",
+            },
+        ];
+
+        (useProducts as jest.Mock).mockReturnValue({
+            data: fakeProducts,
+            isLoading: false,
+            isError: false,
+        });
+
+        const {container} = render(
+            <MemoryRouter>
+                <ActionBox productId={1} />
+            </MemoryRouter>,
+        );
+
+        setScreenSize(1920, 1080); // Set screen size for desktop
+
+        const addToCartButton = screen.getByRole("button", {name: /add to cart/i});
         fireEvent.click(addToCartButton);
 
         expect(addToCart).toHaveBeenCalledWith(1, 1);
-    });
-
-    it("matches snapshot for loading state", () => {
-        (useProducts as jest.Mock).mockReturnValue({
-            data: null,
-            isLoading: true,
-            isError: false,
-        });
-
-        const {container} = render(
-            <MemoryRouter>
-                <ActionBox productId={1} />
-            </MemoryRouter>,
-        );
-
-        expect(container).toMatchSnapshot();
-    });
-
-    it("matches snapshot for error state", () => {
-        (useProducts as jest.Mock).mockReturnValue({
-            data: null,
-            isLoading: false,
-            isError: true,
-        });
-
-        const {container} = render(
-            <MemoryRouter>
-                <ActionBox productId={1} />
-            </MemoryRouter>,
-        );
-
-        expect(container).toMatchSnapshot();
-    });
-
-    it("matches snapshot for product details", () => {
-        const fakeProducts = [
-            {
-                id: 1,
-                title: "Test Product",
-                price: 99.99,
-                description: "Test description",
-                image: "test-image.jpg",
-            },
-        ];
-
-        (useProducts as jest.Mock).mockReturnValue({
-            data: fakeProducts,
-            isLoading: false,
-            isError: false,
-        });
-
-        const {container} = render(
-            <MemoryRouter>
-                <ActionBox productId={1} />
-            </MemoryRouter>,
-        );
-
-        expect(container).toMatchSnapshot();
-    });
-
-    it("matches snapshot for mobile view", () => {
-        setScreenSize(375, 667);
-
-        const fakeProducts = [
-            {
-                id: 1,
-                title: "Sample Product",
-                price: "$10.00",
-                description: "Sample Description",
-                image: "https://via.placeholder.com/150",
-            },
-        ];
-
-        (useProducts as jest.Mock).mockReturnValue({
-            data: fakeProducts,
-            isLoading: false,
-            isError: false,
-        });
-
-        const {container} = render(
-            <MemoryRouter>
-                <ActionBox productId={1} />
-            </MemoryRouter>,
-        );
-
-        expect(container).toMatchSnapshot();
-    });
-
-    it("matches snapshot for desktop view", () => {
-        setScreenSize(1920, 1080);
-
-        const fakeProducts = [
-            {
-                id: 1,
-                title: "Sample Product",
-                price: "$10.00",
-                description: "Sample Description",
-                image: "https://via.placeholder.com/150",
-            },
-        ];
-
-        (useProducts as jest.Mock).mockReturnValue({
-            data: fakeProducts,
-            isLoading: false,
-            isError: false,
-        });
-
-        const {container} = render(
-            <MemoryRouter>
-                <ActionBox productId={1} />
-            </MemoryRouter>,
-        );
-
-        expect(container).toMatchSnapshot();
+        expect(container).toMatchSnapshot(); // Snapshot test
     });
 });

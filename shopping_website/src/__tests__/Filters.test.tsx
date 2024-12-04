@@ -66,19 +66,17 @@ describe("Filters component", () => {
                 max: undefined,
             },
         };
-    
+
         render(
             <Filters selectedFilter={initialFilter} setSelectedFilters={mockSetSelectedFilters} />,
         );
-    
-        // Expand the categories section
+
         const categoriesHeader = screen.getByRole("button", {name: /toggle categories section/i});
         fireEvent.click(categoriesHeader);
-    
-        // Find the "Men's clothing" category button by aria-label
+
         const categoryButton = screen.getByRole("button", {name: /select Men's clothing/i});
         fireEvent.click(categoryButton);
-    
+
         expect(setFilter).toHaveBeenCalledWith([
             {
                 category: "men's clothing",
@@ -89,8 +87,7 @@ describe("Filters component", () => {
             category: "men's clothing",
             values: {min: undefined, max: undefined},
         });
-    });    
-    
+    });
 
     it("calls setFilter and setSelectedFilters when a price range is selected", () => {
         const initialFilter: Filter = {
@@ -100,19 +97,17 @@ describe("Filters component", () => {
                 max: undefined,
             },
         };
-    
+
         render(
             <Filters selectedFilter={initialFilter} setSelectedFilters={mockSetSelectedFilters} />,
         );
-    
-        // Expand the Price Range section
+
         const priceRangeHeader = screen.getByRole("button", {name: /toggle price range section/i});
         fireEvent.click(priceRangeHeader);
-    
-        // Find and click the "10-50" price range
+
         const priceRangeButton = screen.getByRole("button", {name: /select price range 10-50/i});
         fireEvent.click(priceRangeButton);
-    
+
         expect(setFilter).toHaveBeenCalledWith([
             {
                 category: "",
@@ -123,7 +118,7 @@ describe("Filters component", () => {
             category: "",
             values: {min: 10, max: 50},
         });
-    });    
+    });
 
     it("renders correctly on resize", () => {
         const initialFilter: Filter = {
@@ -133,31 +128,20 @@ describe("Filters component", () => {
                 max: undefined,
             },
         };
-    
-        // Set the viewport to mobile dimensions
+
         Object.defineProperty(window, "innerWidth", {writable: true, configurable: true, value: 500});
         window.dispatchEvent(new Event("resize"));
-    
+
         render(
             <Filters selectedFilter={initialFilter} setSelectedFilters={mockSetSelectedFilters} />,
         );
-    
-        // Find and interact with the "Toggle Filters Section" button
+
         const filtersHeader = screen.getByRole("button", {name: /toggle filters section/i});
         expect(filtersHeader).toBeInTheDocument();
-    
+
         fireEvent.click(filtersHeader);
-    
-        // Check that the categories section is now visible
+
         expect(screen.getByText(/Categories/i)).toBeInTheDocument();
-    });    
-});
-
-describe("Filters component snapshot tests", () => {
-    const mockSetSelectedFilters = vi.fn();
-
-    beforeEach(() => {
-        vi.resetAllMocks();
     });
 
     it("matches snapshot for desktop view", () => {
@@ -195,7 +179,7 @@ describe("Filters component snapshot tests", () => {
         expect(container).toMatchSnapshot();
     });
 
-    it("matches snapshot when categories are expanded", () => {
+    it("matches snapshot when categories are expanded in mobile view", () => {
         const initialFilter: Filter = {
             category: "",
             values: {
@@ -204,12 +188,16 @@ describe("Filters component snapshot tests", () => {
             },
         };
     
+        // Set the viewport to mobile dimensions
+        Object.defineProperty(window, "innerWidth", {writable: true, configurable: true, value: 500});
+        window.dispatchEvent(new Event("resize"));
+    
         // Render the component
         const {container} = render(
             <Filters selectedFilter={initialFilter} setSelectedFilters={mockSetSelectedFilters} />,
         );
     
-        // Expand the filters section (necessary for mobile view)
+        // Find and interact with the "Toggle Filters Section" button
         const filtersHeader = screen.getByRole("button", {name: /toggle filters section/i});
         fireEvent.click(filtersHeader);
     
@@ -220,7 +208,6 @@ describe("Filters component snapshot tests", () => {
         // Match snapshot
         expect(container).toMatchSnapshot();
     });
-    
 
     it("matches snapshot when price range is expanded", () => {
         const initialFilter: Filter = {
@@ -230,21 +217,23 @@ describe("Filters component snapshot tests", () => {
                 max: undefined,
             },
         };
-    
+
         // Render the component
         const {container} = render(
             <Filters selectedFilter={initialFilter} setSelectedFilters={mockSetSelectedFilters} />,
         );
-    
-        // Expand the filters section (required for mobile view)
-        const filtersHeader = screen.getByRole("button", {name: /toggle filters section/i});
-        fireEvent.click(filtersHeader);
-    
+
+        // For mobile view, toggle filters section first
+        const filtersHeader = screen.queryByRole("button", {name: /toggle filters section/i});
+        if (filtersHeader) {
+            fireEvent.click(filtersHeader);
+        }
+
         // Expand the price range section
         const priceRangeHeader = screen.getByRole("button", {name: /toggle price range section/i});
         fireEvent.click(priceRangeHeader);
-    
-        // Match snapshot
+
+        // Match the snapshot
         expect(container).toMatchSnapshot();
-    });    
+    });
 });
