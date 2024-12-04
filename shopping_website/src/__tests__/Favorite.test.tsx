@@ -1,5 +1,5 @@
-import {render} from "@testing-library/react";
-import {describe, it, expect, vi, beforeEach} from "vitest";
+import {render, screen} from "@testing-library/react";
+import {describe, it, expect, beforeEach, vi} from "vitest";
 import Favorites from "../pages/Favorites";
 import {useProducts} from "../hooks/useProducts";
 import {getFavorites} from "../utils/localStorage";
@@ -19,13 +19,13 @@ vi.mock("../utils/localStorage", () => ({
 // Reset mocks before each test
 beforeEach(() => {
     vi.resetAllMocks();
-    (getFavorites as unknown as jest.Mock).mockReturnValue([]);
+    (getFavorites as jest.Mock).mockReturnValue([]);
 });
 
-describe("Favorites component snapshot tests", () => {
-    it("matches snapshot for loading state", () => {
+describe("Favorites component", () => {
+    it("renders loading state initially", () => {
         // Mock useProducts to simulate the loading state
-        (useProducts as unknown as jest.Mock).mockReturnValue({
+        (useProducts as jest.Mock).mockReturnValue({
             data: null,
             isLoading: true,
             isError: false,
@@ -37,12 +37,13 @@ describe("Favorites component snapshot tests", () => {
             </MemoryRouter>,
         );
 
+        expect(screen.getByText(/Loading.../i)).toBeInTheDocument();
         expect(container).toMatchSnapshot();
     });
 
-    it("matches snapshot for error state", () => {
+    it("renders error state when data fetching fails", () => {
         // Mock useProducts to simulate an error
-        (useProducts as unknown as jest.Mock).mockReturnValue({
+        (useProducts as jest.Mock).mockReturnValue({
             data: null,
             isLoading: false,
             isError: true,
@@ -54,10 +55,11 @@ describe("Favorites component snapshot tests", () => {
             </MemoryRouter>,
         );
 
+        expect(screen.getByText(/Error fetching products./i)).toBeInTheDocument();
         expect(container).toMatchSnapshot();
     });
 
-    it("matches snapshot for rendered favorite products", () => {
+    it("renders favorite products", () => {
         // Mock product data
         const fakeProducts = [
             {
@@ -87,14 +89,14 @@ describe("Favorites component snapshot tests", () => {
         ];
 
         // Mock useProducts to return the product data
-        (useProducts as unknown as jest.Mock).mockReturnValue({
+        (useProducts as jest.Mock).mockReturnValue({
             data: fakeProducts,
             isLoading: false,
             isError: false,
         });
 
         // Mock getFavorites to return product IDs that exist in fakeProducts
-        (getFavorites as unknown as jest.Mock).mockReturnValue([1, 2]);
+        (getFavorites as jest.Mock).mockReturnValue([1, 2]);
 
         const {container} = render(
             <MemoryRouter>
@@ -102,6 +104,29 @@ describe("Favorites component snapshot tests", () => {
             </MemoryRouter>,
         );
 
+        expect(screen.getByText(/Product 1/i)).toBeInTheDocument();
+        expect(screen.getByText(/Product 2/i)).toBeInTheDocument();
+        expect(container).toMatchSnapshot();
+    });
+
+    it("renders 'No products available' message when there are no favorite products", () => {
+        // Mock useProducts to return an empty product list
+        (useProducts as jest.Mock).mockReturnValue({
+            data: [],
+            isLoading: false,
+            isError: false,
+        });
+
+        // Mock getFavorites to return an empty list
+        (getFavorites as jest.Mock).mockReturnValue([]);
+
+        const {container} = render(
+            <MemoryRouter>
+                <Favorites />
+            </MemoryRouter>,
+        );
+
+        expect(screen.getByText(/No products available./i)).toBeInTheDocument(); // Updated text matcher
         expect(container).toMatchSnapshot();
     });
 });
