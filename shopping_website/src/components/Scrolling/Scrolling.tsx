@@ -55,7 +55,11 @@ const Scrolling = ({favorite, cart, selectedFilter}: scrollingProps) => {
                         />
                     ))
                 ) : (
-                    <section className={styles.message} role="status" aria-live="polite" aria-label="No products available">
+                    <section
+                        className={styles.message}
+                        role="status"
+                        aria-live="polite"
+                        aria-label="No products available">
                         No products available.
                     </section>
                 )}

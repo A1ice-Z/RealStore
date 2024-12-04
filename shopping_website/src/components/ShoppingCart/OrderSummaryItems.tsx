@@ -42,7 +42,11 @@ const OrderSummaryItems = () => {
         <>
             <section className={styles.itembox} role="region" aria-label="Order Summary Items">
                 {cartItemData.length === 0 ? (
-                    <section className={styles.message} role="status" aria-live="polite" aria-label="No products available">
+                    <section
+                        className={styles.message}
+                        role="status"
+                        aria-live="polite"
+                        aria-label="No products available">
                         No products available.
                     </section>
                 ) : (

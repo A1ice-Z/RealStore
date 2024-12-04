@@ -11,9 +11,13 @@ interface ActionBoxProps {
 }
 
 const ActionBox = ({productId}: ActionBoxProps) => {
+    //Ensures only one item is added to cart
     const quantity: number = 1;
+
     const [isFavorited, setIsFavorited] = useState<boolean>(false);
     const [isAddedToCart, setIsAddedToCart] = useState<boolean>(false);
+
+    //Get the specific item with the hook
     const {data: products, isLoading, isError} = useProducts(undefined, productId, undefined, undefined, undefined);
 
     if (isLoading) {

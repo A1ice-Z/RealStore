@@ -87,9 +87,7 @@ describe("OrderSummaryList Component", () => {
     });
 
     it("disables the PAY button until terms are accepted", () => {
-        const mockProducts = [
-            {id: 1, title: "Product 1", price: 100},
-        ];
+        const mockProducts = [{id: 1, title: "Product 1", price: 100}];
 
         (useProducts as vi.Mock).mockReturnValue({
             data: mockProducts,
@@ -115,9 +113,7 @@ describe("OrderSummaryList Component", () => {
     });
 
     it("clears the cart and refreshes the page when PAY is clicked", () => {
-        const mockProducts = [
-            {id: 1, title: "Product 1", price: 100},
-        ];
+        const mockProducts = [{id: 1, title: "Product 1", price: 100}];
 
         (useProducts as vi.Mock).mockReturnValue({
             data: mockProducts,
@@ -146,9 +142,7 @@ describe("OrderSummaryList Component", () => {
     });
 
     it("matches the snapshot", () => {
-        const mockProducts = [
-            {id: 1, title: "Product 1", price: 100},
-        ];
+        const mockProducts = [{id: 1, title: "Product 1", price: 100}];
 
         (useProducts as vi.Mock).mockReturnValue({
             data: mockProducts,

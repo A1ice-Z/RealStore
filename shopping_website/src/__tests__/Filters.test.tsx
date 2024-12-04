@@ -26,9 +26,7 @@ describe("Filters component", () => {
             },
         };
 
-        render(
-            <Filters selectedFilter={initialFilter} setSelectedFilters={mockSetSelectedFilters} />,
-        );
+        render(<Filters selectedFilter={initialFilter} setSelectedFilters={mockSetSelectedFilters} />);
 
         expect(screen.getByText(/Filters/i)).toBeInTheDocument();
         expect(screen.getByText(/Categories/i)).toBeInTheDocument();
@@ -47,9 +45,7 @@ describe("Filters component", () => {
             },
         };
 
-        render(
-            <Filters selectedFilter={initialFilter} setSelectedFilters={mockSetSelectedFilters} />,
-        );
+        render(<Filters selectedFilter={initialFilter} setSelectedFilters={mockSetSelectedFilters} />);
 
         const filtersHeader = screen.getByRole("button", {name: /toggle filters section/i});
         expect(filtersHeader).toBeInTheDocument();
@@ -67,9 +63,7 @@ describe("Filters component", () => {
             },
         };
 
-        render(
-            <Filters selectedFilter={initialFilter} setSelectedFilters={mockSetSelectedFilters} />,
-        );
+        render(<Filters selectedFilter={initialFilter} setSelectedFilters={mockSetSelectedFilters} />);
 
         const categoriesHeader = screen.getByRole("button", {name: /toggle categories section/i});
         fireEvent.click(categoriesHeader);
@@ -98,9 +92,7 @@ describe("Filters component", () => {
             },
         };
 
-        render(
-            <Filters selectedFilter={initialFilter} setSelectedFilters={mockSetSelectedFilters} />,
-        );
+        render(<Filters selectedFilter={initialFilter} setSelectedFilters={mockSetSelectedFilters} />);
 
         const priceRangeHeader = screen.getByRole("button", {name: /toggle price range section/i});
         fireEvent.click(priceRangeHeader);
@@ -132,9 +124,7 @@ describe("Filters component", () => {
         Object.defineProperty(window, "innerWidth", {writable: true, configurable: true, value: 500});
         window.dispatchEvent(new Event("resize"));
 
-        render(
-            <Filters selectedFilter={initialFilter} setSelectedFilters={mockSetSelectedFilters} />,
-        );
+        render(<Filters selectedFilter={initialFilter} setSelectedFilters={mockSetSelectedFilters} />);
 
         const filtersHeader = screen.getByRole("button", {name: /toggle filters section/i});
         expect(filtersHeader).toBeInTheDocument();
@@ -187,24 +177,24 @@ describe("Filters component", () => {
                 max: undefined,
             },
         };
-    
+
         // Set the viewport to mobile dimensions
         Object.defineProperty(window, "innerWidth", {writable: true, configurable: true, value: 500});
         window.dispatchEvent(new Event("resize"));
-    
+
         // Render the component
         const {container} = render(
             <Filters selectedFilter={initialFilter} setSelectedFilters={mockSetSelectedFilters} />,
         );
-    
+
         // Find and interact with the "Toggle Filters Section" button
         const filtersHeader = screen.getByRole("button", {name: /toggle filters section/i});
         fireEvent.click(filtersHeader);
-    
+
         // Expand the categories section
         const categoryHeader = screen.getByRole("button", {name: /toggle categories section/i});
         fireEvent.click(categoryHeader);
-    
+
         // Match snapshot
         expect(container).toMatchSnapshot();
     });

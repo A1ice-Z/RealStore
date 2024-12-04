@@ -79,38 +79,37 @@ describe("ActionBox component", () => {
                 image: "test-image.jpg",
             },
         ];
-    
+
         (useProducts as jest.Mock).mockReturnValue({
             data: fakeProducts,
             isLoading: false,
             isError: false,
         });
-    
+
         (getFavorites as jest.Mock).mockReturnValue([]);
         (getCart as jest.Mock).mockReturnValue([]);
-    
+
         render(
             <MemoryRouter>
                 <ActionBox productId={1} />
             </MemoryRouter>,
         );
-    
+
         // More specific queries for elements
         const productTitle = screen.getByRole("heading", {name: /Test Product/i});
         expect(productTitle).toBeInTheDocument();
-    
+
         const productPrice = screen.getByText(/99.99 \$/i);
         expect(productPrice).toBeInTheDocument();
-    
+
         const productImage = screen.getByAltText(/Test Product/i);
         expect(productImage).toHaveAttribute("src", "test-image.jpg");
-    
+
         const addToCartButton = screen.getByRole("button", {name: /add to cart/i});
         fireEvent.click(addToCartButton);
-    
+
         expect(addToCart).toHaveBeenCalledWith(1, 1);
     });
-    
 
     it("renders correctly on mobile version", () => {
         setScreenSize(375, 667); // iPhone 6/7/8 size

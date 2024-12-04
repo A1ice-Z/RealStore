@@ -92,10 +92,7 @@ describe("OrderSummaryItems Component", () => {
             isError: false,
         });
 
-        (getCart as vi.Mock).mockReturnValue([
-            {productId: 1},
-            {productId: 2},
-        ]);
+        (getCart as vi.Mock).mockReturnValue([{productId: 1}, {productId: 2}]);
 
         render(
             <MemoryRouter>

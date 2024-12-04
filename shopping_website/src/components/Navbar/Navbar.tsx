@@ -7,6 +7,7 @@ import {useState} from "react";
 import logo from "/Logo.svg";
 
 const Navbar = () => {
+    //For Hamburgermenu in mobile-version
     const [isOpen, setIsOpen] = useState(false);
 
     return (
@@ -60,7 +61,7 @@ const Navbar = () => {
                     </Link>
                 </div>
                 <Link to={"/ShoppingCart"} className={styles.shoppingButton} aria-label="View My Cart">
-                        <HiOutlineShoppingBag className={styles.whiteicon} />
+                    <HiOutlineShoppingBag className={styles.whiteicon} />
                 </Link>
             </nav>
         </main>
