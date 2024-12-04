@@ -25,14 +25,14 @@ const OrderSummaryItems = () => {
 
     if (isLoading) {
         return (
-            <section role="status" aria-live="polite">
+            <section role="status" aria-live="polite" aria-label="Loading">
                 Loading...
             </section>
         );
     }
     if (isError) {
         return (
-            <section role="alert" aria-live="assertive">
+            <section role="alert" aria-live="assertive" aria-label="Error fetching products">
                 Error fetching products.
             </section>
         );
@@ -42,7 +42,7 @@ const OrderSummaryItems = () => {
         <>
             <section className={styles.itembox} role="region" aria-label="Order Summary Items">
                 {cartItemData.length === 0 ? (
-                    <section className={styles.message} role="status" aria-live="polite">
+                    <section className={styles.message} role="status" aria-live="polite" aria-label="No products available">
                         No products available.
                     </section>
                 ) : (

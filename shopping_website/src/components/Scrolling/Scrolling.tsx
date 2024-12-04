@@ -25,14 +25,14 @@ const Scrolling = ({favorite, cart, selectedFilter}: scrollingProps) => {
 
     if (isLoading) {
         return (
-            <section role="status" aria-live="polite">
+            <section role="status" aria-live="polite" aria-label="Loading">
                 Loading...
             </section>
         );
     }
     if (isError) {
         return (
-            <section role="alert" aria-live="assertive">
+            <section role="alert" aria-live="assertive" aria-label="Error fetching products">
                 Error fetching products.
             </section>
         );
@@ -55,7 +55,7 @@ const Scrolling = ({favorite, cart, selectedFilter}: scrollingProps) => {
                         />
                     ))
                 ) : (
-                    <section className={styles.message} role="status" aria-live="polite">
+                    <section className={styles.message} role="status" aria-live="polite" aria-label="No products available">
                         No products available.
                     </section>
                 )}
