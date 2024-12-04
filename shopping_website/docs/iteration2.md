@@ -7,3 +7,4 @@ See the [iteration 1](iteration1.md) to read about decissions done for project 1
 - To be more consistent, text on the page mostly have the same colour. 
 - We have made the website fully keyboard-accessible with tab and enter, in order to strive for better accessibility. Furthermore, we improved the user feedback a bit by adding hovering effects on buttons and links. 
 - Another improvement for accessibility is the usage of aria-tags. The tags were put according to mozillas aria-guide (generalized for different browsers), which can be found [here](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes)
+- We have made tests for all components
