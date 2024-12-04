@@ -61,7 +61,7 @@ const ActionBox = ({productId}: ActionBoxProps) => {
 
     return (
         <>
-            <nav className={styles.link} aria-label="Breadcrumb">
+            <nav className={styles.link} aria-label="Navigation">
                 <Link to={"/"} className={styles.linkstyle}>
                     Home
                 </Link>{" "}
@@ -71,20 +71,15 @@ const ActionBox = ({productId}: ActionBoxProps) => {
                     Shop
                 </Link>{" "}
                 /
-                <p className={styles.linkstyle} id="product-title">
+                <p className={styles.pstyle} id="product-title">
                     {" "}
                     {product?.title?.split(" ").slice(0, 3).join(" ")}
                 </p>
             </nav>
             <h1 className={styles.title}>SHOP - {product?.title}</h1>
-            <section className={styles.content} role="region" aria-labelledby="product-title">
-                <img
-                    src={product?.image}
-                    alt={product?.title}
-                    className={styles.imageView}
-                    aria-label={`Image of ${product?.title}`}
-                />
-                <article className={styles.information} role="region" aria-labelledby="product-description">
+            <section className={styles.content} role="region" aria-label="product-information">
+                <img src={product?.image} alt={product?.title} className={styles.imageView} />
+                <article className={styles.information} role="region">
                     <section className={styles.productInfoAndHeart}>
                         <section className={styles.productInfo}>
                             <p className={styles.titleInDesc} id="product-description">
@@ -97,6 +92,8 @@ const ActionBox = ({productId}: ActionBoxProps) => {
                             <PiHeartStraightFill
                                 className={`${styles.heartButton} ${styles.likedHeartButton}`}
                                 onClick={() => addFavorite(productId)}
+                                tabIndex={0}
+                                onKeyDown={(e) => e.key === "Enter" && addFavorite(productId)}
                                 aria-label="Remove from favorites"
                                 role="button"
                             />
@@ -104,6 +101,8 @@ const ActionBox = ({productId}: ActionBoxProps) => {
                             <PiHeartStraightThin
                                 className={`${styles.heartButton} ${styles.notLikedheartButton}`}
                                 onClick={() => addFavorite(productId)}
+                                tabIndex={0}
+                                onKeyDown={(e) => e.key === "Enter" && addFavorite(productId)}
                                 aria-label="Add to favorites"
                                 role="button"
                             />
@@ -112,7 +111,7 @@ const ActionBox = ({productId}: ActionBoxProps) => {
                     <p className={styles.clotheDesc}>{product?.description}</p>
                     {isAddedToCart ? (
                         <div className={styles.alreadyInCart} role="status" aria-live="polite">
-                            ALREADY IN CART
+                            ADDED TO CART
                         </div>
                     ) : (
                         <button

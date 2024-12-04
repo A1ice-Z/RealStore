@@ -64,6 +64,10 @@
     padding-top: 15px;
 }
 
+.check {
+    cursor: pointer;
+}
+
 .button {
     height: 40px;
     width: 220px;
@@ -78,10 +82,16 @@
     margin-top: 20px;
 }
 
+.button:hover {
+    background-color: lightgray;
+    opacity: 40%;
+}
+
 .button:disabled {
     height: 40px;
     width: 220px;
     background-color: #f3f3f397;
+    opacity: 1;
     color: white;
     border-style: solid;
     border-color: black;

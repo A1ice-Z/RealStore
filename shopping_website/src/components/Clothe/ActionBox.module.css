@@ -6,6 +6,18 @@
     color: #424242;
 }
 
+.linkstyle:hover {
+    text-decoration: underline;
+}
+
+.pstyle {
+    font-size: 18px;
+    text-decoration: none;
+    margin: 0;
+    height: fit-content;
+    color: #424242;
+}
+
 .link {
     width: fit-content;
     display: flex;
@@ -132,7 +144,6 @@
 .cartButton:hover {
     background-color: lightgray;
     opacity: 40%;
-    transform: scale(1.1);
 }
 
 @media (max-width: 1024px) {
