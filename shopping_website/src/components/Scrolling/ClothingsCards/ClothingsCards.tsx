@@ -70,12 +70,20 @@ const ClothingsCards = ({id, title, price, category, image, cart, favorite}: Int
                     <h5 className={styles.category}>{category}</h5>
                     <section className={styles.IconSpace} aria-label="Product Actions">
                         {cart && (
-                            <span onClick={handleCart} onKeyDown={(e) => e.key === "Enter" && handleCart()}>
+                            <span
+                                onClick={handleCart}
+                                onKeyDown={(e) => e.key === "Enter" && handleCart()}
+                                aria-label={isAddedToCart ? "Remove from cart" : "Add to cart"}
+                                role="button">
                                 {isAddedToCart ? <IoCart tabIndex={0} /> : <IoCartOutline tabIndex={0} />}
                             </span>
                         )}
                         {favorite && (
-                            <span onClick={handleFavorites} onKeyDown={(e) => e.key === "Enter" && handleFavorites()}>
+                            <span
+                                onClick={handleFavorites}
+                                onKeyDown={(e) => e.key === "Enter" && handleFavorites()}
+                                aria-label={isFavorited ? "Remove from favorites" : "Add to favorites"}
+                                role="button">
                                 {isFavorited ? (
                                     <IoMdHeart className={styles.favorited} tabIndex={0} />
                                 ) : (

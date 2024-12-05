@@ -6,8 +6,8 @@ it2810-10.idi.ntnu.no/project1
 
 ## Table of content:
 
--   About the project
--   Running the project
+- About the project
+- Running the project
 
 ## About the project
 
@@ -24,9 +24,9 @@ To run the project, you need to have Node 22 installed. Clone the repository fro
 Now you need to install some npm components.
 To do so, run the following commands in a terminal while inside the mentioned folder:
 
--   `npm install`
--   `npm install react-icons`
--   `npm install @tanstack/react-query`
+- `npm install`
+- `npm install react-icons`
+- `npm install @tanstack/react-query`
 
 Now run `npm run dev` in order to run the project
 

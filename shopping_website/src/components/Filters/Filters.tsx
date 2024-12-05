@@ -136,7 +136,7 @@ const Filters = ({selectedFilter, setSelectedFilters}: FiltersProps) => {
                                                         : `Select ${capitalize(title)}`
                                                 }
                                             />
-                                            <h5 className={styles.h5text}>{capitalize(title)}</h5>
+                                            <h5 className={styles.line}>{capitalize(title)}</h5>
                                         </li>
                                     );
                                 })}

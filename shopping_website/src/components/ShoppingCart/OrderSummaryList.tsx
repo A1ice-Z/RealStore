@@ -30,14 +30,14 @@ const OrderSummaryList = () => {
 
     if (isLoading) {
         return (
-            <section role="status" aria-live="polite">
+            <section role="status" aria-live="polite" aria-label="Loading">
                 Loading...
             </section>
         );
     }
     if (isError) {
         return (
-            <section role="alert" aria-live="assertive">
+            <section role="alert" aria-live="assertive" aria-label="Error fetching products">
                 Error fetching products.
             </section>
         );
