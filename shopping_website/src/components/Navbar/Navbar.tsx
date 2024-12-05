@@ -8,7 +8,6 @@ import logo from "/Logo.svg";
 
 const Navbar = () => {
     //For Hamburgermenu in mobile-version
-    //For Hamburgermenu in mobile-version
     const [isOpen, setIsOpen] = useState(false);
 
     return (
