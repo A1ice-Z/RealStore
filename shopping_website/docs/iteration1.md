@@ -50,23 +50,23 @@ We chose a simple and straightforward design with focus on functionality. Our go
 
 ## Technicalities
 
-- It's only possible to add one of each product to cart.
+-   It's only possible to add one of each product to cart.
 
-- On the product page (accessed by clicking a product from the shopping page), you can only add the product to the cart, but there's no option to remove it by clicking the same button.
+-   On the product page (accessed by clicking a product from the shopping page), you can only add the product to the cart, but there's no option to remove it by clicking the same button.
 
-- In the mobile view of the product page, adding a product to the cart makes the description section extend longer than necessary.
+-   In the mobile view of the product page, adding a product to the cart makes the description section extend longer than necessary.
 
-- When a product is added to the cart, the button text changes to "Already in cart," which can be confusing and might imply the product was in the cart before clicking, even though it wasn’t.
+-   When a product is added to the cart, the button text changes to "Already in cart," which can be confusing and might imply the product was in the cart before clicking, even though it wasn’t.
 
-- When a product is unfavorited on the favorite page or removed from the cart page, then website refreshes to reflect the updated state. We applied the same approach for the checkout process on the cart page.
+-   When a product is unfavorited on the favorite page or removed from the cart page, then website refreshes to reflect the updated state. We applied the same approach for the checkout process on the cart page.
 
-- Give all HTML attributes either a class, id or aria-label so that it is easily mentioned when testing. This would also strengthen the criteria of good HTML according to availability criterias.
+-   Give all HTML attributes either a class, id or aria-label so that it is easily mentioned when testing. This would also strengthen the criteria of good HTML according to availability criterias.
 
-- Use linting more thouroughly while development, so it does not become a huge task in the end of the iteration.
+-   Use linting more thouroughly while development, so it does not become a huge task in the end of the iteration.
 
-- Spend more time on tests, and make tests as you go, instead of all in the end.
+-   Spend more time on tests, and make tests as you go, instead of all in the end.
 
-- Start with covering all criterias, and then add more functionality if there is time. We ended up spending more time adding new functionality, which resultet in less time for tests for example.
+-   Start with covering all criterias, and then add more functionality if there is time. We ended up spending more time adding new functionality, which resultet in less time for tests for example.
 
 ## Decision of not inlcuding ratings
 
