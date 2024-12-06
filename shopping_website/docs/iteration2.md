@@ -8,3 +8,7 @@ See the [iteration 1](iteration1.md) to read about decissions done for project 1
 - We have made the website fully keyboard-accessible with tab and enter, in order to strive for better accessibility. Furthermore, we improved the user feedback a bit by adding hovering effects on buttons and links. 
 - Another improvement for accessibility is the usage of aria-tags. The tags were put according to mozillas aria-guide (generalized for different browsers), which can be found [here](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes)
 - We have made tests for all components
+
+## Technicalities
+- It is possible for an user to submit an empty cart
+- We have used vitest for component tests, but there are some files were we used "vi.Mock". The project couldn't interpret "vi", and we couldn't figure out the problem. To fix this, we used "jest.Mock" instead. This is the only part were we used jest, and as you can see we still use vitest.
