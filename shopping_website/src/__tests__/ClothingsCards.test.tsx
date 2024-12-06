@@ -1,5 +1,6 @@
 import {render, screen, fireEvent} from "@testing-library/react";
 import {describe, it, expect, vi, beforeEach} from "vitest";
+import '@testing-library/jest-dom';
 import ClothingsCards from "../components/Scrolling/ClothingsCards/ClothingsCards";
 import {MemoryRouter} from "react-router-dom";
 import {getCart, addToCart, updateCartQuantity} from "../utils/sessionStorage";
@@ -31,8 +32,8 @@ describe("ClothingsCards Component", () => {
     beforeEach(() => {
         vi.resetAllMocks();
         // Default mocks to avoid undefined errors
-        (getCart as vi.Mock).mockReturnValue([]);
-        (getFavorites as vi.Mock).mockReturnValue([]);
+        (getCart as jest.Mock).mockReturnValue([]);
+        (getFavorites as jest.Mock).mockReturnValue([]);
     });
 
     it("renders the product card with correct details", () => {
@@ -55,7 +56,7 @@ describe("ClothingsCards Component", () => {
     });
 
     it("handles adding and removing items from the cart", () => {
-        (getCart as vi.Mock).mockReturnValue([{productId: 1}]);
+        (getCart as jest.Mock).mockReturnValue([{productId: 1}]);
 
         render(
             <MemoryRouter>
@@ -75,7 +76,7 @@ describe("ClothingsCards Component", () => {
     });
 
     it("handles adding and removing items from favorites", () => {
-        (getFavorites as vi.Mock).mockReturnValue([1]);
+        (getFavorites as jest.Mock).mockReturnValue([1]);
 
         render(
             <MemoryRouter>
@@ -105,8 +106,8 @@ describe("ClothingsCards Component", () => {
     });
 
     it("initializes states based on localStorage and sessionStorage", () => {
-        (getCart as vi.Mock).mockReturnValue([{productId: 1}]);
-        (getFavorites as vi.Mock).mockReturnValue([1]);
+        (getCart as jest.Mock).mockReturnValue([{productId: 1}]);
+        (getFavorites as jest.Mock).mockReturnValue([1]);
 
         render(
             <MemoryRouter>

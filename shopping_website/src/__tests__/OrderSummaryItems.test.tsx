@@ -1,4 +1,5 @@
 import {render, screen} from "@testing-library/react";
+import '@testing-library/jest-dom';
 import {describe, it, expect, vi, beforeEach} from "vitest";
 import OrderSummaryItems from "../components/ShoppingCart/OrderSummaryItems";
 import {useProducts} from "../hooks/useProducts";
@@ -19,7 +20,7 @@ describe("OrderSummaryItems Component", () => {
     });
 
     it("renders the loading state", () => {
-        (useProducts as vi.Mock).mockReturnValue({
+        (useProducts as jest.Mock).mockReturnValue({
             data: null,
             isLoading: true,
             isError: false,
@@ -35,7 +36,7 @@ describe("OrderSummaryItems Component", () => {
     });
 
     it("renders the error state", () => {
-        (useProducts as vi.Mock).mockReturnValue({
+        (useProducts as jest.Mock).mockReturnValue({
             data: null,
             isLoading: false,
             isError: true,
@@ -51,13 +52,13 @@ describe("OrderSummaryItems Component", () => {
     });
 
     it("renders 'No products available' when cart is empty", () => {
-        (useProducts as vi.Mock).mockReturnValue({
+        (useProducts as jest.Mock).mockReturnValue({
             data: [],
             isLoading: false,
             isError: false,
         });
 
-        (getCart as vi.Mock).mockReturnValue([]);
+        (getCart as jest.Mock).mockReturnValue([]);
 
         render(
             <MemoryRouter>
@@ -86,13 +87,13 @@ describe("OrderSummaryItems Component", () => {
             },
         ];
 
-        (useProducts as vi.Mock).mockReturnValue({
+        (useProducts as jest.Mock).mockReturnValue({
             data: mockProducts,
             isLoading: false,
             isError: false,
         });
 
-        (getCart as vi.Mock).mockReturnValue([{productId: 1}, {productId: 2}]);
+        (getCart as jest.Mock).mockReturnValue([{productId: 1}, {productId: 2}]);
 
         render(
             <MemoryRouter>
@@ -115,13 +116,13 @@ describe("OrderSummaryItems Component", () => {
             },
         ];
 
-        (useProducts as vi.Mock).mockReturnValue({
+        (useProducts as jest.Mock).mockReturnValue({
             data: mockProducts,
             isLoading: false,
             isError: false,
         });
 
-        (getCart as vi.Mock).mockReturnValue([{productId: 1}]);
+        (getCart as jest.Mock).mockReturnValue([{productId: 1}]);
 
         const {container} = render(
             <MemoryRouter>
