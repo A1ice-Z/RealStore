@@ -23,7 +23,7 @@ describe("Scrolling Component", () => {
     });
 
     it("renders the loading state", () => {
-        (useProducts as vi.Mock).mockReturnValue({
+        (useProducts as jest.Mock).mockReturnValue({
             data: null,
             isLoading: true,
             isError: false,
@@ -39,7 +39,7 @@ describe("Scrolling Component", () => {
     });
 
     it("renders the error state", () => {
-        (useProducts as vi.Mock).mockReturnValue({
+        (useProducts as jest.Mock).mockReturnValue({
             data: null,
             isLoading: false,
             isError: true,
@@ -72,7 +72,7 @@ describe("Scrolling Component", () => {
             },
         ];
 
-        (useProducts as vi.Mock).mockReturnValue({
+        (useProducts as jest.Mock).mockReturnValue({
             data: mockProducts,
             isLoading: false,
             isError: false,
@@ -90,7 +90,7 @@ describe("Scrolling Component", () => {
     });
 
     it("renders the 'No products available' message when the product list is empty", () => {
-        (useProducts as vi.Mock).mockReturnValue({
+        (useProducts as jest.Mock).mockReturnValue({
             data: [],
             isLoading: false,
             isError: false,
@@ -117,7 +117,7 @@ describe("Scrolling Component", () => {
             },
         ];
 
-        (useProducts as vi.Mock).mockReturnValue({
+        (useProducts as jest.Mock).mockReturnValue({
             data: mockProducts,
             isLoading: false,
             isError: false,
