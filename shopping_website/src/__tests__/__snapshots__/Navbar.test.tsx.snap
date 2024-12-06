@@ -68,12 +68,10 @@ exports[`Navbar snapshot 1`] = `
         role="navigation"
       >
         <a
-          class="_cardbutton_278c00"
+          class="_cartbutton_278c00"
           href="/ShoppingCart"
         >
-          <p
-            aria-label="View My Cart"
-          >
+          <p>
             MY CART
           </p>
           <svg

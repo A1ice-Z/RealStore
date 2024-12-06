@@ -2,6 +2,7 @@
     width: 100%;
     height: fit-content;
     font-family: "Source Sans 3", sans-serif;
+    margin-top: auto;
 }
 
 .imageholder {
@@ -46,23 +47,29 @@
     z-index: 20;
     font-size: 30px;
     color: white;
+    margin-bottom: 10px;
 }
 
 .informationlink,
-.informationlink:hover,
 .informationlink:focus {
     text-decoration: none;
     color: #424242;
-    font-size: 14px;
+    font-size: 20px;
+}
+
+.informationlink:hover {
+    text-decoration: underline;
 }
 
 .informationtext {
     margin-top: 8px;
+    font-weight: 100;
+    font-size: 16px;
 }
 
 .informationtitle {
     font-size: 20px;
-    font-weight: bold;
+    font-weight: 200;
     color: #424242;
 }
 
@@ -131,7 +138,7 @@
 
     .title {
         z-index: 20;
-        font-size: 16px;
+        font-size: 18px;
         color: white;
     }
 
@@ -140,7 +147,7 @@
     .informationlink:focus {
         text-decoration: none;
         color: #424242;
-        font-size: 10px;
+        font-size: 12px;
     }
 
     .informationtext {
@@ -148,8 +155,8 @@
     }
 
     .informationtitle {
-        font-size: 12px;
-        font-weight: bold;
+        font-size: 14px;
+        font-weight: normal;
         color: #424242;
     }
 
@@ -159,7 +166,7 @@
     }
 
     .logoinformation {
-        font-size: 8px;
+        font-size: 10px;
         color: #424242;
     }
 }

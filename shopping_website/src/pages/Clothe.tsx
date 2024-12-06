@@ -2,6 +2,7 @@ import {useParams} from "react-router-dom";
 import ActionBox from "../components/Clothe/ActionBox";
 import Navbar from "../components/Navbar/Navbar";
 import Footer from "../components/Footer/Footer";
+import styles from "../styles/Clothe.module.css";
 
 const Clothe = () => {
     const {id} = useParams<{id: string}>();
@@ -10,7 +11,9 @@ const Clothe = () => {
     return (
         <>
             <Navbar />
-            <ActionBox productId={productId} />
+            <main className={styles.page}>
+                <ActionBox productId={productId} />
+            </main>
             <Footer />
         </>
     );

@@ -25,21 +25,21 @@ const Scrolling = ({favorite, cart, selectedFilter}: scrollingProps) => {
 
     if (isLoading) {
         return (
-            <section role="status" aria-live="polite">
+            <section role="status" aria-live="polite" aria-label="Loading">
                 Loading...
             </section>
         );
     }
     if (isError) {
         return (
-            <section role="alert" aria-live="assertive">
+            <section role="alert" aria-live="assertive" aria-label="Error fetching products">
                 Error fetching products.
             </section>
         );
     }
 
     return (
-        <section className={styles.clothesSections} role="region" aria-labelledby="clothes-section">
+        <section className={styles.clothesSections} role="region">
             <article className={styles.rows} role="list" aria-label="Product list">
                 {products && products.length > 0 ? (
                     products.map((product: Product) => (
@@ -55,7 +55,11 @@ const Scrolling = ({favorite, cart, selectedFilter}: scrollingProps) => {
                         />
                     ))
                 ) : (
-                    <section className={styles.message} role="status" aria-live="polite">
+                    <section
+                        className={styles.message}
+                        role="status"
+                        aria-live="polite"
+                        aria-label="No products available">
                         No products available.
                     </section>
                 )}

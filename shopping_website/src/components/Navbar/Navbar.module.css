@@ -57,28 +57,33 @@
     align-items: center;
     justify-content: space-between;
     margin: 10px;
-    font-size: 14px;
+    font-size: 18px;
 }
 
-.cardbutton,
-.cardbutton:hover,
-.cardbutton:focus {
+.navlink:hover {
+    text-decoration: underline;
+}
+
+.cartbutton,
+.cartbutton:hover,
+.cartbutton:focus {
     text-decoration: none;
     color: white;
     background-color: #424242;
     height: 48px;
-
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
     margin: 10px;
     padding-left: 25px;
     padding-right: 25px;
     font-size: 14px;
     gap: 10px;
-
     border-radius: 30px;
+}
+
+.cartbutton:hover {
+    background-color: #616161;
 }
 
 .heart {
@@ -100,6 +105,10 @@
 }
 
 .hamburgmenu {
+    display: none;
+}
+
+.shoppingButton {
     display: none;
 }
 

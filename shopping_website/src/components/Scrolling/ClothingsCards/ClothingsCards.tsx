@@ -67,12 +67,28 @@ const ClothingsCards = ({id, title, price, category, image, cart, favorite}: Int
             </figure>
             <section className={styles.descriptionSpace}>
                 <header className={styles.productType}>
-                    <h5>{category}</h5>
+                    <h5 className={styles.category}>{category}</h5>
                     <section className={styles.IconSpace} aria-label="Product Actions">
-                        {cart && <span onClick={handleCart}>{isAddedToCart ? <IoCart /> : <IoCartOutline />}</span>}
+                        {cart && (
+                            <span
+                                onClick={handleCart}
+                                onKeyDown={(e) => e.key === "Enter" && handleCart()}
+                                aria-label={isAddedToCart ? "Remove from cart" : "Add to cart"}
+                                role="button">
+                                {isAddedToCart ? <IoCart tabIndex={0} /> : <IoCartOutline tabIndex={0} />}
+                            </span>
+                        )}
                         {favorite && (
-                            <span onClick={handleFavorites}>
-                                {isFavorited ? <IoMdHeart className={styles.favorited} /> : <IoMdHeartEmpty />}
+                            <span
+                                onClick={handleFavorites}
+                                onKeyDown={(e) => e.key === "Enter" && handleFavorites()}
+                                aria-label={isFavorited ? "Remove from favorites" : "Add to favorites"}
+                                role="button">
+                                {isFavorited ? (
+                                    <IoMdHeart className={styles.favorited} tabIndex={0} />
+                                ) : (
+                                    <IoMdHeartEmpty tabIndex={0} />
+                                )}
                             </span>
                         )}
                     </section>

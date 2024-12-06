@@ -73,6 +73,10 @@
     border-radius: 10px;
 }
 
+.shoppingbutton:hover {
+    background-color: #187171;
+}
+
 @media (max-width: 820px) {
     .homepage {
         overflow-x: hidden;
@@ -107,20 +111,20 @@
     }
 
     .descriptiontext {
-        font-size: 20px;
+        font-size: 22px;
     }
 
     .shoptext {
-        font-size: 20px;
+        font-size: 22px;
     }
 
     .informationtext {
-        font-size: 12px;
+        font-size: 14px;
     }
 
     .shoppingbutton {
         padding: 8px 15px 8px 15px;
-        font-size: 12px;
+        font-size: 14px;
     }
 
     .arrow {

@@ -7,6 +7,7 @@ import {useState} from "react";
 import logo from "/Logo.svg";
 
 const Navbar = () => {
+    //For Hamburgermenu in mobile-version
     const [isOpen, setIsOpen] = useState(false);
 
     return (
@@ -51,8 +52,8 @@ const Navbar = () => {
                     </Link>
                 </div>
                 <div className={styles.navlinks} role="navigation" aria-label="User Navigation">
-                    <Link to={"/ShoppingCart"} className={styles.cardbutton}>
-                        <p aria-label="View My Cart">MY CART</p>
+                    <Link to={"/ShoppingCart"} className={styles.cartbutton}>
+                        <p>MY CART</p>
                         <HiOutlineShoppingBag className={styles.whiteicon} />
                     </Link>
                     <Link to={"/Favorites"} className={styles.navlink}>
